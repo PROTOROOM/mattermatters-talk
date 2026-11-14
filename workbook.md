@@ -70,7 +70,7 @@ title: Matter Matters 워크북
 키워드: **Tech × Kit × Critic**, **KIT**, 메타미디어, 0 ↔ 1 반전
 
 ### 주제의식 (정리 초안)
-손바닥만 한 키트로 컴퓨터의 기본 요소를 직접 만져 보고, 거기서 기술 비평까지 이어 간다 — Tech × Kit × Critic.
+Tech × Kit × Critic.
 
 ### 영상
 - [sensuous transforming of 0 | 1 signal Ver.1 (2016)](https://www.youtube.com/watch?v=co9ziGXSjrY) — PROTOROOM · NTT ICC
