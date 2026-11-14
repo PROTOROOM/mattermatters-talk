@@ -162,575 +162,282 @@ details.raw>summary::before{content:"＋ "} details.raw[open]>summary::before{co
 details.raw>summary span{font:400 12px var(--mono);border:1px solid var(--ink);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:2px}
 details.raw[open]{padding-bottom:12px}
 @media (max-width:860px){.c-row{grid-template-columns:1fr;gap:12px}.c-top{flex-direction:column;gap:0}}
+/* md에서 쓰는 보조 클래스 */
+.say.lead{font-size:17px}
+b.red{color:var(--red)}
+.warn + .gal{margin-top:12px}
+#refs .flow{font-size:14px}
+.c-list>div>span{display:inline-block;min-width:6.2em}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#top"><strong>Matter Matters 워크북</strong></a>
-  <a href="#retro">회고 — 한눈에</a>
-  <b>Ⅰ 맥락</b>
-  <a href="#c01">01 집·전시·동기신호</a>
-  <a href="#c02">02 PROTOROOM</a>
-  <a href="#c03">03 작품·SmallBig</a>
-  <b>Ⅱ 여섯 번 풀어내기</b>
-  <a href="#c04">04 2025.06.21 기다리다</a>
-  <a href="#c05">05 2025.10.25 쌓다</a>
-  <a href="#c06">06 2026.04.25 읽고·쓰고·듣다</a>
-  <a href="#c07">07 2026.06.13 겹치다</a>
-  <a href="#c08">08 2026.10.17 해석하다</a>
-  <a href="#c09">09 2026.11.21 돌아보다</a>
-  <b>Ⅲ 개념</b>
-  <a href="#c10">10 개념의 진화</a>
-  <a href="#c11">11 키워드 대조</a>
-  <a href="#c12">12 비평 질문</a>
-  <b>부록</b>
-  <a href="#warn">확인 필요 모음</a>
-  <a href="#terms">용어</a>
-  <a href="#refs">출처</a>
-</nav>
+<nav></nav>
 
-<main id="top">
+<main id="top"></main>
 
-<header class="cover">
-  <div class="c-top">
-    <h1>Matter<br>Matters</h1>
-    <div class="c-org">PROTOROOM<br>Tech × Kit × Critic<br>1차 자료 워크북</div>
-  </div>
-  <div class="c-sub">0.000001GB</div>
-  <div class="c-row">
-    <div class="c-big">2025<span style="margin:0 .12em">–</span>26</div>
-    <ul class="c-list">
-      <li><span>2025.06.21</span>탐색을 기다리며</li>
-      <li><span>2025.10.25</span>탐색적 작곡</li>
-      <li><span>2026.04.25</span>읽고 쓰고 듣는 0.000001GB</li>
-      <li><span>2026.06.13</span>효율 너머의 코드와 데이터</li>
-      <li><span>2026.10.17</span>데이터, 모델, 지능</li>
-      <li><span>2026.11.21</span>먼지 같은 사소한 데이터에서부터</li>
-    </ul>
-  </div>
-  <div class="c-row">
-    <div class="c-big">11.21</div>
-    <div class="c-list">
-      <div><span style="display:inline-block;min-width:6.2em">Talk</span>15:00 – 17:00</div>
-      <div><span style="display:inline-block;min-width:6.2em">Venue</span>서울시립 백남준을 기억하는 집</div>
-      <div><span style="display:inline-block;min-width:6.2em">Exhibition</span>《메가트론 랩소디》 동기신호</div>
-      <div><span style="display:inline-block;min-width:6.2em">Note</span>PT 제작 전 1차 자료 · 2026.11.10</div>
-  <div class="legend">
-    <span class="k m">장 대표 키워드</span><span class="k">보조 키워드</span>
-    <span class="warn" style="padding:4px 10px">출처끼리 어긋나는 곳</span>
-  </div>
-    </div>
-  </div>
-</header>
-
-<section id="retro" class="retro">
-  <div class="part"><small>RETROSPECT</small><h2>회고 — 한눈에</h2>
-    <div class="thesis">0.000001GB<br>과잉의 단위로 과소를 측정하기</div>
-    <p class="thesis-sub">"1KB라고 쓰면 될 것을 GB 단위로 소수점까지 내려간다. 이건 우리가 세상을 측정하는 습관 자체에 대한 개입이다."</p>
-  </div>
-  <table class="retro-t">
-    <tr><th>장 · 날짜</th><th>동사</th><th>주제의식</th></tr>
-    <tbody id="retro-rows"></tbody>
-  </table>
-</section>
-
-<!-- ============ Ⅰ ============ -->
-<div class="part"><small>PART Ⅰ</small><h2>맥락</h2><div class="big">작은 데이터가 놓이는 자리</div></div>
-
-<section class="ch" id="c01">
-  <h3><span class="no">01</span>백남준을 기억하는 집 · 《메가트론 랩소디》 · 동기신호</h3>
-  <div class="kw"><span class="k m">식료품 가게 주인</span><span class="k m">메가트론 ↔ 0.000001GB</span><span class="k">관객 참여</span><span class="k">격년</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info">
-      <dt>장소</dt><dd>백남준(1932–2006)이 1937–1950년 살던 창신동 집터. 1960년 지은 한옥을 고쳐 2017년 3월 개관. 리모델링 최욱 건축가</dd>
-      <dt>전시</dt><dd>《메가트론 랩소디》 상설, 2025.06.17 개막 · 담당 유은순 학예연구사</dd>
-      <dt>참여작가</dt><dd>김상돈, 노치욱, 이정성, 최욱, 황병기, 폴 개린, <b>프로토룸</b></dd>
-      <dt>제목</dt><dd>SeMA 본관 상설 설치작 〈서울 랩소디〉(2001)와 그 형식 '메가트론'에서 따옴</dd>
-    </dl>
-  </div>
-  <div class="slot"><h4>섹션 구성 (SeMA 요약)</h4>
-    <ol class="flow">
-      <li><b>리믹스</b>: 개관 당시 자료 재배치. 'NJP 카페', '연보에 말 걸기'</li>
-      <li><b>메가트론</b>: 탄생 90주년 심포지엄(2023) 자료, 유준상 컬렉션. 〈서울 랩소디〉 제작·구조, 플럭서스의 우연성·즉흥성</li>
-      <li><b>동기신호 (Synchronized Signals)</b>: 동시대 작가들의 작업으로 백남준 예술의 과거·현재·미래를 잇는 프로그램. 관객이 악기와 사물을 마음껏 가지고 놀기를 바랐던 백남준, 자신을 "식료품 가게 주인"이라 부름 → 미디어 기반 관객 참여형 작품을 격년 소개. <b>프로토룸이 첫 참여작가</b></li>
-    </ol>
-  </div>
-  <div class="slot"><h4>연결 메모</h4>
-    <p>메가트론 = 거대한 화면 다발(큰 데이터). 0.000001GB = 1KB 수식. 같은 전시 안에 Big과 Small이 함께 있다 → 악기 이름 <b>SmallBig</b>과 맞물림. 공간이 좁아 프로그램 중엔 늘 관람 불가 → '작은 공간'도 조건.</p>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/exhibition/detail?exNo=1417927">SeMA 전시 페이지</a><a href="https://sema.seoul.go.kr/kr/visit/nam_june_paik_house">백남준을 기억하는 집</a></div>
-</section>
-
-<section class="ch" id="c02">
-  <h3><span class="no">02</span>PROTOROOM</h3>
-  <div class="kw"><span class="k m">Tech × Kit × Critic</span><span class="k m">KIT</span><span class="k">메타미디어</span><span class="k">0 ↔ 1 반전</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info">
-      <dt>결성</dt><dd>2014 · 후니다 킴 + 김승범 · 메타미디어 콜렉티브</dd>
-      <dt>KIT</dt><dd>손바닥 크기. 컴퓨팅 매체의 기본 요소를 직접 감각하게 하고, 기술에 대한 사유·담론을 잇는 매개</dd>
-      <dt>작업</dt><dd>〈0.000001 기가바이트 매터 매터스〉(2025)</dd>
-    </dl>
-  </div>
-  <div class="slot"><h4>작업 계보 (protoroom.kr 순서)</h4>
-    <p class="mono">01 signal → MetaPixels → Feedback of MetaPixels → Kit X Workshop → SmallBig_SØ → Play Album 01 → 0.000001GB Matter Matters</p>
-    <p>2016 NTT ICC 〈sensuous transforming of 0|1 signal Ver.1〉: 0을 1로(1을 0으로) <b>뒤집기만</b> 하는 회로 키트. 이어 붙일수록 복잡한 표현이 됨 → "최소 단위에서 복잡성"이라는 SmallBig과 같은 줄기.</p>
-  </div>
-  <div class="slot"><h4>관련 텍스트</h4>
-    <ul class="flow">
-      <li>오영진, 「1KB로 당신은 무엇을 할 수 있을까?」, 한겨레21, 2022.10.10 <em>(본문 미확인)</em></li>
-      <li>후니다킴, 「모든 것, 모든 곳을 향하여, 파인튜닝되는 감각의 보철과 작아지는 신체감각」, 웹진 한국연구, 2023</li>
-      <li>김승범, 「쓰기 도구, 그리고 그 속성을 강화할 거대언어모델」, 웹진 한국연구, 2023</li>
-      <li>「데이터와 연산장치」 보고서, 한국문화예술교육진흥원, 2019</li>
-      <li>이영균, 「아티스트 컬렉티브에 대해 말하지 않는 것」, Noblesse, 2019</li>
-      <li>임태훈, 「무지-무책임-무능력 '디지털 문맹'에서 탈출하라」, 한국일보, 2015</li>
-    </ul>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://protoroom.kr/works/about/">protoroom.kr About</a><a href="https://protoroom.kr/works/texts/">Texts</a><a href="https://www.ntticc.or.jp/en/archive/works/sensuous-transforming-of-0-1-signal-ver-1/">NTT ICC</a></div>
-</section>
-
-<section class="ch" id="c03">
-  <h3><span class="no">03</span>작품 〈0.000001GB Matter Matters〉 · SmallBig</h3>
-  <div class="kw"><span class="k m">계산하는 악기</span><span class="k m">1KB 수식</span><span class="k">라디오 주파수 맞추기</span><span class="k">Matter / Matters</span><span class="k">데모씬</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info">
-      <dt>전시</dt><dd>2025.06 – 2027.06 · 동기신호 첫 참여작 · protoroom.kr에 KR/EN/JP 작업소개 PDF</dd>
-      <dt>개념</dt><dd>1KB(=0.000001GB)가 안 되는 간단한 수식으로 소리를 탐색하는 계산하는 악기 SmallBig_S1. 한 수식에서 실시간으로 나오는 노이즈·글리치 속에서 리듬을 찾아 고르고, 라디오 주파수를 맞추듯 소리의 가능성을 쌓아 올림</dd>
-      <dt>관객</dt><dd>전시장에 악기를 펼쳐 놓아 작가뿐 아니라 관객도 직접 연주</dd>
-    </dl>
-  </div>
-  <div class="slot"><h4>핵심 문장 (matter-matters-quote.png)</h4>
-    <blockquote>1KB라고 쓰면 될 것을 굳이 GB 단위로, 소수점 아래까지 내려가 "0.000001GB Matter Matters"라고 쓴다. <b>우리가 세상을 측정하는 습관 자체에 대한 개입</b>이다. 모두가 GB·TB·PB로 세상을 보는 시대에, 의미 있는 것은 그 단위 아래에 있을지도 모른다.<cite>0.000001GB 과잉 단위로 과소를 측정하기</cite></blockquote>
-  </div>
-  <div class="slot"><h4>SmallBig 계보 (SØ → S1)</h4>
-    <p class="say" style="font-size:17px">2019년 아이디어 스케치에서 출발해 2022년 ZER01NE Day에서 공개된 원형 SmallBig_SØ가 2024년까지 라이브로 쓰였고, 이를 이은 다음 버전 SmallBig_S1이 2025년 〈0.000001GB Matter Matters〉의 악기가 되었다.</p>
-    <table>
-      <tr><th>시기</th><th>이름</th><th>근거 (로컬 <code>SmallBig/hardware</code> 폴더명 등)</th></tr>
-      <tr><td>2019</td><td>first ideaSketch</td><td>protoroom.kr 메인 "Now"</td></tr>
-      <tr><td>2022</td><td>SmallBig_SØ</td><td><code>2022_smallBig_V1.2bmp</code>, <code>V1.3Bmp</code>, <code>2022_SmallBigAlbum_V1.5</code> · ZER01NE Day 라이브 · Manual 영상</td></tr>
-      <tr><td>2024</td><td>SmallBig-SØ Live</td><td>모듈라서울007, 문래동 폐공장 (SeMA 사진 크레딧)</td></tr>
-      <tr><td>2025.04–05</td><td>SmallBig_S1</td><td><code>2025_0409_V1.5_1GBMMS</code> → <code>0425_V1.7</code> → <code>0514/0515_V2.0</code> · <code>2025_0517_CNCEcoderV0.5</code></td></tr>
-    </table>
-    <div class="warn">폴더명의 V1.5–V2.0 "1GBMMS"가 S1인지, SØ와 S1이 하드웨어·기능에서 어떻게 다른지 작가 확인 필요 (공개 자료에 없음).</div>
-  </div>
-  <div class="slot"><h4>펌웨어 메모 (<code>SmallBig/SmallBig-1KBMatterMatters/SmallBig-1KBMatterMatters.ino</code>)</h4>
-    <ul class="flow">
-      <li>Byteseeker Jr. 기반, Michael Smith의 PCM Audio 스케치 응용 · AVR(Arduino) · 샘플레이트 <b>8000Hz</b></li>
-      <li>OLED SSD1309 128×64 · 노브 A/B · 로터리 엔코더 2개 · 버튼</li>
-      <li>수식 <b>12개</b>를 PROGMEM에 저장, 노브 값이 <code>a</code>, <code>b</code>로 들어감</li>
-    </ul>
-    <div class="formula"><b>expr9</b>  ((t >> 16) * 7 | (t >> a) * 8 | (t >> b) * 7) & (t >> 7)   ← 4월 발표 "질문으로서의 수식"
-<b>expr10</b> t>>a | -t>>b
-<b>expr11</b> t%a+t%64 | t%b+t%28
-<b>expr5</b>  ((t >> a & t) - (t >> a) + (t >> a & t)) + (t * ((t >> b)&b))   // original song</div>
-  </div>
-  <div class="slot"><h4>SmallBig_SØ 원래 문제의식 (protoroom.kr)</h4>
-    <p>데모씬의 생성 알고리즘 사운드 기반. 한 줄 수식 = 무한한 가능성 → <b>탐색적 작곡</b>. 기존 악기 인터페이스를 벗어난 <b>메타 인터페이스</b>. AI·빅데이터·고해상도 음원·이미지처럼 쌓이고 잊히는 <b>과잉 데이터에 무감각해지는 현상</b>에 대한 질문.</p>
-  </div>
-  <div class="slot"><h4>파일</h4>
-    <div class="files">
-      <a href="../SmallBig/SmallBig-1KBMatterMatters/SmallBig-1KBMatterMatters.ino">../SmallBig/SmallBig-1KBMatterMatters/SmallBig-1KBMatterMatters.ino</a>
-      <a href="../SmallBig/hardware/">../SmallBig/hardware/</a>
-      <a href="../SyncSlide-Matters-Uneven/public/assets/slides/matter-matters-quote.png">../SyncSlide-Matters-Uneven/public/assets/slides/matter-matters-quote.png</a>
-    </div>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://protoroom.kr/works/mattermatters/">protoroom.kr Matter Matters</a><a href="https://protoroom.kr/works/smallbig/">SmallBig_SØ</a><a href="https://www.youtube.com/watch?v=lKoQW8Z7zds">SmallBig_SØ Manual 영상</a></div>
-</section>
-
-<!-- ============ Ⅱ ============ -->
-<div class="part"><small>PART Ⅱ</small><h2>여섯 번 풀어내기</h2><div class="big">한 작품, 여섯 개의 렌즈</div></div>
-<div class="lens"><h4>PROTOROOM 키워드</h4><ol><li><b>작은 데이터</b><small>Small Data</small></li><li><b>계산하는 악기</b><small>Calculating Instrument</small></li><li><b>과잉의 단위로 과소를</b><small>Expressing the Minimal with Units of Excess</small></li><li><b>탐색적 작곡</b><small>Exploratory Composition</small></li><li><b>물질로서의 데이터</b><small>Data as Matter</small></li><li><b>은유가 아니라 실제</b><small>Not Metaphor, but Real</small></li></ol></div>
-
-<section class="ch" id="c04">
-  <h3><span class="no">04</span>〈매터 매터스: 탐색을 기다리며〉</h3>
-  <div class="kw"><span class="k m">탐색을 기다리며</span><span class="k">글리치 굿</span><span class="k">수식의 변화</span><span class="k">인스타 라이브</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2025.06.21(토) 16:00–16:40 · 6.17–21 리허설</dd><dt>형식</dt><dd>《메가트론 랩소디》 연계 퍼포먼스</dd><dt>정원</dt><dd>25명 선착순 (대기까지 마감)</dd></dl>
-  </div>
-  <div class="slot"><h4>SeMA 소개 (요약)</h4>
-    <blockquote>작가가 고안한 계산하는 악기 〈SmallBig_S1〉으로 음악부터 소음까지 다양한 사운드를 발견하고 조합하는 탐색적 작곡. "떠들썩한 한바탕의 글리치 굿".<cite>SeMA 행사 페이지 · 사진 크레딧: 〈SmallBig-SØ Live〉, 모듈라서울007(문래동 폐공장, 2024)</cite></blockquote>
-  </div>
-  <div class="slot"><h4>protoroom.kr 기록</h4><p>인스타그램 라이브로 장치 내부 <b>수식의 변화</b>를 먼저 보여준 뒤, 한옥을 고친 전시 공간으로 이어짐. 리드미컬한 글리치 사운드가 공간을 채움.</p></div>
-  <div class="warn">SeMA 표기가 "연계 퍼포먼스 / 매터 매터스 / Matter Matters"로 섞여 있음. 시간도 16:00–16:30과 16:00–16:40 두 가지. protoroom.kr 날짜는 06-17(개막일).</div>
-  <div class="slot"><h4>파일</h4><div class="files">사진·영상 경로 아직 없음</div></div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1420207&glolangType=KOR">SeMA</a><a href="https://culture.seoul.go.kr/culture/culture/cultureEvent/view.do?cultcode=154036&menuNo=200008">서울문화포털</a></div>
-</section>
-
-<section class="ch" id="c05">
-  <h3><span class="no">05</span>〈매터 매터스: 탐색적 작곡〉</h3>
-  <div class="kw"><span class="k m">탐색적 작곡</span><span class="k">16대</span><span class="k">한옥 전체가 작곡의 공간</span><span class="k">소리의 시작점</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2025.10.25(토) 16:00–17:30</dd><dt>형식</dt><dd>동기신호 프로그램 퍼포먼스 (2차)</dd><dt>정원</dt><dd>40명 선착순 · 신청 10.13–10.23</dd></dl>
-  </div>
-  <div class="slot"><h4>SeMA 소개 (요약)</h4>
-    <blockquote>1차(6.21)는 작은 데이터에서 생긴 노이즈 속에서 리듬을 찾고 쌓으며 소리의 가능성을 탐색했다. 2차에서는 퍼포머가 한옥 곳곳을 옮겨 다니며 <b>소리의 시작점</b>을 배치하고 노이즈를 만들어, 한옥 전체가 작곡의 공간이 된다.<cite>SeMA 행사 페이지 · 후기 영상(영상: 프로토룸) 게시</cite></blockquote>
-  </div>
-  <div class="slot"><h4>protoroom.kr 기록</h4><p><b>16대</b>의 SmallBig을 차례로 연주하며 노이즈를 쌓음. 중정과 전시실 곳곳에 배치. 공연 뒤 참여자가 직접 악기로 소리를 탐색하며 협주.</p></div>
-  <div class="slot"><h4>파일</h4><div class="files">후기 영상: SeMA 페이지 임베드 (로컬 원본 경로 추가 필요)</div></div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?evtNo=1455791&glolangType=KOR">SeMA</a><a href="https://protoroom.kr/works/mattermatters/">protoroom.kr</a></div>
-</section>
-
-<section class="ch" id="c06">
-  <h3><span class="no">06</span>〈워크숍+사운드잼: 읽고 쓰고 듣는 0.000001GB〉</h3>
-  <div class="kw"><span class="k m">과잉의 단위로 과소를</span><span class="k m">실행되는 데이터</span><span class="k">누수된 데이터</span><span class="k">사운드잼</span><span class="k">데이터의 부족?</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2026.04.25(토) 15:00–18:00</dd><dt>형식</dt><dd>워크숍 + 사운드잼 · 동기신호 프로그램 1회차(2026)</dd><dt>정원</dt><dd>12명 추첨 · 신청 4.6–4.21</dd><dt>도구</dt><dd>SmallBig_S1 + 참여자 스마트폰(SyncSlide)</dd></dl>
-  </div>
-  <div class="slot"><h4>SeMA 소개 (요약)</h4>
-    <blockquote>1KB 이하의 작은 데이터로 연주하는 계산하는 악기로 데이터와 코드를 읽고 듣고 직접 연주하며 즉흥 합주 '사운드잼'을 시도. 〈슈퍼 마리오〉(1985) 롬은 약 40KB인데 그 게임 화면 캡처는 수 MB를 넘는다는 아이러니.<cite>SeMA 행사 페이지</cite></blockquote>
-  </div>
-  <div class="slot"><h4>PT 흐름 — 이 회차 발표 자료 그대로 (<code>SyncSlide-Matters/public/deck.js</code>)</h4>
-    <ol class="flow">
-      <li>Matter Matters — 읽고 쓰고 듣는 0.000001 GB · <b>Tech x Kit x Critic</b></li>
-      <li><b>1KB</b> → "비트, 픽셀, 작은 데이터…" → SI 접두어 단위표</li>
-      <li>1KB 분량 텍스트: 『이상한 나라의 앨리스』 도입부 (문장 중간 "생각하"에서 끊김)</li>
-      <li>성게 사진 해상도 비교 175 → 7px</li>
-      <li><b>1KB = 0.000001GB</b> → <b>과잉의 단위로 과소를 측정하기</b> — 데이터에 대한 지금의 감각</li>
-      <li>(숨김) E.A.T. / 9 Evenings</li>
-      <li><b>What can we do with 0.000001 GB?</b> → 마리오 스프라이트, 구름</li>
-      <li><b>데이터의 부족?</b> — 더 이상 학습할 데이터가 없다고? 데이터의 효율성만 바라보는 관점</li>
-      <li><b>실행되는 데이터</b> — 결정적인 데이터가 비결정적인 경험을 만든다</li>
-      <li>질문으로서의 수식 → 데모씬 → 비트 연산자 표 → <code>(t * 3) | (t >> 4)</code></li>
-      <li>실습: <code>t*n</code> 보기·듣기 → <code>t>>n</code> 보기·듣기 → <code>(t*n1)|(t>>n2)</code> 믹스</li>
-      <li><b>누수된 데이터</b> — 소리로 왜 들을까?</li>
-      <li><b>계산하는 악기</b> → 버튼 에디터 → 계산하는 악기로 수식 업로드: 인터페이스를 바꾸기 → 장치 설명(A/B 노브, LOOP)</li>
-      <li><b>탐색적 작곡</b> → <b>당신의 탐색을 기다리며</b> · 감사합니다 (← 04장 제목 회수)</li>
-    </ol>
-  </div>
-  <div class="slot"><h4>PT 인터랙티브 장면 (참여자 폰에서 각자 조작)</h4>
-    <table>
-      <tr><th>장면 · 모듈</th><th>화면 구성</th></tr>
-      <tr><td>t * n 의 데이터 변화를 살피기<small>bytebeat-viewer-mul-slider</small></td><td>EXPRESSION <code>t * 8</code> · N 슬라이더(0–100) · 10진수 값 · 8비트 시각화 · 8비트 히스토리</td></tr>
-      <tr><td>t * n 의 소리 듣기<small>bytebeat-slider</small></td><td>같은 수식을 소리로 재생</td></tr>
-      <tr><td>t &gt;&gt; n 의 데이터 변화를 살피기<small>bytebeat-viewer-shift-slider</small></td><td>EXPRESSION <code>t &gt;&gt; 8</code> · N · 8비트 시각화</td></tr>
-      <tr><td>t &gt;&gt; n 의 소리 듣기<small>bytebeat-shift-slider</small></td><td>소리 재생</td></tr>
-      <tr><td>(t * n1) | (t &gt;&gt; n2) 의 소리 듣기<small>bytebeat-mix-slider</small></td><td>N1 · N2 · VOLUME · 히스토리</td></tr>
-      <tr><td>Bytebeat 버튼 에디터<small>bytebeat-button-editor</small></td><td><code>( t * 3 ) | ( t &gt;&gt; 4)</code>에서 시작, 기호 버튼(quick keys)으로 수식 편집 · VOLUME</td></tr>
-    </table>
-    <p>흐름: <b>데이터를 본다 → 같은 데이터를 듣는다 → 두 수식을 섞는다 → 버튼으로 직접 쓴다 → 계산하는 악기에 업로드</b> = 회차 제목의 "읽고 → 듣고 → 쓰고"</p>
-  </div>
-  <div class="slot"><h4>기획 메모 (<code>SyncSlide-Matters/.work/pages</code>, 14장)</h4>
-    <ul class="flow">
-      <li><b>공간·워크숍 구성</b>: 한 줄 코드 → 핸드폰, 바이브, 슬라이더 구성 + 공간 스케치(p-01, 02)</li>
-      <li><b>데이터 담론</b>: 전시되는 레이어의 담론을 가져오기, 데이터 스케일 이야기, 640×480(VGA) 예시 영상(p-03) · VGA→4K 해상도 도표(p-06) · SI 접두어와 채택 연도(kilo 1795 → quetta 2022, p-07)</li>
-      <li><b>MAKING DATA PROGRAMMABLE</b> — 프로그래밍 가능한 데이터의 이슈 = <b>실행되는 데이터</b>. "데이터가 형식이 바뀌면서 맥락이 개인화되는 데이터로 변화" · 실행되는 데이터의 경험의 크기: 게임하기 vs 스크린샷 보기 · 결정적인 데이터가 비결정적인 경험을 만든다(슈퍼마리오 게임 경험 + AI와 연결) (p-05)</li>
-      <li><b>E.A.T. 1966 · 데모씬</b>: 예술과 공학적 기술이 공식적으로 만나 열린 작업의 시작점, 장치를 적극적으로 활용 → 프로토룸과 비교. "기술에 비효율에 재미, 실험(약간 힙합적인 느낌, 서로 배틀)" · 9 Evenings / pouet.net 링크 (p-08)</li>
-      <li><b>0.000001GB 과잉 단위로 과소를 측정하기</b> 문단 초안 (p-10) · 작업소개 PDF 링크 (p-09)</li>
-      <li><b>숫자 변환 → 톱니파 경험</b>: t 값 변화, greggman html5bytebeat 참고, <b>Matter-beat 만들었음</b>, t, t*n으로 쌓아서 배음 (p-11, 14) · 두 개의 값을 바꾸는 쌍슬라이더</li>
-      <li><b>( )을 소리로 듣지?</b> — 전화기 해킹, 천리안, 전화번호 다이얼 소리, 모스부호 (p-12) → 발표의 "누수된 데이터 — 소리로 왜 들을까?"</li>
-      <li><b>1KB로 뭘 할 수 있지</b>: 레이어 적은 것을 가져오기, 슈퍼마리오 게임 실행 → 사진으로 (p-13)</li>
-    </ul>
-    <div class="warn">p-08 메모 "위상의 생이 1917년도 이후 플럭서스 이후 발표 맨뒤로??"는 무슨 뜻인지 확인 필요 (메모 원문 그대로 옮김).</div>
-    <div class="gal" style="margin-top:12px">
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-01.png" alt="기획 p-01"><figcaption>p-01 공간·워크숍 구성</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-02.png" alt="기획 p-02"><figcaption>p-02 공간 스케치</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-03.png" alt="기획 p-03"><figcaption>p-03 데이터 담론</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-04.png" alt="기획 p-04"><figcaption>p-04 마리오</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-05.png" alt="기획 p-05"><figcaption>p-05 Making data programmable</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-06.png" alt="기획 p-06"><figcaption>p-06 해상도 VGA→4K</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-07.png" alt="기획 p-07"><figcaption>p-07 SI 접두어·채택 연도</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-08.png" alt="기획 p-08"><figcaption>p-08 E.A.T.·데모씬</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-09.png" alt="기획 p-09"><figcaption>p-09 작업소개 PDF</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-10.png" alt="기획 p-10"><figcaption>p-10 과잉 단위로 과소를</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-11.png" alt="기획 p-11"><figcaption>p-11 숫자 변환 → 톱니파</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-12.png" alt="기획 p-12"><figcaption>p-12 ( )을 소리로 듣지?</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-13.png" alt="기획 p-13"><figcaption>p-13 1KB로 무엇을</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/.work/pages/p-14.png" alt="기획 p-14"><figcaption>p-14 쌍슬라이더</figcaption></figure>
-    </div>
-  </div>
-  <div class="slot"><h4>발표 장면</h4>
-    <div class="gal">
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/data-units.png" alt="SI 접두어 단위표"><figcaption>SI 접두어 단위표</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/sea-urchin-pixelated.png" alt="성게 해상도 비교"><figcaption>해상도별 픽셀화</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/mario-sprites.png" alt="마리오 스프라이트"><figcaption>마리오 스프라이트</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/demoscene.png" alt="데모씬"><figcaption>데모씬</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/operators-table.png" alt="비트 연산자 표"><figcaption>연산자 표</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/device-knobs.png" alt="장치 A/B 노브"><figcaption>장치: A/B 노브</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/device-loop.png" alt="장치 LOOP"><figcaption>장치: LOOP 구간</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters/public/assets/slides/eat-9evenings.png" alt="E.A.T. 9 Evenings"><figcaption>E.A.T. 9 Evenings (발표에서 숨김)</figcaption></figure>
-    </div>
-  </div>
-  <div class="slot"><h4>파일</h4>
-    <div class="files">
-      <a href="../SyncSlide-Matters/.work/deck.pdf">../SyncSlide-Matters/.work/deck.pdf</a> (원본 Google Slides PDF)
-      <a href="../SyncSlide-Matters/.work/pages/">../SyncSlide-Matters/.work/pages/</a> (기획 메모 14장 PNG)
-      <span>실행: cd ../SyncSlide-Matters && npm start → localhost:3000 (게스트) / :3000/host</span>
-    </div>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1520859&glolangType=KOR">SeMA</a></div>
-</section>
-
-<section class="ch" id="c07">
-  <h3><span class="no">07</span>〈렉처퍼포먼스+렉처퍼포먼스: 효율 너머의 코드와 데이터〉</h3>
-  <div class="kw"><span class="k m">효율 너머</span><span class="k m">은유가 아니라 실제</span><span class="k">도구 만들기</span><span class="k">번역</span><span class="k">P-Code</span><span class="k">1KB 쓰기 장치</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2026.06.13(토) 15:00–17:00</dd><dt>참여</dt><dd>요스케 하야시 (HAUS++) × 프로토룸</dd><dt>정원</dt><dd>30명 선착순 (조기 마감, 대기 접수)</dd></dl>
-  </div>
-  <div class="slot"><h4>SeMA 소개 (요약)</h4>
-    <blockquote>요스케 하야시와 프로토룸의 사운드 렉처퍼포먼스를 겹쳐 보는 자리. 둘 다 최소한의 코드와 데이터로 무한한 변주를 실험·생성한다는 점에서 통하며, 코드와 데이터에 대한 새로운 해석의 가능성을 제안.<cite>SeMA 행사 페이지</cite></blockquote>
-  </div>
-  <div class="slot"><h4>게스트: 요스케 하야시 · P-Code</h4>
-    <ul class="flow">
-      <li>방콕 기반 UI 디자이너·프론트엔드 개발자. 미디어·게임 회사를 거쳐 독립, HAUS(HAUS++) 공동설립. 인터페이스가 창의성에 미치는 영향 탐구</li>
-      <li><b>P-Code</b>: 라이브코딩 언어. 리듬머신 패턴을 텍스트로 적는 발상에서 출발. 종이 위 문자를 스마트폰 카메라로 스캔해 소리로</li>
-      <li>숫자 = 주파수, <code>~</code> 사인 / <code>^</code> 삼각 / <code>N</code> 톱니, <b>읽을 수 없는 기호 = 화이트 노이즈 → 에러가 없는 언어</b></li>
-      <li><b>P-Code Magazine 001</b> (2020): "실행할 수 있는 책을 만들 수 있을까?" · P for Programming / Physical / Paper · 창간 쿠보타 아키히로, 다케다 다이스케, 하야시 요스케, 이나후쿠 다카노부</li>
-    </ul>
-  </div>
-  <div class="slot"><h4>핵심 문장 (<code>SyncSlide-Matters-Perform</code>, KR/JA)</h4>
-    <p class="say">matter는 물질, matters는 "중요하다". 데이터는 추상적인 숫자가 아니라 읽고 쓰고 들을 수 있는 물질. 1KB — 아주 작은 물질도 중요하다.</p>
-    <p class="say">왜? 과잉의 단위로 과소를 표현하는가.</p>
-    <p class="say">의미없는 계산식은 소리로 변환하면 리듬이 되기도 하고 노이즈가 되기도 한다.</p>
-    <p class="say">수식들에 의한 노이즈 안을 탐색하면서 리듬과 하모니를 발견하기.</p>
-    <p class="say">수식 하나 하나를 탐색하며 쌓기.</p>
-    <p>발표자 메모(t × n 라이브): "이것은 은유가 아니라 전부 실제다. t는 실제로 증가하는 카운터, 결과값은 실제 곱셈, 진행바는 실제 8비트 메모리가 넘치는 순간."</p>
-  </div>
-  <div class="slot"><h4>4월 대비 새로 만든 체험 장치</h4>
-    <ul class="flow">
-      <li><b>1KB 쓰기 장치</b>: 발표자 타이핑이 관객 폰에 실시간으로 보임. 한글 1자 = 3바이트, 1,024B를 넘으면 경고음 + 화면 반전</li>
-      <li><b>단위 줌인</b>: TB → GB → MB → KB. 1KB에서 확대했다가 1MB 화면으로 되돌아와 크기 관계를 다시 보여줌</li>
-      <li><b>gb-matter</b>: 1KB = 0.000001 GB → GB 자리에 Matter / Matters가 나타남 (제목이 생기는 장면)</li>
-      <li><b>(t × n) 라이브</b>: t 카운터 + 8비트 물통 게이지 <code>(t*n)&255</code></li>
-    </ul>
-  </div>
-  <div class="slot"><h4>마지막 키워드 대조 (발표 원문)</h4>
-    <table>
-      <tr><th>PROTOROOM</th><th>p-code</th></tr>
-      <tr><td>Small Data · 작은 데이터</td><td>Small Data · 작은 데이터</td></tr>
-      <tr><td>Calculating Instrument (Making Physical Devices)</td><td>Tool Making · 도구 만들기</td></tr>
-      <tr><td>Expressing the Minimal with Units of Excess</td><td>Translation (visualization, sonification)</td></tr>
-      <tr><td>Exploratory Composition · 탐색적 작곡</td><td>Algorithmic Composition · 알고리즘 작곡</td></tr>
-      <tr><td>Data as Matter · 물질로서의 데이터</td><td></td></tr>
-      <tr><td>Not Metaphor, but Real · 은유가 아니라 실제</td><td></td></tr>
-    </table>
-  </div>
-  <div class="slot"><h4>발표 장면</h4>
-    <div class="gal">
-      <figure><img class="px" src="../SyncSlide-Matters-Perform/public/assets/slides/1kb-img.png" alt="1KB 이미지 20x20"><figcaption>1kb-img.png (20×20px)</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters-Perform/public/assets/slides/resolution-scale.png" alt="해상도 스케일"><figcaption>resolution-scale</figcaption></figure>
-      <figure><img src="../SyncSlide-Matters-Perform/public/assets/slides/space-sketch.png" alt="공간 스케치"><figcaption>space-sketch</figcaption></figure>
-    </div>
-  </div>
-  <div class="warn">이 폴더 WORKLOG.md 머리글이 「읽고 쓰고 듣는 0.000001GB」(4월 제목)로 적혀 있음. 6월 공식 제목은 「효율 너머의 코드와 데이터」. 키워드 영문 번역 일부는 초안 상태로 표시돼 있음.</div>
-  <div class="slot"><h4>파일</h4>
-    <div class="files">
-      <a href="../SyncSlide-Matters-Perform/WORKLOG.md">../SyncSlide-Matters-Perform/WORKLOG.md</a> (구조·디자인·회고)
-      <a href="../SyncSlide-Matters-Perform/public/deck.js">../SyncSlide-Matters-Perform/public/deck.js</a>
-      <a href="../SyncSlide-Matters-Perform/prototype/1kb-writing.html">../SyncSlide-Matters-Perform/prototype/1kb-writing.html</a>
-      <a href="../SyncSlide-Matters-Perform/public/assets/sound/">../SyncSlide-Matters-Perform/public/assets/sound/</a> (what_can, click, 1kb-twinkle)
-      <span>실행: cd ../SyncSlide-Matters-Perform && PORT=3010 node server.js</span>
-    </div>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1544237&glolangType=KOR">SeMA</a><a href="https://github.com/h4us/p-code">P-Code GitHub</a><a href="https://p-code-magazine.github.io/downloads/p-code-magazine-1.pdf">P-Code Magazine 001</a></div>
-</section>
-
-<section class="ch" id="c08">
-  <h3><span class="no">08</span>〈언이븐퓨처+렉처퍼포먼스: 데이터, 모델, 지능〉</h3>
-  <div class="kw"><span class="k m">고르지 않은 미래</span><span class="k m">작은 지능</span><span class="k">로컬 모델</span><span class="k">기호적 해석</span><span class="k">스프라이트 재사용</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2026.10.17(토) 15:00–18:00</dd><dt>참여</dt><dd>프미(프로그래밍의 미래): 신승백, 최승준, 프로토룸</dd><dt>정원</dt><dd>30명 선착순</dd></dl>
-  </div>
-  <div class="slot"><h4>SeMA 소개 (요약)</h4>
-    <blockquote>프로토룸의 〈0.000001GB Matter Matters〉를 데이터로 삼는다. 신승백은 작은 인공지능과 함께 소리를 연주하고, 최승준은 소리를 만드는 코드를 다르게 읽고 해석하며, 프로토룸은 렉처퍼포먼스에 개입해 협연한다. 데이터·모델·지능이 얽히며 예측하기 어려운 가능성을 연다.<cite>SeMA 행사 페이지</cite></blockquote>
-  </div>
-  <div class="slot"><h4>프미</h4><p>2015년 7월, 브렛 빅터의 강연 "The Future of Programming"(2013)을 함께 보며 결성. 프로그래밍이 정해지기 전에 꿈꾸었지만 실현되지 않은 대안적 미래, 컴퓨팅 역사, 거기서 갈라져 나온 문화를 탐구. 최근 '고르지 않은 미래(Uneven Future)'를 주제로 새로운 형식의 렉처퍼포먼스를 이어 감.</p></div>
-  <div class="slot"><h4>발표 변화 (<code>SyncSlide-Matters-Uneven</code>)</h4>
-    <ul class="flow">
-      <li>인트로: UNEVEN FUTURE 포스터 + "Matter Matters / 데이터, 모델, 지능"</li>
-      <li>6월 발표에서 단위 줌인, 1KB 이미지·사운드, 서술 장면 일부를 숨김</li>
-      <li><b>새 장면: 마리오 구름</b> — 탭하면 수풀에서 초록 분신이 떠올라 구름이 됨</li>
-    </ul>
-    <p class="say">〈슈퍼마리오〉 게임에서 구름과 수풀은 동일한 스프라이트를 색상만 바꿔 재사용한다.</p>
-  </div>
-  <div class="slot"><h4>키워드 (발표 원문, uneven future)</h4>
-    <p>Small Data · <b style="color:var(--red)">Local Model · Small Intelligence · Symbolic Interpretation</b> · Calculating Instrument · Expressing the Minimal with Units of Excess · Exploratory Composition · Data as Matter · Not Metaphor, but Real</p>
-    <p>→ 6월보다 3개 늘어남(빨간색). 신승백의 '작은 AI', 최승준의 '코드 다르게 읽기'와 맞닿는 지점.</p>
-  </div>
-  <div class="slot"><h4>발표 장면</h4>
-    <div class="gal">
-      <figure><img src="../SyncSlide-Matters-Uneven/public/assets/slides/uneven-future-intro.png" alt="UNEVEN FUTURE 포스터"><figcaption>UNEVEN FUTURE 인트로</figcaption></figure>
-      <figure><img class="px" src="../SyncSlide-Matters-Uneven/public/assets/slides/mario-cloud-pixel.png" alt="마리오 구름과 수풀"><figcaption>구름 = 수풀 (색만 다름)</figcaption></figure>
-    </div>
-  </div>
-  <div class="warn">이 폴더의 WORKLOG.md는 6월 내용 그대로이고, 10월 변경사항이 기록되지 않음. 마리오 효과음은 © Nintendo (출처: mariowiki, 각 .source.txt에 기록) — 공개 자료로 쓸 때 저작권 확인.</div>
-  <div class="slot"><h4>파일</h4>
-    <div class="files">
-      <a href="../SyncSlide-Matters-Uneven/public/deck.js">../SyncSlide-Matters-Uneven/public/deck.js</a>
-      <a href="../SyncSlide-Matters-Uneven/public/slides/mario-cloud-animation.js">../SyncSlide-Matters-Uneven/public/slides/mario-cloud-animation.js</a>
-      <a href="../SyncSlide-Matters-Uneven/public/assets/sound/">../SyncSlide-Matters-Uneven/public/assets/sound/</a> (SMB 1985 power-up, coin, jump, cloud-arrival)
-    </div>
-  </div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1584776&glolangType=KOR">SeMA</a></div>
-</section>
-
-<section class="ch" id="c09">
-  <h3><span class="no">09</span>〈테크×키트×크리틱: 먼지 같은 사소한 데이터에서부터〉</h3>
-  <div class="kw"><span class="k m">먼지 같은 사소한 데이터</span><span class="k">비평</span><span class="k">회고</span></div>
-  <div class="slot"><h4>기본 정보</h4>
-    <dl class="info"><dt>일시</dt><dd>2026.11.21(토) 15:00–17:00 · 1층 전시실</dd><dt>진행</dt><dd>프로토룸 · 곽영빈(미술평론가, 연세대 커뮤니케이션대학원 객원교수, 2015 SeMA 하나 비평상) · 유은순(학예연구사)</dd><dt>정원</dt><dd>20명 선착순 · 신청 11.3–11.18</dd></dl>
-  </div>
-  <div class="slot"><h4>공식 소개문</h4>
-    <blockquote>〈테크×키트×크리틱 Matter Matters: 먼지 같은 사소한 데이터에서부터〉는 올해 진행된 동기신호 프로그램의 마지막 회차로 프로토룸, 곽영빈 비평가와 유은순 학예연구사가 프로토룸의 작업과 동기신호 프로그램을 돌아보는 아티스트 토크입니다. 먼지처럼 사소하지만 주변을 채우고 쌓일 작은 데이터(matter)의 의미(matters)를 시작으로 기술매체와 그에 대한 비평적인 시선을 새롭게 환기시키는 시간이 될 것입니다.<cite>SeMA 행사 페이지</cite></blockquote>
-  </div>
-  <div class="warn">4월·6월 행사 페이지 본문에는 이 회차가 11월 7일로 적혀 있음. 최종 공지는 11월 21일.</div>
-  <div class="slot src"><h4>출처</h4><a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1604506&glolangType=KOR">SeMA</a></div>
-</section>
-
-<!-- ============ Ⅲ ============ -->
-<div class="part"><small>PART Ⅲ</small><h2>개념</h2><div class="big">크기에서 의미로</div></div>
-
-<section class="ch" id="c10">
-  <h3><span class="no">10</span>개념의 진화</h3>
-  <div class="kw"><span class="k m">1KB → 먼지</span></div>
-  <div class="chain">
-    <div class="step"><small>설치 2025</small>1KB</div><span class="arr">→</span>
-    <div class="step"><small>04.25</small>과잉의 단위로 과소를</div><span class="arr">→</span>
-    <div class="step"><small>04.25</small>실행되는 데이터</div><span class="arr">→</span>
-    <div class="step"><small>06.13</small>은유가 아니라 실제</div><span class="arr">→</span>
-    <div class="step"><small>10.17</small>작은 지능</div><span class="arr">→</span>
-    <div class="step"><small>11.21</small>먼지 같은 데이터</div>
-  </div>
-  <div class="slot"><h4>읽기 메모</h4>
-    <ul class="flow">
-      <li><b>크기</b>(얼마나 작은가) → <b>감각</b>(왜 큰 단위로 재는가) → <b>실행</b>(데이터가 움직인다) → <b>실재</b>(계산 그 자체) → <b>지능</b>(작은 모델도 해석한다) → <b>먼지</b>(쌓이는 것의 의미)</li>
-      <li>동사 축: 기다리다 → 쌓다 → 읽고·쓰고·듣다 → 겹치다 → 해석하다 → 돌아보다</li>
-    </ul>
-  </div>
-</section>
-
-<section class="ch" id="c11">
-  <h3><span class="no">11</span>키워드 대조</h3>
-  <div class="kw"><span class="k m">Small Data</span><span class="k">세 목록 공통</span></div>
-  <table>
-    <tr><th>키워드</th><th>PROTOROOM (06)</th><th>p-code (06)</th><th>uneven future (10)</th></tr>
-    <tr><td><b>Small Data</b> · 작은 데이터</td><td class="y">●</td><td class="y">●</td><td class="y">●</td></tr>
-    <tr><td>Calculating Instrument · 계산하는 악기</td><td class="y">●</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Units of Excess · 과잉의 단위로 과소를</td><td class="y">●</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Exploratory Composition · 탐색적 작곡</td><td class="y">●</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Data as Matter · 물질로서의 데이터</td><td class="y">●</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Not Metaphor, but Real · 은유가 아니라 실제</td><td class="y">●</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Tool Making · 도구 만들기</td><td class="n">–</td><td class="y">●</td><td class="n">–</td></tr>
-    <tr><td>Translation · 번역 (시각화·청각화)</td><td class="n">–</td><td class="y">●</td><td class="n">–</td></tr>
-    <tr><td>Algorithmic Composition · 알고리즘 작곡</td><td class="n">–</td><td class="y">●</td><td class="n">–</td></tr>
-    <tr><td>Local Model · 로컬 모델</td><td class="n">–</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Small Intelligence · 작은 지능</td><td class="n">–</td><td class="n">–</td><td class="y">●</td></tr>
-    <tr><td>Symbolic Interpretation · 기호적 해석</td><td class="n">–</td><td class="n">–</td><td class="y">●</td></tr>
-  </table>
-  <div class="slot"><h4>대비 메모</h4><p>P-Code는 "어떤 입력도 소리가 된다(에러 없음)", SmallBig은 "한 수식 안에서 끝없이 탐색한다". 탐색적 작곡 ↔ 알고리즘 작곡, 계산하는 악기 ↔ 도구 만들기.</p></div>
-</section>
-
-<section class="ch" id="c12">
-  <h3><span class="no">12</span>비평 질문</h3>
-  <div class="kw"><span class="k m">Tech × Kit × Critic의 Critic</span><span class="k">곽영빈</span><span class="k">유은순</span></div>
-  <div class="slot"><h4>질문 초안 (Claude 작성 — 고치거나 지울 것)</h4>
-    <ol class="flow">
-      <li>메가트론(큰 화면) 옆에 0.000001GB를 놓는다는 건 백남준에 대한 오마주인가, 반론인가?</li>
-      <li>"은유가 아니라 실제" — 데이터를 '물질'이라고 부르는 것 자체는 은유가 아닌가?</li>
-      <li>"식료품 가게 주인"과 관객 참여: 관객 폰이 악기가 되는 SyncSlide는 그 계보에 있는가?</li>
-      <li>"데이터의 부족" 담론(AI 학습 데이터 고갈) 앞에서 작은 데이터는 대안인가, 다른 질문인가?</li>
-      <li>스프라이트 재사용(1985)과 로컬 모델(2026) — 제약이 만든 미학은 '고르지 않은 미래'에서 어떻게 남는가?</li>
-      <li>먼지 같은 데이터는 쌓이면 무엇이 되는가 — 아카이브? 노이즈? 탐색할 영역?</li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ 부록 ============ -->
-<div class="part"><small>APPENDIX</small><h2>부록</h2></div>
-
-<section class="ch" id="warn">
-  <h3>확인 필요 모음</h3>
-  <ul class="flow">
-    <li>SmallBig_SØ와 S1의 하드웨어·기능 차이 (03)</li>
-    <li>2025.06 행사 제목 표기 혼재, 시간 16:30/16:40 (04)</li>
-    <li>2025.06·10 공연 사진·영상 로컬 원본 경로 (04, 05)</li>
-    <li>마지막 회차 11/7 → 11/21 표기 (09)</li>
-    <li>Perform·Uneven WORKLOG 머리글 제목, Uneven 10월 기록 없음 (07, 08)</li>
-    <li>오영진 한겨레21 기사 본문 확인 (02)</li>
-    <li>마리오 이미지·사운드 저작권 (08)</li>
-  </ul>
-</section>
-
-<section class="ch" id="terms">
-  <h3>용어</h3>
-  <dl class="info">
-    <dt>bytebeat</dt><dd>시간 변수 <code>t</code> 하나를 넣은 한 줄 수식의 결과를 8비트 샘플로 바로 소리 내는 방식</dd>
-    <dt>데모씬</dt><dd>작은 용량의 실행 파일로 실시간 영상·음악을 만드는 컴퓨터 문화. 디지털 시각예술·게임 표현에 영향</dd>
-    <dt>비트 연산</dt><dd><code>&gt;&gt;</code> 오른쪽 시프트, <code>|</code> OR, <code>&amp;</code> AND, <code>^</code> XOR — 수식 속 리듬과 노이즈를 만드는 재료</dd>
-    <dt>1KB</dt><dd>1,024바이트 ≈ 0.000001GB. 한글(UTF-8) 1자 = 3바이트 → 공백 포함 실제 문장으로 약 400자</dd>
-    <dt>SyncSlide</dt><dd>발표자가 넘기면 관객 폰이 따라오는 웹 슬라이드. 서버는 슬라이드 위치만 맞추고, 수식 슬라이더는 각자 폰에서 따로 조작</dd>
-  </dl>
-</section>
-
-<section class="ch" id="refs">
-  <h3>출처</h3>
-  <ul class="flow src" style="font-size:14px">
-    <li><a href="https://sema.seoul.go.kr/kr/whatson/exhibition/detail?exNo=1417927">SeMA 《메가트론 랩소디》</a></li>
-    <li>SeMA 행사: <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1420207&glolangType=KOR">2025.06.21</a> <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?evtNo=1455791&glolangType=KOR">2025.10.25</a> <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1520859&glolangType=KOR">2026.04.25</a> <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1544237&glolangType=KOR">2026.06.13</a> <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1584776&glolangType=KOR">2026.10.17</a> <a href="https://sema.seoul.go.kr/kr/whatson/event/detail?exNo=0&acadmyEeNo=0&evtNo=1604506&glolangType=KOR">2026.11.21</a></li>
-    <li><a href="https://protoroom.kr">protoroom.kr</a> · <a href="https://protoroom.kr/works/mattermatters/">Matter Matters</a> · <a href="https://protoroom.kr/works/smallbig/">SmallBig_SØ</a> · <a href="https://protoroom.kr/works/about/">About</a> · <a href="https://protoroom.kr/works/texts/">Texts</a></li>
-    <li><a href="https://www.youtube.com/watch?v=lKoQW8Z7zds">SmallBig_SØ Manual (YouTube)</a> · <a href="https://www.ntticc.or.jp/en/archive/works/sensuous-transforming-of-0-1-signal-ver-1/">NTT ICC</a></li>
-    <li><a href="https://github.com/h4us/p-code">P-Code GitHub</a> · <a href="https://p-code-magazine.github.io/downloads/p-code-magazine-1.pdf">P-Code Magazine 001</a></li>
-    <li>로컬: <a href="research-notes.md">research-notes.md</a> · ../SyncSlide-Matters · ../SyncSlide-Matters-Perform · ../SyncSlide-Matters-Uneven · ../SmallBig</li>
-  </ul>
-</section>
-
-</main>
 <script>
-// 관련 영상: [플랫폼, ID, 제목, 채널·메모]. 썸네일 클릭 → 새 탭에서 재생
-// (YouTube 임베드는 로컬 file:// 에서 재생 오류가 나서 썸네일 카드로 표시)
-const VIMEO_THUMB = {
-  "149377425": "https://i.vimeocdn.com/video/548574294-80ffff6d2889cf7456ea61eb253e2d0ac186b478655c1f6d8e485f6f8e745440-d_295x166",
-  "71278954": "https://i.vimeocdn.com/video/444808992-afc8a762ae418b7d1c37e796f50c8623d728700c3f468b448bd35637df53f5fd-d_295x166"
-};
-const VIDEOS = {
-  c01: [
-    ["yt","OG2TEkQTwCk","CHECK-IN SeMA │ 백남준을 기억하는 집 │ iGoBart가 찾은 창신동의 보물","서울시립미술관"],
-    ["yt","2r3q3zBuDdc","2020 백남준기념관 토크 시리즈 3강. 백남준의 〈서울랩소디〉와 타임 콜라주의 미학","서울시립미술관 · 메가트론 맥락"]
-  ],
-  c02: [
-    ["yt","co9ziGXSjrY","sensuous transforming of 0 | 1 signal Ver.1 (2016)","PROTOROOM · NTT ICC"],
-    ["vm","149377425","1nput 0utput : sensuous transforming of 0 | 1 signal / PROTOROOM","Vimeo hoonidaworkshop · 2015"],
-    ["yt","8DPH9F5KNQg","Metapixels 2020 en","PROTOROOM"],
-    ["yt","vmuGFK7RI-c","Feedback of Metapixels","PROTOROOM"]
-  ],
-  c03: [
-    ["yt","3DVxkN96aJk","SmallBig_SØ concepts + performance (5min)","PROTOROOM"],
-    ["yt","lKoQW8Z7zds","SmallBig_SØ Manual (2022)","PROTOROOM"],
-    ["yt","d-PcqJYNjQU","SmallBig_SØ / PROTOROOM Live, 2022 ZER01NE Day","PROTOROOM"],
-    ["yt","opbAQyeQCYI","SmallBig_SØ / PROTOROOM x Kohui, 2022 ZER01NE Day","PROTOROOM"]
-  ],
-  c04: [
-    ["yt","_prGf_HPPmI","《메가트론 랩소디》 연계 퍼포먼스 프로토룸 〈Matter Matters: 탐색을 기다리며〉 후기","서울시립미술관 · SeMA 행사 페이지 임베드"]
-  ],
-  c05: [
-    ["yt","jATfjGHGXAE","《메가트론 랩소디》 동기신호 프로그램","서울시립미술관 · 10.25 SeMA 페이지 임베드 후기 영상"]
-  ],
-  c06: [
-    ["yt","GtQdIYUtAHg","Bytebeat: Experimental music from very short C programs (2011)","viznut · bytebeat의 출발점 (참고)"]
-  ],
-  c08: [
-    ["vm","71278954","Bret Victor – The Future of Programming (2013)","Bret Victor · 프미 결성의 계기가 된 강연"]
-  ]
-};
-for (const [ch, list] of Object.entries(VIDEOS)) {
-  const sec = document.getElementById(ch);
-  const slot = document.createElement("div");
-  slot.className = "slot";
-  slot.innerHTML = "<h4>영상</h4><div class='vids'></div>";
-  const box = slot.querySelector(".vids");
-  if (list.length === 1) box.classList.add("one");
-  for (const [p, id, title, meta] of list) {
-    const a = document.createElement("a");
-    a.className = "vid"; a.target = "_blank"; a.rel = "noopener";
-    a.href = p === "yt" ? "https://www.youtube.com/watch?v=" + id : "https://vimeo.com/" + id;
-    const thumb = p === "yt" ? "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg" : VIMEO_THUMB[id];
-    a.innerHTML = `<div class="th" style="background-image:url('${thumb}')"><span class="tag">${p === "yt" ? "YOUTUBE" : "VIMEO"}</span></div><div class="tx"></div>`;
-    a.querySelector(".tx").textContent = title;
-    const s = document.createElement("small"); s.textContent = meta; a.querySelector(".tx").append(s);
-    // 썸네일 클릭 → 그 자리에서 재생 / 제목 클릭 → 새 탭
+// ───────── workbook.md → 화면 ─────────
+// 내용은 전부 workbook.md 에 있다. 이 스크립트는 그 파일을 읽어 아래 표기 규칙대로 화면을 만든다.
+// 표기 규칙은 README.md 참고.
+const MD_FILE = "workbook.md";
+
+const escText = s => s.replace(/&(?!#?\w+;)/g, "&amp;").replace(/<(?!\/?[a-zA-Z][^<>]*>)/g, "&lt;");
+const escAll = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const escAttr = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+
+// 줄 안 표기: `코드`  **굵게**  ==빨강 강조==  [글자](주소)  + <small> <em> 같은 HTML 태그는 그대로
+function inline(src) {
+  const keep = [];
+  const hold = html => "\u0000" + (keep.push(html) - 1) + "\u0000";
+  let s = src.replace(/`([^`]+)`/g, (_, c) => hold("<code>" + escAll(c) + "</code>"));
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => hold(`<a href="${escAttr(u)}">` + inline(t) + "</a>"));
+  s = escText(s);
+  s = s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/==(.+?)==/g, '<b class="red">$1</b>');
+  return s.replace(/\u0000(\d+)\u0000/g, (_, n) => keep[n]);
+}
+
+// "키: 값" 줄 (제목 바로 아래에 붙는 정보)
+const META = /^(목차|부제|키워드|회고):\s*(.*)$/;
+const blockHTML = b => typeof b === "string" ? b
+  : `<${b.tag}${b.cls.length ? ` class="${b.cls.join(" ")}"` : ""}${b.attr || ""}>${b.inner}</${b.tag}>`;
+const classesOf = s => s.split(/\s+/).filter(c => c.startsWith(".")).map(c => c.slice(1));
+
+function renderWorkbook(md) {
+  const L = md.replace(/\r\n?/g, "\n").split("\n");
+  let i = 0, title = "";
+  if (L[0] === "---") {                                   // 맨 위 --- 사이: 문서 정보
+    for (i = 1; i < L.length && L[i] !== "---"; i++) { const m = L[i].match(/^title:\s*(.*)$/); if (m) title = m[1]; }
+    i++;
+  }
+  const main = [], nav = [], retroRows = [];
+  let chapter = null, slot = null, retroAt = -1;
+
+  const here = () => (slot || chapter || { blocks: main }).blocks;
+  const closeSlot = () => {
+    if (!slot) return;
+    const s = slot; slot = null;
+    const body = s.blocks.map(blockHTML).join("\n");
+    if (s.kind === "warn") here().push(`<div class="warn">${body}</div>`);
+    else here().push(`<div class="slot${s.cls ? " " + s.cls : ""}"><h4>${s.h4}</h4>${body}</div>`);
+  };
+  const closeChapter = () => {
+    closeSlot();
+    if (!chapter) return;
+    const c = chapter; chapter = null;
+    const no = c.no ? `<span class="no">${c.no}</span>` : "";
+    const kw = c.kw ? `<div class="kw">${c.kw.split(/,\s*/).map(k => {
+      const m = k.match(/^\*\*(.+)\*\*$/);
+      return `<span class="k${m ? " m" : ""}">${inline(m ? m[1] : k)}</span>`;
+    }).join("")}</div>` : "";
+    main.push(`<section class="ch" id="${c.id}">\n<h3>${no}${inline(c.title)}</h3>\n${kw}\n${c.blocks.map(blockHTML).join("\n")}\n</section>`);
+    if (c.retro) retroRows.push([c, ...c.retro.split(/\s*\|\s*/)]);
+  };
+  const readMeta = () => { const m = {}; let x; while (i < L.length && (x = L[i].match(META))) { m[x[1]] = x[2]; i++; } return m; };
+  const heading = line => {                               // "제목 {#id}" → [제목, id]
+    const m = line.match(/^(.*?)\s*\{#([\w-]+)\}\s*$/);
+    return m ? [m[1], m[2]] : [line.trim(), ""];
+  };
+  const untilFence = () => { const a = []; while (i < L.length && L[i].trim() !== ":::") a.push(L[i++]); i++; return a.filter(x => x.trim()); };
+
+  while (i < L.length) {
+    const line = L[i];
+    if (!line.trim()) { i++; continue; }
+
+    // ── 표지
+    if (line.startsWith("::: cover")) {
+      i++; const rows = untilFence(), f = {}, groups = [];
+      for (const r of rows) {
+        let m;
+        if ((m = r.match(/^(제목|기관|부제):\s*(.*)$/))) f[m[1]] = m[2];
+        else if ((m = r.match(/^\[(.+)\]$/))) groups.push({ big: m[1], items: [] });
+        else if ((m = r.match(/^- (.*?)\s*\|\s*(.*)$/))) groups.at(-1).items.push(m);
+      }
+      const br = s => inline(s || "").replace(/\s*\/\s*/g, "<br>");
+      main.push(`<header class="cover">
+<div class="c-top"><h1>${br(f["제목"])}</h1><div class="c-org">${br(f["기관"])}</div></div>
+<div class="c-sub">${inline(f["부제"] || "")}</div>
+${groups.map((g, n) => `<div class="c-row"><div class="c-big">${inline(g.big).replace("–", '<span style="margin:0 .12em">–</span>')}</div>
+<div class="c-list">${g.items.map(m => `<div><span>${inline(m[1])}</span>${inline(m[2])}</div>`).join("")}${n === groups.length - 1 ? LEGEND : ""}</div></div>`).join("\n")}
+</header>`);
+      continue;
+    }
+
+    // ── # 부(部)   "# PART Ⅰ | 맥락"
+    if (/^# /.test(line)) {
+      closeChapter(); i++;
+      const [text, id] = heading(line.slice(2));
+      const [small, h2] = text.includes("|") ? text.split(/\s*\|\s*/) : ["", text];
+      const m = readMeta();
+      const head = `<small>${inline(small)}</small><h2>${inline(h2)}</h2>` + (m["부제"] ? `<div class="big">${inline(m["부제"])}</div>` : "");
+      if (id === "retro") {                               // 회고: 표는 각 장의 "회고:" 줄과 "주제의식"에서 자동으로 만든다
+        let thesis = "";
+        while (i < L.length && !L[i].trim()) i++;
+        if (L[i] && L[i].startsWith("::: thesis")) {
+          i++; const t = untilFence();
+          thesis = `<div class="thesis">${inline(t[0] || "").replace(/\s*\/\s*/g, "<br>")}</div>` + t.slice(1).map(p => `<p class="thesis-sub">${inline(p)}</p>`).join("");
+        }
+        retroAt = main.length;
+        main.push(`<div class="part">${head}${thesis}</div>`);
+        nav.push(`<a href="#retro">${inline(m["목차"] || h2)}</a>`);
+      } else {
+        main.push(`<div class="part">${head}</div>`);
+        nav.push(`<b>${inline(m["목차"] || h2)}</b>`);
+      }
+      continue;
+    }
+
+    // ── ## 장   "## 01 제목"  또는  "## 제목 {#id}"
+    if (/^## /.test(line)) {
+      closeChapter(); i++;
+      const [text, id] = heading(line.slice(3));
+      const n = text.match(/^(\d\d)\s+(.*)$/);
+      const m = readMeta();
+      chapter = { no: n ? n[1] : "", title: n ? n[2] : text, id: id || (n ? "c" + n[1] : ""), kw: m["키워드"], retro: m["회고"], blocks: [], theme: "" };
+      nav.push(`<a href="#${chapter.id}">${chapter.no ? chapter.no + " " : ""}${inline(m["목차"] || chapter.title)}</a>`);
+      continue;
+    }
+
+    // ── ### 칸
+    if (/^### /.test(line)) {
+      closeSlot(); i++;
+      const t = line.slice(4).trim();
+      if (t === "확인 필요") { slot = { kind: "warn", blocks: [] }; continue; }
+      const th = t.match(/^주제의식\s*\((.+)\)$/);
+      slot = { kind: th ? "주제의식" : t, blocks: [], h4: th ? `주제의식 <em>${inline(th[1])}</em>` : inline(t),
+        cls: th ? "theme" : { "핵심 내용": "points", "영상": "vslot", "출처": "src" }[t] || "" };
+      continue;
+    }
+
+    const out = here(), kind = slot ? slot.kind : "";
+
+    // ── {.클래스} 한 줄: 바로 앞 덩어리에 클래스 붙이기
+    if (/^\{[^}]*\}$/.test(line.trim())) {
+      const b = out.at(-1); if (b && typeof b !== "string") b.cls.push(...classesOf(line.trim().slice(1, -1)));
+      i++; continue;
+    }
+
+    // ── ::: lens / ::: chain
+    if (line.startsWith("::: lens")) {
+      const h = line.slice(8).trim(); i++;
+      const items = untilFence().map(r => r.replace(/^\d+\.\s*/, "").match(/^\*\*(.+?)\*\*\s*(.*)$/));
+      main.push(`<div class="lens"><h4>${inline(h)}</h4><ol>${items.map(m => `<li><b>${inline(m[1])}</b><small>${inline(m[2])}</small></li>`).join("")}</ol></div>`);
+      continue;
+    }
+    if (line.startsWith("::: chain")) {
+      i++;
+      const steps = untilFence().map(r => r.replace(/^- /, "").split(/\s*\|\s*/));
+      out.push(`<div class="chain">${steps.map(([s, t]) => `<div class="step"><small>${inline(s)}</small>${inline(t)}</div>`).join('<span class="arr">→</span>')}</div>`);
+      continue;
+    }
+
+    // ── ``` 수식 블록
+    if (line.startsWith("```")) {
+      i++; const a = [];
+      while (i < L.length && !L[i].startsWith("```")) a.push(L[i++]);
+      i++;
+      out.push(`<div class="formula">${escAll(a.join("\n")).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")}</div>`);
+      continue;
+    }
+
+    // ── > 인용  /  > [!확인] 확인 필요
+    if (line.startsWith(">")) {
+      const a = [];
+      while (i < L.length && L[i].startsWith(">")) a.push(L[i++].replace(/^>\s?/, ""));
+      const w = a[0].match(/^\[!확인\]\s*(.*)$/);
+      if (w) { out.push(`<div class="warn">${inline([w[1], ...a.slice(1)].join(" ").trim())}</div>`); continue; }
+      let cite = "";
+      if (/^— /.test(a.at(-1))) cite = `<cite>${inline(a.pop().slice(2))}</cite>`;
+      out.push({ tag: "blockquote", cls: [], inner: inline(a.join(" ")) + cite });
+      continue;
+    }
+
+    // ── | 표 |
+    if (line.startsWith("|")) {
+      const rows = [];
+      while (i < L.length && L[i].startsWith("|")) rows.push(L[i++]);
+      const cells = r => r.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map(c => c.trim().replace(/\\\|/g, "|"));
+      const body = rows.filter(r => !/^\|[\s:|-]+\|$/.test(r.trim())).map((r, n) => "<tr>" + cells(r).map(c =>
+        n === 0 ? `<th>${inline(c)}</th>` : `<td${c === "●" ? ' class="y"' : c === "–" ? ' class="n"' : ""}>${inline(c)}</td>`).join("") + "</tr>");
+      out.push({ tag: "table", cls: [], inner: body.join("\n") });
+      continue;
+    }
+
+    // ── ![설명](그림 "캡션") 이 이어지면 그림 묶음
+    if (line.startsWith("![")) {
+      const figs = [];
+      for (let m; i < L.length && (m = L[i].match(/^!\[(.*?)\]\((\S+)(?:\s+"(.*)")?\)\s*(\{[^}]*\})?\s*$/)); i++) {
+        const c = m[4] ? classesOf(m[4].slice(1, -1)) : [];
+        figs.push(`<figure><img${c.length ? ` class="${c.join(" ")}"` : ""} src="${escAttr(m[2])}" alt="${escAttr(m[1])}" loading="lazy"><figcaption>${inline(m[3] || "")}</figcaption></figure>`);
+      }
+      if (figs.length) { out.push({ tag: "div", cls: ["gal"], inner: figs.join("\n") }); continue; }
+    }
+
+    // ── 목록  "- "  /  "1. "
+    const li = /^(-|\d+\.)\s+(.*)$/;
+    if (li.test(line)) {
+      const ordered = /^\d/.test(line), items = [];
+      while (i < L.length && li.test(L[i])) items.push(L[i++].match(li)[2]);
+      if (kind === "영상") {                               // - [제목](영상 주소) — 메모 ![](썸네일)
+        const v = items.map(it => {
+          const m = it.match(/^\[(.+?)\]\((\S+?)\)(?:\s+—\s+(.*?))?(?:\s*!\[\]\((\S+)\))?$/);
+          if (!m) return "";
+          const yt = m[2].match(/(?:v=|youtu\.be\/)([\w-]+)/), vm = m[2].match(/vimeo\.com\/(\d+)/);
+          const thumb = m[4] || (yt ? `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg` : "");
+          return `<a class="vid" target="_blank" rel="noopener" href="${escAttr(m[2])}" data-p="${yt ? "yt" : "vm"}" data-id="${yt ? yt[1] : vm ? vm[1] : ""}"><div class="th" style="background-image:url('${escAttr(thumb)}')"><span class="tag">${yt ? "YOUTUBE" : "VIMEO"}</span></div><div class="tx">${escAll(m[1])}<small>${escAll(m[3] || "")}</small></div></a>`;
+        });
+        out.push({ tag: "div", cls: ["vids", ...(v.length === 1 ? ["one"] : [])], inner: v.join("") });
+      } else if (kind === "파일") {                         // 경로로 시작하면 링크, 아니면 메모 줄
+        out.push({ tag: "div", cls: ["files"], inner: items.map(it => {
+          const m = it.match(/^((?:\.\.?\/|https?:)\S*)(.*)$/);
+          return m ? `<a href="${escAttr(m[1])}">${escAll(m[1])}</a>${escAll(m[2])}` : `<span>${escAll(it)}</span>`;
+        }).join("\n") });
+      } else if (items.every(it => / :: /.test(it))) {     // - 이름 :: 설명  → 정보 표
+        out.push({ tag: "dl", cls: ["info"], inner: items.map(it => { const [k, ...v] = it.split(" :: "); return `<dt>${inline(k)}</dt><dd>${inline(v.join(" :: "))}</dd>`; }).join("\n") });
+      } else {
+        out.push({ tag: ordered ? "ol" : "ul", cls: kind === "핵심 내용" ? [] : ["flow"], inner: items.map(it => `<li>${inline(it)}</li>`).join("\n") });
+      }
+      continue;
+    }
+
+    // ── 문단 (끝에 {.say} 처럼 클래스를 붙일 수 있다)
+    const para = [];
+    while (i < L.length && L[i].trim() && !/^(#{1,3} |:::|```|>|\||!\[|(-|\d+\.)\s|\{[^}]*\}$)/.test(L[i])) para.push(L[i++].trim());
+    if (!para.length) { para.push(L[i++].trim()); }        // 어떤 규칙에도 안 맞는 줄은 문단으로
+    let text = para.join(" "), cls = [];
+    const am = text.match(/\s*\{([^}]*)\}$/);
+    if (am) { cls = classesOf(am[1]); text = text.slice(0, am.index); }
+    if (kind === "warn" || kind === "출처") out.push(inline(text));
+    else if (kind === "파일") out.push({ tag: "div", cls: ["files"], inner: escAll(text) });
+    else {
+      if (kind === "주제의식" && chapter && !chapter.theme) chapter.theme = inline(text);
+      out.push({ tag: "p", cls, inner: inline(text) });
+    }
+  }
+  closeChapter();
+
+  if (retroAt >= 0) main[retroAt] = `<section id="retro" class="retro">${main[retroAt]}
+<table class="retro-t"><tr><th>장 · 날짜</th><th>동사</th><th>주제의식</th></tr>
+<tbody id="retro-rows">${retroRows.map(([c, verb, date]) => `<tr><td><a href="#${c.id}"><b>${c.no}</b></a><small>${inline(date || "")}</small></td><td><b>${inline(verb || "")}</b></td><td>${c.theme}</td></tr>`).join("")}</tbody>
+</table></section>`;
+
+  if (title) document.title = title;
+  document.querySelector("nav").innerHTML = `<a href="#top"><strong>${escAll(title)}</strong></a>\n` + nav.join("\n");
+  document.querySelector("main").innerHTML = main.join("\n\n");
+}
+
+// 표지 아래 범례 (내용이 아니라 화면 안내라서 여기에 둔다)
+const LEGEND = `<div class="legend"><span class="k m">장 대표 키워드</span><span class="k">보조 키워드</span><span class="warn" style="padding:4px 10px">출처끼리 어긋나는 곳</span></div>`;
+
+// ───────── 화면이 만들어진 뒤 붙는 동작 ─────────
+function enhance() {
+  // 영상: 썸네일 클릭 → 그 자리에서 재생 / 제목 클릭 → 새 탭
+  document.querySelectorAll("a.vid").forEach(a => {
+    const p = a.dataset.p, id = a.dataset.id;
     a.addEventListener("click", ev => {
       const th = ev.target.closest(".th");
       // YouTube는 file:// 에서 임베드 오류(153) → 로컬 서버(http)로 열 때만 제자리 재생, 아니면 새 탭
-      if (!th || (p === "yt" && !location.protocol.startsWith("http"))) return;
+      if (!th || !id || (p === "yt" && !location.protocol.startsWith("http"))) return;
       ev.preventDefault();
       const f = document.createElement("iframe");
       f.src = p === "yt" ? `https://www.youtube.com/embed/${id}?autoplay=1` : `https://player.vimeo.com/video/${id}?autoplay=1`;
@@ -738,164 +445,139 @@ for (const [ch, list] of Object.entries(VIDEOS)) {
       f.style.cssText = "display:block;width:100%;aspect-ratio:16/9;border:0";
       th.replaceWith(f);
     });
-    box.append(a);
-  }
-  slot.classList.add("vslot"); sec.append(slot); // 아래 THEMES 단계에서 주제의식 바로 아래로 옮김
+  });
+
+  // 핵심만 펼치고 나머지는 "원자료"로 접기 (지우지 않음)
+  const KEEP = ["기본 정보", "영상", "주제의식", "핵심 내용", "질문 초안"];
+  document.querySelectorAll("section.ch").forEach(sec => {
+    if (!sec.querySelector(".kw")) return; // 부록은 그대로
+    const moved = [...sec.children].filter(el =>
+      el.classList.contains("warn") ||
+      (el.classList.contains("slot") && !KEEP.some(k => el.querySelector("h4")?.textContent.includes(k))));
+    if (!moved.length) return;
+    const d = document.createElement("details");
+    d.className = "raw";
+    d.innerHTML = `<summary>원자료 <span>${moved.length}</span></summary>`;
+    d.append(...moved);
+    sec.append(d);
+  });
+
+  // 스페이스바: 다음 섹션 / Shift+스페이스: 이전 섹션
+  document.addEventListener("keydown", e => {
+    if (e.key !== " " || e.target.closest?.("input,textarea,select,button,summary,[contenteditable]")) return;
+    e.preventDefault();
+    const secs = [...document.querySelectorAll("header.cover, main > section")];
+    const top = el => el.getBoundingClientRect().top;
+    const t = e.shiftKey ? secs.filter(s => top(s) < -5).pop() : secs.find(s => top(s) > 5);
+    if (t) t.scrollIntoView({ behavior: "smooth" });
+  });
+
+  // 표지 타이틀: 글자에서 피어오르는 연기 (WebGL 셰이더 — 노이즈가 위로 흐르며 글자 모양을 끌어올림, 군데군데 글자 앞을 지남)
+  (() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const h1 = document.querySelector(".cover h1"), host = h1.closest("header");
+    const cv = document.createElement("canvas"), gl = cv.getContext("webgl", { premultipliedAlpha: true });
+    if (!gl) return;
+    const UP = 240, SIDE = 140, SC = .5;            // SC: 해상도 배율 (연기는 부드러워서 절반이면 충분)
+    const ALPHA = .3, RISE = 150, SPEED = .35;     // 진하기(최대) · 오르는 높이(px) · 흐르는 속도
+    const CYCLE = 14, MIN = .12;                    // 연기 양 주기(초): 적게 → 점점 많이 → 다시 적게, MIN = 가장 적을 때 비율
+    host.style.position = "relative";
+    cv.style.cssText = "position:absolute;pointer-events:none;z-index:2";
+    host.append(cv);
+
+    const fs = `precision mediump float;
+    uniform sampler2D m; uniform vec2 res; uniform float t, A, R, S; uniform vec3 col;
+    float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+      return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+    float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+17.;a*=.5;}return v;}
+    void main(){
+      vec2 px=gl_FragCoord.xy, q=px/(90.*S);
+      vec2 w=vec2(fbm(q*1.1+vec2(0.,-t)), fbm(q*1.1+vec2(5.2,1.3-t)))-.5;
+      float d=0.;
+      for(int i=0;i<24;i++){                 /* 아래(글자) 쪽을 거슬러 올라가며 연기 밀도 모으기 */
+        float k=float(i)/24., off=k*R*S;
+        d+=texture2D(m,(px-vec2(w.x*off*1.6,off))/res).a*(1.-k);
+      }
+      d/=7.;
+      d*=smoothstep(.38,.78,fbm(q*2.4+w*2.5+vec2(0.,-t*1.4)));  /* 가닥 모양 */
+      /* 글자 위를 지나는 연기: 느린 노이즈로 군데군데만 '앞'에 보이게 (밝은 김) — 나머지는 글자 뒤로 */
+      float inside=smoothstep(.45,.9,texture2D(m,px/res).a);
+      float front=smoothstep(.48,.62,fbm(q*.7+vec2(3.1,-t*.6)));
+      float a=clamp(d*A*mix(1.,front*1.4,inside),0.,1.);
+      vec3 c=mix(col,vec3(.96,.96,.95),inside);
+      gl_FragColor=vec4(c*a,a);
+    }`;
+    const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}";
+    const prog = gl.createProgram();
+    for (const [type, src] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
+      const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
+      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(sh)); cv.remove(); return; }
+      gl.attachShader(prog, sh);
+    }
+    gl.bindAttribLocation(prog, 0, "p"); gl.linkProgram(prog); gl.useProgram(prog);
+    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+    const U = k => gl.getUniformLocation(prog, k);
+    const [r0, g0, b0] = getComputedStyle(h1).color.match(/\d+/g).map(v => v / 255);
+    gl.uniform3f(U("col"), r0, g0, b0); gl.uniform1f(U("A"), ALPHA); gl.uniform1f(U("R"), RISE); gl.uniform1f(U("S"), SC);
+    gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+    for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]])
+      gl.texParameteri(gl.TEXTURE_2D, k, v);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+    // 글자 모양(살짝 흐리게)을 텍스처로 — 연기의 출발점
+    function layout() {
+      const hb = host.getBoundingClientRect(), r = h1.getBoundingClientRect();
+      const W = r.width + SIDE * 2, H = r.height + UP;
+      Object.assign(cv.style, { left: r.left - hb.left - SIDE + "px", top: r.top - hb.top - UP + "px", width: W + "px", height: H + "px" });
+      cv.width = W * SC | 0; cv.height = H * SC | 0;
+      const mk = document.createElement("canvas"); mk.width = cv.width; mk.height = cv.height;
+      const c = mk.getContext("2d"), cs = getComputedStyle(h1);
+      c.scale(SC, SC); c.filter = "blur(3px)";
+      c.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; c.letterSpacing = cs.letterSpacing;
+      for (const n of h1.childNodes) {
+        const t = n.nodeType === 3 && n.textContent.trim(); if (!t) continue;
+        const rg = document.createRange(); rg.selectNodeContents(n);
+        const lr = rg.getClientRects()[0], txt = t.toUpperCase(), m = c.measureText(txt);
+        c.fillText(txt, lr.left - r.left + SIDE, lr.top - r.top + UP + (lr.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent);
+      }
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mk);
+      gl.viewport(0, 0, cv.width, cv.height); gl.uniform2f(U("res"), cv.width, cv.height);
+    }
+    let raf = 0, ready = false;
+    function tick(now) {
+      if (ready) {
+        const ph = now / 1000 % CYCLE / CYCLE, ease = x => x * x * (3 - 2 * x);
+        const env = ph < .7 ? ease(ph / .7) : ph < .85 ? 1 : 1 - ease((ph - .85) / .15); // 70% 동안 차오르고, 잠시 유지, 15% 동안 줄어듦
+        gl.uniform1f(U("A"), ALPHA * (MIN + (1 - MIN) * env));
+        gl.uniform1f(U("t"), now / 1000 * SPEED); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      }
+      raf = requestAnimationFrame(tick);
+    }
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
+      else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
+    }).observe(h1);
+    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layout, 200); });
+    document.fonts.ready.then(() => { layout(); ready = true; });
+  })();
 }
-// 회고: 장별 주제의식 + 핵심 내용. q:true = 작가 발표·메모 원문 인용, 아니면 Claude 정리 초안
-const THEMES = {
-  c01: { t: "거대한 화면(메가트론)으로 기억되는 백남준의 집에, 관객이 손으로 가지고 노는 작은 장치를 놓는다.",
-    p: ["백남준이 1937–1950년 살던 창신동 집터, 《메가트론 랩소디》 상설전", "'동기신호' — 관객 참여형 동시대 작업을 격년 소개, 프로토룸이 첫 참여", "백남준 스스로를 \"식료품 가게 주인\"이라 부름 → 관객이 악기와 사물을 마음껏 다루기를"] },
-  c02: { t: "손바닥만 한 키트로 컴퓨터의 기본 요소를 직접 만져 보고, 거기서 기술 비평까지 이어 간다 — Tech × Kit × Critic.",
-    p: ["2014 결성, 후니다 킴 · 김승범의 메타미디어 콜렉티브", "0과 1을 뒤집기만 하는 키트(2016) → MetaPixels → SmallBig: 최소 단위에서 복잡성으로", "작업 〈0.000001 기가바이트 매터 매터스〉(2025)"] },
-  c03: { q: true, t: "1KB라고 쓰면 될 것을 GB 단위로 소수점까지 내려간다. 우리가 세상을 측정하는 습관 자체에 대한 개입.",
-    p: ["1KB 이하 수식 한 줄 → 계산하는 악기 SmallBig_S1", "노이즈·글리치 속에서 리듬을 골라 쌓는 '탐색적 작곡' — 라디오 주파수를 맞추듯", "전시장에 펼쳐 관객이 직접 연주", "쓸데없이 쌓이고 잊히는 데이터에 무뎌진 감각을 되묻기"] },
-  c04: { t: "작은 수식 안에 이미 들어 있는 소리를 하나씩 찾아 나서는 시간.",
-    p: ["SmallBig_S1으로 음악에서 소음까지 탐색, '글리치 굿'", "인스타그램 라이브로 장치 속 수식의 변화를 먼저 보여 주고 한옥 공간으로", "관객은 소리를 찾아가는 과정을 함께 지켜봄"] },
-  c05: { t: "작은 데이터 하나로 한옥 전체를 채울 수 있을까.",
-    p: ["SmallBig 16대를 중정과 전시실 곳곳에 배치", "퍼포머가 한옥을 옮겨 다니며 소리의 시작점을 놓고 노이즈를 쌓음 → 한옥 전체가 작곡의 공간", "공연 뒤 참여자가 직접 악기로 탐색하며 협주"] },
-  c06: { q: true, t: "결정적인 데이터가 비결정적인 경험을 만든다.",
-    p: ["1KB 감각 잡기: 앨리스 1KB, 픽셀, 마리오 롬 40KB vs 화면 캡처 수 MB → '과잉의 단위로 과소를 측정하기'", "참여자 폰으로 t*n, t>>n을 보고 → 듣고 → 섞기 (데이터는 저장이 아니라 실행)", "버튼 에디터로 수식을 쓰고 계산하는 악기에 업로드 → 사운드잼", "'누수된 데이터 — 소리로 왜 들을까?' (전화기 해킹, 다이얼 소리, 모스부호)"] },
-  c07: { q: true, t: "은유가 아니라 실제.",
-    p: ["P-Code(종이 위 문자를 소리로, 에러 없는 언어)와 SmallBig을 겹쳐 봄 — 둘 다 최소한의 코드·데이터로 무한한 변주", "체험 장치: 1KB 쓰기 장치, 단위 줌인, 1KB = 0.000001 GB → Matter Matters", "t 카운터와 8비트 게이지: 비유가 아니라 계산 그 자체", "공통 키워드 Small Data · 탐색적 작곡 ↔ 알고리즘 작곡"] },
-  c08: { t: "데이터·모델·지능이 고르지 않게 얽힌 미래에서, 작은 데이터는 어떤 자리를 가질까.",
-    p: ["작품 자체를 데이터로: 작은 AI와 연주(신승백) · 코드 다르게 읽기(최승준) · 개입·협연(프로토룸)", "슈퍼마리오의 구름과 수풀은 같은 스프라이트 — 1985년의 작은 데이터 재사용", "키워드에 로컬 모델 · 작은 지능 · 기호적 해석 추가"] },
-  c09: { t: "먼지처럼 사소하지만 곳곳에 쌓이는 작은 데이터(matter)가 왜 중요한지(matters)에서 출발해, 기술매체와 비평을 돌아본다.",
-    p: ["여섯 회차를 돌아보는 아티스트 토크", "곽영빈 · 유은순과 함께 Tech × Kit × Critic의 Critic", "남은 질문: 먼지처럼 쌓인 데이터는 어떻게 될까"] }
-};
-const ROWS = [["03","설치","2025.06–"],["04","기다리다","2025.06.21"],["05","쌓다","2025.10.25"],["06","읽고·쓰고·듣다","2026.04.25"],["07","겹치다","2026.06.13"],["08","해석하다","2026.10.17"],["09","돌아보다","2026.11.21"]];
-const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-for (const [ch, { t, q, p }] of Object.entries(THEMES)) {
-  const sec = document.getElementById(ch);
-  const a = document.createElement("div"); a.className = "slot theme";
-  a.innerHTML = `<h4>주제의식 <em>${q ? "작가 원문" : "정리 초안"}</em></h4><p>${esc(t)}</p>`;
-  const b = document.createElement("div"); b.className = "slot points";
-  b.innerHTML = `<h4>핵심 내용</h4><ul>${p.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
-  const v = sec.querySelector(".vslot"); // 영상: 주제의식 바로 아래
-  sec.querySelector(".kw").after(a, ...(v ? [v] : []), b);
-}
-document.getElementById("retro-rows").innerHTML = ROWS.map(([ch, v, d]) =>
-  `<tr><td><a href="#c${ch}"><b>${ch}</b></a><small>${d}</small></td><td><b>${v}</b></td><td>${esc(THEMES["c"+ch].t)}</td></tr>`).join("");
 
-// 핵심만 펼치고 나머지는 "원자료"로 접기 (지우지 않음)
-const KEEP = ["기본 정보", "영상", "주제의식", "핵심 내용", "질문 초안"];
-document.querySelectorAll("section.ch").forEach(sec => {
-  if (!sec.querySelector(".kw")) return; // 부록은 그대로
-  const moved = [...sec.children].filter(el =>
-    el.classList.contains("warn") ||
-    (el.classList.contains("slot") && !KEEP.some(k => el.querySelector("h4")?.textContent.includes(k))));
-  if (!moved.length) return;
-  const d = document.createElement("details");
-  d.className = "raw";
-  d.innerHTML = `<summary>원자료 <span>${moved.length}</span></summary>`;
-  d.append(...moved);
-  sec.append(d);
-});
-
-// 스페이스바: 다음 섹션 / Shift+스페이스: 이전 섹션
-document.addEventListener("keydown", e => {
-  if (e.key !== " " || e.target.closest?.("input,textarea,select,button,summary,[contenteditable]")) return;
-  e.preventDefault();
-  const secs = [...document.querySelectorAll("header.cover, main > section")];
-  const top = el => el.getBoundingClientRect().top;
-  const t = e.shiftKey ? secs.filter(s => top(s) < -5).pop() : secs.find(s => top(s) > 5);
-  if (t) t.scrollIntoView({ behavior: "smooth" });
-});
-
-// 05장의 "파일" 칸 문구 정리
-document.querySelector("#c05 .files").textContent = "후기 영상: 위 YouTube (jATfjGHGXAE) · 로컬 원본 경로 추가 필요";
-
-
-// 표지 타이틀: 글자에서 피어오르는 연기 (WebGL 셰이더 — 노이즈가 위로 흐르며 글자 모양을 끌어올림, 군데군데 글자 앞을 지남)
-(() => {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const h1 = document.querySelector(".cover h1"), host = h1.closest("header");
-  const cv = document.createElement("canvas"), gl = cv.getContext("webgl", { premultipliedAlpha: true });
-  if (!gl) return;
-  const UP = 240, SIDE = 140, SC = .5;            // SC: 해상도 배율 (연기는 부드러워서 절반이면 충분)
-  const ALPHA = .3, RISE = 150, SPEED = .35;     // 진하기(최대) · 오르는 높이(px) · 흐르는 속도
-  const CYCLE = 14, MIN = .12;                    // 연기 양 주기(초): 적게 → 점점 많이 → 다시 적게, MIN = 가장 적을 때 비율
-  host.style.position = "relative";
-  cv.style.cssText = "position:absolute;pointer-events:none;z-index:2";
-  host.append(cv);
-
-  const fs = `precision mediump float;
-  uniform sampler2D m; uniform vec2 res; uniform float t, A, R, S; uniform vec3 col;
-  float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
-    return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
-  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+17.;a*=.5;}return v;}
-  void main(){
-    vec2 px=gl_FragCoord.xy, q=px/(90.*S);
-    vec2 w=vec2(fbm(q*1.1+vec2(0.,-t)), fbm(q*1.1+vec2(5.2,1.3-t)))-.5;
-    float d=0.;
-    for(int i=0;i<24;i++){                 /* 아래(글자) 쪽을 거슬러 올라가며 연기 밀도 모으기 */
-      float k=float(i)/24., off=k*R*S;
-      d+=texture2D(m,(px-vec2(w.x*off*1.6,off))/res).a*(1.-k);
-    }
-    d/=7.;
-    d*=smoothstep(.38,.78,fbm(q*2.4+w*2.5+vec2(0.,-t*1.4)));  /* 가닥 모양 */
-    /* 글자 위를 지나는 연기: 느린 노이즈로 군데군데만 '앞'에 보이게 (밝은 김) — 나머지는 글자 뒤로 */
-    float inside=smoothstep(.45,.9,texture2D(m,px/res).a);
-    float front=smoothstep(.48,.62,fbm(q*.7+vec2(3.1,-t*.6)));
-    float a=clamp(d*A*mix(1.,front*1.4,inside),0.,1.);
-    vec3 c=mix(col,vec3(.96,.96,.95),inside);
-    gl_FragColor=vec4(c*a,a);
-  }`;
-  const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}";
-  const prog = gl.createProgram();
-  for (const [type, src] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
-    const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(sh)); cv.remove(); return; }
-    gl.attachShader(prog, sh);
+(async () => {
+  try {
+    const res = await fetch(MD_FILE, { cache: "no-store" });
+    if (!res.ok) throw new Error(res.status + " " + res.statusText);
+    renderWorkbook(await res.text());
+    enhance();
+    if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
+  } catch (e) {
+    document.querySelector("main").innerHTML = `<div class="warn" style="margin-top:40px"><b>${MD_FILE}</b> 을 읽지 못했습니다 (${escAll(String(e.message || e))}).<br>
+이 페이지는 내용 파일을 따로 불러오기 때문에, 파일을 더블클릭해서 열면(file://) 브라우저가 막습니다.<br>
+VS Code의 Live Server로 열거나, 이 폴더에서 <code>npx serve</code> 를 실행하거나, GitHub Pages 주소로 열어 주세요.</div>`;
+    console.error(e);
   }
-  gl.bindAttribLocation(prog, 0, "p"); gl.linkProgram(prog); gl.useProgram(prog);
-  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-  const U = k => gl.getUniformLocation(prog, k);
-  const [r0, g0, b0] = getComputedStyle(h1).color.match(/\d+/g).map(v => v / 255);
-  gl.uniform3f(U("col"), r0, g0, b0); gl.uniform1f(U("A"), ALPHA); gl.uniform1f(U("R"), RISE); gl.uniform1f(U("S"), SC);
-  gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
-  for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]])
-    gl.texParameteri(gl.TEXTURE_2D, k, v);
-  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
-  // 글자 모양(살짝 흐리게)을 텍스처로 — 연기의 출발점
-  function layout() {
-    const hb = host.getBoundingClientRect(), r = h1.getBoundingClientRect();
-    const W = r.width + SIDE * 2, H = r.height + UP;
-    Object.assign(cv.style, { left: r.left - hb.left - SIDE + "px", top: r.top - hb.top - UP + "px", width: W + "px", height: H + "px" });
-    cv.width = W * SC | 0; cv.height = H * SC | 0;
-    const mk = document.createElement("canvas"); mk.width = cv.width; mk.height = cv.height;
-    const c = mk.getContext("2d"), cs = getComputedStyle(h1);
-    c.scale(SC, SC); c.filter = "blur(3px)";
-    c.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; c.letterSpacing = cs.letterSpacing;
-    for (const n of h1.childNodes) {
-      const t = n.nodeType === 3 && n.textContent.trim(); if (!t) continue;
-      const rg = document.createRange(); rg.selectNodeContents(n);
-      const lr = rg.getClientRects()[0], txt = t.toUpperCase(), m = c.measureText(txt);
-      c.fillText(txt, lr.left - r.left + SIDE, lr.top - r.top + UP + (lr.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent);
-    }
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mk);
-    gl.viewport(0, 0, cv.width, cv.height); gl.uniform2f(U("res"), cv.width, cv.height);
-  }
-  let raf = 0, ready = false;
-  function tick(now) {
-    if (ready) {
-      const ph = now / 1000 % CYCLE / CYCLE, ease = x => x * x * (3 - 2 * x);
-      const env = ph < .7 ? ease(ph / .7) : ph < .85 ? 1 : 1 - ease((ph - .85) / .15); // 70% 동안 차오르고, 잠시 유지, 15% 동안 줄어듦
-      gl.uniform1f(U("A"), ALPHA * (MIN + (1 - MIN) * env));
-      gl.uniform1f(U("t"), now / 1000 * SPEED); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-    raf = requestAnimationFrame(tick);
-  }
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
-    else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
-  }).observe(h1);
-  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layout, 200); });
-  document.fonts.ready.then(() => { layout(); ready = true; });
 })();
 </script>
 </body>
