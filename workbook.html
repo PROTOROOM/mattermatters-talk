@@ -4,216 +4,660 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Matter Matters 워크북</title>
+<!--
+  Matter Matters 워크북 — workbook.md 를 읽어 화면으로 보여 주는 페이지
+
+  · 내용(글·그림·영상 주소)은 전부 workbook.md 에 있다. 내용을 고칠 때는 이 파일을 열 필요가 없다.
+    workbook.md 에 쓰는 표기 규칙은 README.md 참고.
+  · 이 파일에는 모양(<style>)과, workbook.md 를 화면으로 바꾸는 방법(<script>)만 있다.
+  · 내용 파일을 따로 불러오기 때문에 더블클릭(file://)으로는 열리지 않는다.
+    VS Code 의 Live Server, 이 폴더에서 npx serve, 또는 GitHub Pages 주소로 연다.
+-->
+
 <style>
-@font-face{font-family:"Plex KR";font-weight:400;src:url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-400-normal.woff2) format("woff2")}
-@font-face{font-family:"Plex KR";font-weight:700;src:url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-700-normal.woff2) format("woff2")}
-@font-face{font-family:"Plex Mono";font-weight:400;src:url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2")}
-:root{
-  --paper:#EBE8E1; --ink:#1d1d1b; --mute:#6b6862; --line:#cfcac0;
-  --red:#F04E23; --orange:#FF8C1A; --dark:#222; --cyan:#4cc2ff;
-  --sans:"Plex KR","IBM Plex Sans KR",system-ui,sans-serif; --mono:"Plex Mono","IBM Plex Mono",ui-monospace,monospace;
+/* ══════════════════════════════════════════════════════════════
+   읽는 법: 같은 것을 두 번 정하면 아래쪽 규칙이 이긴다.
+   · 1 ~ 6 은 기본 모양
+   · 7 ~ 12 는 그 위에 입힌 "포스터 테마" (파란 한 가지 색, 큰 글자)
+     → 지금 화면의 색·크기를 바꾸려면 먼저 7 ~ 12 를 본다.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ───────── 1. 글꼴과 색 ───────── */
+@font-face {
+  font-family: "Plex KR";
+  font-weight: 400;
+  src: url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-400-normal.woff2) format("woff2");
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.7 var(--sans);word-break:keep-all}
-a{color:inherit;text-decoration-color:var(--red);text-underline-offset:3px}
-code,.mono{font-family:var(--mono);font-size:.92em}
-nav{position:fixed;inset:0 auto 0 0;width:230px;overflow:auto;padding:28px 20px;border-right:1px solid var(--line);font-size:13px;line-height:1.55}
-nav b{display:block;margin:18px 0 4px;font-size:11px;letter-spacing:.12em;color:var(--mute)}
-nav a{display:block;text-decoration:none;padding:2px 0}
-nav a:hover{color:var(--red)}
-main{margin-left:230px;max-width:960px;padding:48px 56px 120px}
-@media (max-width:860px){nav{position:static;width:auto;border:0;border-bottom:1px solid var(--line)}main{margin:0;padding:24px 16px 80px}}
+@font-face {
+  font-family: "Plex KR";
+  font-weight: 700;
+  src: url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-700-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Plex Mono";
+  font-weight: 400;
+  src: url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");
+}
+:root {
+  --paper: #EBE8E1;
+  --ink: #1d1d1b;
+  --mute: #6b6862;
+  --line: #cfcac0;
+  --red: #F04E23;
+  --orange: #FF8C1A;
+  --dark: #222;
+  --cyan: #4cc2ff;
+  --sans: "Plex KR","IBM Plex Sans KR",system-ui,sans-serif;
+  --mono: "Plex Mono","IBM Plex Mono",ui-monospace,monospace;
+}
 
-header.cover{padding:40px 0 56px;border-bottom:2px solid var(--ink)}
-.cover .eyebrow{font-family:var(--mono);font-size:13px;color:var(--mute)}
-.cover h1{font-size:clamp(44px,7vw,88px);line-height:1;margin:14px 0 8px;letter-spacing:-.02em}
-.cover h1 span{color:var(--red)}
-.cover p{margin:4px 0;color:var(--mute)}
+/* ───────── 2. 기본 글씨 ───────── */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.7 var(--sans);
+  word-break: keep-all;
+}
+a { color: inherit; text-decoration-color: var(--red); text-underline-offset: 3px; }
+code, .mono { font-family: var(--mono); font-size: .92em; }
 
-.part{margin:96px 0 0;padding:40px 32px;background:var(--dark);color:#fff}
-.part small{font-family:var(--mono);color:var(--orange);letter-spacing:.1em}
-.part h2{margin:6px 0 4px;font-size:28px}
-.part .big{font-size:clamp(30px,5vw,56px);font-weight:700;line-height:1.15;color:var(--red);margin:16px 0 0}
+/* ───────── 3. 틀: 왼쪽 인덱스(nav) + 본문(main) ───────── */
+nav {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 230px;
+  overflow: auto;
+  padding: 28px 20px;
+  border-right: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.55;
+}
+nav b {
+  display: block;
+  margin: 18px 0 4px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--mute);
+}
+nav a { display: block; text-decoration: none; padding: 2px 0; }
+nav a:hover { color: var(--red); }
+main { margin-left: 230px; max-width: 960px; padding: 48px 56px 120px; }
 
-section.ch{padding:56px 0 8px;border-bottom:1px solid var(--line)}
-.ch h3{font-size:26px;margin:0 0 4px;line-height:1.3}
-.ch h3 .no{font-family:var(--mono);color:var(--red);margin-right:10px}
-.ch .verb{display:inline-block;font-size:14px;border:1.5px solid var(--ink);padding:0 10px;border-radius:2px;margin-left:6px;vertical-align:middle}
-.kw{margin:14px 0 22px;display:flex;flex-wrap:wrap;gap:8px}
-.k{border:1.5px solid var(--ink);border-radius:999px;padding:3px 13px;font-size:14px;white-space:nowrap}
-.k.m{background:var(--red);border-color:var(--red);color:#fff;font-weight:700;font-size:16px;padding:5px 16px}
+/* 좁은 화면: 인덱스를 위로 올리고 본문을 넓게 */
+@media (max-width: 860px) {
+  nav { position: static; width: auto; border: 0; border-bottom: 1px solid var(--line); }
+  main { margin: 0; padding: 24px 16px 80px; }
+}
 
-.slot{margin:20px 0}
-.slot>h4{font:700 11px/1 var(--mono);letter-spacing:.14em;color:var(--mute);margin:0 0 8px;text-transform:uppercase}
-dl.info{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 16px;margin:0}
-dl.info dt{color:var(--mute)} dl.info dd{margin:0;overflow-wrap:anywhere}
-td small{display:block;font-family:var(--mono);font-size:12px;opacity:.75;margin-top:2px}
-blockquote{margin:0;padding:14px 18px;border-left:4px solid var(--red);background:#f5f3ee}
-blockquote cite{display:block;margin-top:8px;font-size:13px;color:var(--mute);font-style:normal}
-.say{font-size:20px;font-weight:700;line-height:1.5;margin:8px 0}
-.say::before{content:"“";color:var(--red)} .say::after{content:"”";color:var(--red)}
-ol.flow,ul.flow{margin:0;padding-left:22px} .flow li{margin:3px 0}
-.warn{border:1.5px dashed var(--red);padding:10px 14px;font-size:14px}
-.warn::before{content:"⚠ 확인 필요";display:block;font-weight:700;color:var(--red);font-size:12px;letter-spacing:.06em}
-.files{font-family:var(--mono);font-size:13px;background:#fff;border:1px solid var(--line);padding:10px 14px;overflow-x:auto;white-space:nowrap}
-.files a{display:block}
-.src{font-size:13px} .src a{margin-right:12px}
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
-.gal figure{margin:0;background:#fff;border:1px solid var(--line);padding:8px}
-.gal img{width:100%;height:150px;object-fit:contain;display:block}
-.gal img.px{image-rendering:pixelated}
-.gal figcaption{font-size:12px;color:var(--mute);margin-top:6px;line-height:1.4}
-.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.vids.one{grid-template-columns:1fr} /* 영상 1개: 칸 전체 폭 */
-.lens{margin:28px 0 8px;padding:20px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
-.lens h4{margin:0 0 14px;font-size:13px;letter-spacing:.06em}
-.lens h4 em{font-style:normal;font-weight:400;opacity:.7;margin-left:8px}
-.lens ol{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px 28px;counter-reset:l}
-.lens li{counter-increment:l;display:grid;grid-template-columns:2em 1fr;row-gap:2px}
-.lens li::before{content:counter(l,decimal-leading-zero);grid-row:span 2;font-size:13px;padding-top:6px}
-.lens li b{font-size:22px;line-height:1.3}
-.lens li small{font-size:12px;opacity:.7}
-.vid{display:block;text-decoration:none;background:#fff;border:1px solid var(--line)}
-.vid:hover{border-color:var(--red)}
-.vid .th{position:relative;aspect-ratio:16/9;background:var(--dark) center/cover no-repeat}
-.vid .th::after{content:"▶";position:absolute;inset:0;margin:auto;width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;padding-left:3px}
-.vid .tag{position:absolute;left:8px;top:8px;z-index:1;font:700 10px var(--mono);background:#000c;color:#fff;padding:2px 6px;letter-spacing:.08em}
-.vid .tx{padding:8px 10px;font-size:13px;line-height:1.45}
-.vid .tx small{display:block;color:var(--mute);font-size:11px;margin-top:3px}
-table{border-collapse:collapse;width:100%;font-size:14px}
-th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
-th{font-size:12px;color:var(--mute);font-weight:700}
-td.y{color:var(--red);font-weight:700;text-align:center} td.n{color:var(--line);text-align:center}
-.chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:18px;font-weight:700}
-.chain span.arr{color:var(--red)}
-.chain .step{border:2px solid var(--ink);padding:8px 14px;background:#fff}
-.chain .step small{display:block;font:400 11px var(--mono);color:var(--mute)}
-.formula{font-family:var(--mono);font-size:13px;background:var(--dark);color:#e8e6e0;padding:12px 16px;overflow-x:auto;white-space:pre}
-.formula b{color:var(--orange);font-weight:400}
-.legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;font-size:14px;margin-top:18px}
+/* ───────── 4. 표지 · 부 · 장 (기본 모양) ───────── */
+header.cover { padding: 40px 0 56px; border-bottom: 2px solid var(--ink); }
+.cover .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--mute); }
+.cover h1 { font-size: clamp(44px,7vw,88px); line-height: 1; margin: 14px 0 8px; letter-spacing: -.02em; }
+.cover h1 span { color: var(--red); }
+.cover p { margin: 4px 0; color: var(--mute); }
 
-/* ===== 포스터 테마 (본문만 — 왼쪽 인덱스는 기존 그대로) ===== */
-body{background:#E8E8E6}
-nav{background:#F2EDE1;color:#2346E8;border-right:1.5px solid #2346E8;font-family:"Helvetica Neue",Helvetica,Arial,"Plex KR",sans-serif;font-size:14px}
-nav b{color:#E8552B;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;letter-spacing:.02em;font-size:12px}
-nav a{color:#2346E8}
-nav a:hover{color:#E8552B;text-decoration:underline;text-decoration-color:#E8552B}
-main{font-size:18px}
+/* 부(部) 제목 */
+.part { margin: 96px 0 0; padding: 40px 32px; background: var(--dark); color: #fff; }
+.part small { font-family: var(--mono); color: var(--orange); letter-spacing: .1em; }
+.part h2 { margin: 6px 0 4px; font-size: 28px; }
+.part .big {
+  font-size: clamp(30px,5vw,56px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--red);
+  margin: 16px 0 0;
+}
+
+/* 장: 제목, 키워드 */
+section.ch { padding: 56px 0 8px; border-bottom: 1px solid var(--line); }
+.ch h3 { font-size: 26px; margin: 0 0 4px; line-height: 1.3; }
+.ch h3 .no { font-family: var(--mono); color: var(--red); margin-right: 10px; }
+.ch .verb {
+  display: inline-block;
+  font-size: 14px;
+  border: 1.5px solid var(--ink);
+  padding: 0 10px;
+  border-radius: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.kw { margin: 14px 0 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.k {
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 3px 13px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.k.m {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 5px 16px;
+}
+
+/* ───────── 5. 칸(.slot)과 그 안의 덩어리 ───────── */
+/* 칸 제목 */
+.slot { margin: 20px 0; }
+.slot>h4 {
+  font: 700 11px/1 var(--mono);
+  letter-spacing: .14em;
+  color: var(--mute);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+/* 정보 표 ( - 이름 :: 설명 ) */
+dl.info { display: grid; grid-template-columns: 110px minmax(0,1fr); gap: 4px 16px; margin: 0; }
+dl.info dt { color: var(--mute); }
+dl.info dd { margin: 0; overflow-wrap: anywhere; }
+td small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  opacity: .75;
+  margin-top: 2px;
+}
+
+/* 인용, 큰따옴표 문장(.say) */
+blockquote { margin: 0; padding: 14px 18px; border-left: 4px solid var(--red); background: #f5f3ee; }
+blockquote cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--mute);
+  font-style: normal;
+}
+.say { font-size: 20px; font-weight: 700; line-height: 1.5; margin: 8px 0; }
+.say::before { content: "“"; color: var(--red); }
+.say::after { content: "”"; color: var(--red); }
+
+/* 목록 */
+ol.flow, ul.flow { margin: 0; padding-left: 22px; }
+.flow li { margin: 3px 0; }
+
+/* 확인 필요 */
+.warn { border: 1.5px dashed var(--red); padding: 10px 14px; font-size: 14px; }
+.warn::before {
+  content: "⚠ 확인 필요";
+  display: block;
+  font-weight: 700;
+  color: var(--red);
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+
+/* 파일 목록, 출처 */
+.files {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 10px 14px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.files a { display: block; }
+.src { font-size: 13px; }
+.src a { margin-right: 12px; }
+
+/* 그림 묶음 */
+.gal { display: grid; grid-template-columns: repeat(auto-fill,minmax(170px,1fr)); gap: 12px; }
+.gal figure { margin: 0; background: #fff; border: 1px solid var(--line); padding: 8px; }
+.gal img { width: 100%; height: 150px; object-fit: contain; display: block; }
+.gal img.px { image-rendering: pixelated; }
+.gal figcaption { font-size: 12px; color: var(--mute); margin-top: 6px; line-height: 1.4; }
+
+/* 영상 묶음 */
+.vids { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 14px; }
+.vids.one { grid-template-columns: 1fr; }   /* 영상 1개: 칸 전체 폭 */
+
+/* 렌즈 ( ::: lens ) — 번호가 붙는 큰 낱말 목록 */
+.lens {
+  margin: 28px 0 8px;
+  padding: 20px 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.lens h4 { margin: 0 0 14px; font-size: 13px; letter-spacing: .06em; }
+.lens h4 em { font-style: normal; font-weight: 400; opacity: .7; margin-left: 8px; }
+.lens ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+  gap: 14px 28px;
+  counter-reset: l;
+}
+.lens li { counter-increment: l; display: grid; grid-template-columns: 2em 1fr; row-gap: 2px; }
+.lens li::before {
+  content: counter(l,decimal-leading-zero);
+  grid-row: span 2;
+  font-size: 13px;
+  padding-top: 6px;
+}
+.lens li b { font-size: 22px; line-height: 1.3; }
+.lens li small { font-size: 12px; opacity: .7; }
+
+/* 영상 카드 하나 */
+.vid { display: block; text-decoration: none; background: #fff; border: 1px solid var(--line); }
+.vid:hover { border-color: var(--red); }
+.vid .th { position: relative; aspect-ratio: 16/9; background: var(--dark) center/cover no-repeat; }
+.vid .th::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+}
+.vid .tag {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  z-index: 1;
+  font: 700 10px var(--mono);
+  background: #000c;
+  color: #fff;
+  padding: 2px 6px;
+  letter-spacing: .08em;
+}
+.vid .tx { padding: 8px 10px; font-size: 13px; line-height: 1.45; }
+.vid .tx small { display: block; color: var(--mute); font-size: 11px; margin-top: 3px; }
+
+/* 표 */
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td {
+  border-bottom: 1px solid var(--line);
+  padding: 7px 8px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+th { font-size: 12px; color: var(--mute); font-weight: 700; }
+td.y { color: var(--red); font-weight: 700; text-align: center; }
+td.n { color: var(--line); text-align: center; }
+
+/* 사슬 ( ::: chain ) — 화살표로 이어지는 단계 */
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.chain span.arr { color: var(--red); }
+.chain .step { border: 2px solid var(--ink); padding: 8px 14px; background: #fff; }
+.chain .step small { display: block; font: 400 11px var(--mono); color: var(--mute); }
+
+/* ───────── 6. 수식 블록, 범례 ───────── */
+.formula {
+  font-family: var(--mono);
+  font-size: 13px;
+  background: var(--dark);
+  color: #e8e6e0;
+  padding: 12px 16px;
+  overflow-x: auto;
+  white-space: pre;
+}
+.formula b { color: var(--orange); font-weight: 400; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+/* ───────── 7. 포스터 테마: 색과 글씨 ───────── */
+body { background: #E8E8E6; }
+nav {
+  background: #F2EDE1;
+  color: #2346E8;
+  border-right: 1.5px solid #2346E8;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Plex KR",sans-serif;
+  font-size: 14px;
+}
+nav b {
+  color: #E8552B;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  letter-spacing: .02em;
+  font-size: 12px;
+}
+nav a { color: #2346E8; }
+nav a:hover { color: #E8552B; text-decoration: underline; text-decoration-color: #E8552B; }
+main { font-size: 18px; }
 /* 인덱스: 기본 숨김, 왼쪽 가장자리(16px 띠)에 커서를 대면 펼침 */
-@media (min-width:861px){
-  nav{z-index:10;transform:translateX(calc(-100% + 16px));transition:transform .25s ease;box-shadow:none}
-  nav:hover,nav:focus-within{transform:none;box-shadow:8px 0 24px #0002}
-  main{margin-left:auto;margin-right:auto}
+@media (min-width: 861px) {
+  nav {
+    z-index: 10;
+    transform: translateX(calc(-100% + 16px));
+    transition: transform .25s ease;
+    box-shadow: none;
+  }
+  nav:hover, nav:focus-within { transform: none; box-shadow: 8px 0 24px #0002; }
+  main { margin-left: auto; margin-right: auto; }
 }
-main .slot>h4{font-size:12px}
-main .k{font-size:17px;padding:5px 16px} main .k.m{font-size:17px}
-main table,main .src,main .files,main .gal figcaption,main .vid .tx{font-size:15px}
-main{
-  --blue:#2346E8; --ink:var(--blue); --mute:#2346E8b3; --line:var(--blue);
-  --red:var(--blue); --orange:var(--blue); --dark:var(--blue); --bg:#E8E8E6;
-  color:var(--ink); max-width:1120px;
-  font-family:"Helvetica Neue",Helvetica,Arial,"Plex KR","IBM Plex Sans KR",sans-serif;
+
+/* 본문 글씨 크기 */
+main .slot>h4 { font-size: 12px; }
+main .k { font-size: 17px; padding: 5px 16px; }
+main .k.m { font-size: 17px; }
+main table, main .src, main .files, main .gal figcaption, main .vid .tx { font-size: 15px; }
+
+/* 본문 색: 아래 변수들이 1 ~ 6 의 색을 모두 파랑 하나로 바꾼다 */
+main {
+  --blue: #2346E8;
+  --ink: var(--blue);
+  --mute: #2346E8b3;
+  --line: var(--blue);
+  --red: var(--blue);
+  --orange: var(--blue);
+  --dark: var(--blue);
+  --bg: #E8E8E6;
+  color: var(--ink);
+  max-width: 1120px;
+  font-family: "Helvetica Neue",Helvetica,Arial,"Plex KR","IBM Plex Sans KR",sans-serif;
 }
-main h1,main h2,main h3,.part .big{font-weight:600;letter-spacing:-.035em}
-main blockquote,main .files,main .gal figure,main .vid,main .chain .step{background:none}
-main .files{border-color:var(--ink)}
-main .k.m{color:var(--bg)}
-main .vid .tag{background:var(--ink)}
-main .formula{background:var(--ink);color:var(--bg)} main .formula b{color:#fff;font-weight:700}
-main td.n{color:#2346E840}
-main .warn{border-color:var(--ink)}
 
-.cover{padding:0 0 8px;border-bottom:0}
-.c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;border-bottom:2px solid}
-.cover h1,.c-sub{font-size:clamp(52px,9.5vw,132px);line-height:.88;letter-spacing:-.045em;font-weight:600;margin:0 0 12px;text-transform:uppercase}
-.c-sub{margin:10px 0 0;padding-bottom:12px;border-bottom:2px solid}
-.c-org{font-weight:600;font-size:clamp(14px,1.6vw,20px);line-height:1.2;padding-top:6px;white-space:nowrap}
-.c-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;border-bottom:2px solid;padding:12px 0 36px}
-.c-big{font-size:clamp(48px,8vw,112px);line-height:.9;letter-spacing:-.045em;font-weight:500}
-.c-list{font-weight:600;font-size:clamp(15px,1.6vw,21px);line-height:1.38;list-style:none;margin:0;padding:0}
-.c-list li span{display:inline-block;min-width:6.2em}
+/* 바탕색·테두리 정리 */
+main h1, main h2, main h3, .part .big { font-weight: 600; letter-spacing: -.035em; }
+main blockquote, main .files, main .gal figure, main .vid, main .chain .step { background: none; }
+main .files { border-color: var(--ink); }
+main .k.m { color: var(--bg); }
+main .vid .tag { background: var(--ink); }
+main .formula { background: var(--ink); color: var(--bg); }
+main .formula b { color: #fff; font-weight: 700; }
+main td.n { color: #2346E840; }
+main .warn { border-color: var(--ink); }
 
-.part{background:none;color:var(--ink);padding:18px 0 28px;border-top:6px solid;border-bottom:2px solid}
-.part small{color:var(--ink)}
-.part .big{color:var(--ink);font-size:clamp(40px,7vw,96px);line-height:.95;text-transform:uppercase}
-
-section.ch{border-top:2px solid var(--ink);border-bottom:0;padding:16px 0 48px}
-.ch h3{font-size:26px;line-height:1.25;letter-spacing:-.02em}
-.ch h3 .no{display:block;color:var(--ink);font-family:inherit;font-weight:500;font-size:clamp(72px,9vw,128px);line-height:.88;letter-spacing:-.05em;margin:0 0 14px}
-.ch .verb{border-color:var(--ink)}
-@media (min-width:861px){
-  section.ch{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:40px}
-  section.ch>*{grid-column:2}
-  section.ch>h3{grid-column:1;grid-row:1/span 40;align-self:start;position:sticky;top:24px}
-  section.ch>.kw:first-of-type{margin-top:6px}
+/* ───────── 8. 포스터 테마: 표지 ───────── */
+.cover { padding: 0 0 8px; border-bottom: 0; }
+.c-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  border-bottom: 2px solid;
 }
-.theme p{font-size:clamp(20px,2vw,26px);font-weight:700;line-height:1.4;letter-spacing:-.01em;margin:0}
-.slot h4 em{font-style:normal;border:1px solid currentColor;border-radius:999px;padding:1px 7px;margin-left:6px;letter-spacing:0;text-transform:none}
-.points ul{margin:0;padding-left:20px} .points li{margin:4px 0}
-.thesis{font-size:clamp(34px,5.5vw,72px);font-weight:600;line-height:1;letter-spacing:-.04em;margin:18px 0 12px}
-.thesis-sub{margin:0;font-size:16px;max-width:52em}
-.retro-t{margin-top:8px;font-size:16px} .retro-t td{padding:12px 8px}
-.retro-t td:first-child{width:110px;white-space:nowrap} .retro-t td:nth-child(2){width:130px}
-.retro-t a{text-decoration:none}
-details.raw{margin:22px 0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
-details.raw>summary{cursor:pointer;list-style:none;padding:10px 0;font-weight:700;font-size:15px;letter-spacing:.02em}
-details.raw>summary::-webkit-details-marker{display:none}
-details.raw>summary::before{content:"＋ "} details.raw[open]>summary::before{content:"－ "}
-details.raw>summary span{font:400 12px var(--mono);border:1px solid var(--ink);border-radius:999px;padding:0 7px;margin-left:6px;vertical-align:2px}
-details.raw[open]{padding-bottom:12px}
-@media (max-width:860px){.c-row{grid-template-columns:1fr;gap:12px}.c-top{flex-direction:column;gap:0}}
-/* md에서 쓰는 보조 클래스 */
-.say.lead{font-size:17px}
-b.red{color:var(--red)}
-.warn + .gal{margin-top:12px}
-#refs .flow{font-size:14px}
-.c-list>div>span{display:inline-block;min-width:6.2em}
+.cover h1, .c-sub {
+  font-size: clamp(52px,9.5vw,132px);
+  line-height: .88;
+  letter-spacing: -.045em;
+  font-weight: 600;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+.c-sub { margin: 10px 0 0; padding-bottom: 12px; border-bottom: 2px solid; }
+.c-org {
+  font-weight: 600;
+  font-size: clamp(14px,1.6vw,20px);
+  line-height: 1.2;
+  padding-top: 6px;
+  white-space: nowrap;
+}
+.c-row {
+  display: grid;
+  grid-template-columns: minmax(0,5fr) minmax(0,7fr);
+  gap: 40px;
+  border-bottom: 2px solid;
+  padding: 12px 0 36px;
+}
+.c-big { font-size: clamp(48px,8vw,112px); line-height: .9; letter-spacing: -.045em; font-weight: 500; }
+.c-list {
+  font-weight: 600;
+  font-size: clamp(15px,1.6vw,21px);
+  line-height: 1.38;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.c-list li span { display: inline-block; min-width: 6.2em; }
+
+/* ───────── 9. 포스터 테마: 부 · 장 ───────── */
+.part {
+  background: none;
+  color: var(--ink);
+  padding: 18px 0 28px;
+  border-top: 6px solid;
+  border-bottom: 2px solid;
+}
+.part small { color: var(--ink); }
+.part .big { color: var(--ink); font-size: clamp(40px,7vw,96px); line-height: .95; text-transform: uppercase; }
+
+/* 장: 넓은 화면에서는 왼쪽에 큰 번호와 제목(따라 내려옴), 오른쪽에 내용 */
+section.ch { border-top: 2px solid var(--ink); border-bottom: 0; padding: 16px 0 48px; }
+.ch h3 { font-size: 26px; line-height: 1.25; letter-spacing: -.02em; }
+.ch h3 .no {
+  display: block;
+  color: var(--ink);
+  font-family: inherit;
+  font-weight: 500;
+  font-size: clamp(72px,9vw,128px);
+  line-height: .88;
+  letter-spacing: -.05em;
+  margin: 0 0 14px;
+}
+.ch .verb { border-color: var(--ink); }
+@media (min-width: 861px) {
+  section.ch { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); column-gap: 40px; }
+  section.ch>* { grid-column: 2; }
+  section.ch>h3 {
+    grid-column: 1;
+    grid-row: 1/span 40;
+    align-self: start;
+    position: sticky;
+    top: 24px;
+  }
+  section.ch>.kw:first-of-type { margin-top: 6px; }
+}
+
+/* ───────── 10. 주제의식 · 핵심 내용 · 회고 ───────── */
+.theme p {
+  font-size: clamp(20px,2vw,26px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -.01em;
+  margin: 0;
+}
+.slot h4 em {
+  font-style: normal;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 1px 7px;
+  margin-left: 6px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.points ul { margin: 0; padding-left: 20px; }
+.points li { margin: 4px 0; }
+
+/* 회고: 큰 문장과 표 */
+.thesis {
+  font-size: clamp(34px,5.5vw,72px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.04em;
+  margin: 18px 0 12px;
+}
+.thesis-sub { margin: 0; font-size: 16px; max-width: 52em; }
+.retro-t { margin-top: 8px; font-size: 16px; }
+.retro-t td { padding: 12px 8px; }
+.retro-t td:first-child { width: 110px; white-space: nowrap; }
+.retro-t td:nth-child(2) { width: 130px; }
+.retro-t a { text-decoration: none; }
+
+/* ───────── 11. 원자료 접기 ───────── */
+details.raw { margin: 22px 0; border-top: 1.5px solid var(--ink); border-bottom: 1.5px solid var(--ink); }
+details.raw>summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .02em;
+}
+details.raw>summary::-webkit-details-marker { display: none; }
+details.raw>summary::before { content: "＋ "; }
+details.raw[open]>summary::before { content: "－ "; }
+details.raw>summary span {
+  font: 400 12px var(--mono);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 0 7px;
+  margin-left: 6px;
+  vertical-align: 2px;
+}
+details.raw[open] { padding-bottom: 12px; }
+
+/* 좁은 화면: 표지를 한 단으로 */
+@media (max-width: 860px) {
+  .c-row { grid-template-columns: 1fr; gap: 12px; }
+  .c-top { flex-direction: column; gap: 0; }
+}
+
+/* ───────── 12. workbook.md 에서 직접 쓰는 보조 클래스 ( {.say .lead} 등 ) ───────── */
+.say.lead { font-size: 17px; }
+b.red { color: var(--red); }
+.warn + .gal { margin-top: 12px; }
+#refs .flow { font-size: 14px; }
+.c-list>div>span { display: inline-block; min-width: 6.2em; }
 </style>
 </head>
 <body>
 
-<nav></nav>
+<nav></nav>            <!-- 왼쪽 인덱스: 스크립트가 채운다 -->
 
-<main id="top"></main>
+<main id="top"></main> <!-- 본문: 스크립트가 채운다 -->
 
 <script>
-// ───────── workbook.md → 화면 ─────────
-// 내용은 전부 workbook.md 에 있다. 이 스크립트는 그 파일을 읽어 아래 표기 규칙대로 화면을 만든다.
-// 표기 규칙은 README.md 참고.
+/* ════════════════════════════════════════════════════════════════
+   내용은 전부 workbook.md 에 있다. 이 스크립트는 그 파일을 읽어 화면을 만든다.
+   (workbook.md 에 쓰는 표기 규칙은 README.md 참고)
+
+   구성
+   [A] 설정              파일 이름, 고정 문구, 정해진 이름들
+   [B] 글자 처리          특수문자 처리, 줄 안 표기(굵게·링크 등)
+   [C] workbook.md 읽기   한 줄씩 읽어 덩어리(표지·부·장·칸·표·목록…)로 바꾼다
+   [D] 화면에 넣기
+   [E] 만들어진 뒤 붙는 동작  영상 재생 / 원자료 접기 / 스페이스바 이동 / 표지 연기
+   [F] 시작
+   ════════════════════════════════════════════════════════════════ */
+
+
+/* ── [A] 설정 ──────────────────────────────────────────────────── */
 const MD_FILE = "workbook.md";
 
-const escText = s => s.replace(/&(?!#?\w+;)/g, "&amp;").replace(/<(?!\/?[a-zA-Z][^<>]*>)/g, "&lt;");
-const escAll = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-const escAttr = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+// 제목 바로 아래에 붙는 "이름: 값" 줄
+const META = /^(목차|부제|키워드|회고):\s*(.*)$/;
 
-// 줄 안 표기: `코드`  **굵게**  ==빨강 강조==  [글자](주소)  + <small> <em> 같은 HTML 태그는 그대로
+// 칸(###) 이름에 따라 붙는 CSS 클래스. 여기 없는 칸은 클래스 없이 나온다
+const SLOT_CLASS = { "핵심 내용": "points", "영상": "vslot", "출처": "src" };
+
+// 장을 펼쳤을 때 바로 보이는 칸. 나머지 칸은 "원자료"로 접힌다 ([E] foldRawMaterial)
+const KEEP_OPEN = ["기본 정보", "영상", "주제의식", "핵심 내용", "질문 초안"];
+
+// 표지 아래 범례 (내용이 아니라 화면 안내라서 workbook.md 가 아닌 여기에 둔다)
+const LEGEND = `<div class="legend"><span class="k m">장 대표 키워드</span><span class="k">보조 키워드</span><span class="warn" style="padding:4px 10px">출처끼리 어긋나는 곳</span></div>`;
+
+
+/* ── [B] 글자 처리 ─────────────────────────────────────────────── */
+
+// 특수문자를 화면에 글자 그대로 보이게 바꾼다
+const escText = s => s.replace(/&(?!#?\w+;)/g, "&amp;").replace(/<(?!\/?[a-zA-Z][^<>]*>)/g, "&lt;");   // HTML 태그는 살려 둔다
+const escAll  = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");             // 전부 글자로
+const escAttr = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");                                 // 속성값("...") 안에 넣을 때
+
+// 줄 안 표기:  `코드`  **굵게**  ==강조==  [글자](주소)   + <small> <em> 같은 HTML 태그는 그대로 통과
 function inline(src) {
-  const keep = [];
-  const hold = html => "\u0000" + (keep.push(html) - 1) + "\u0000";
-  let s = src.replace(/`([^`]+)`/g, (_, c) => hold("<code>" + escAll(c) + "</code>"));
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => hold(`<a href="${escAttr(u)}">` + inline(t) + "</a>"));
+  // 코드와 링크는 먼저 빼 두었다가(그 안의 * 나 = 가 건드려지지 않게) 마지막에 되돌려 넣는다
+  const kept = [];
+  const keep = html => "\u0000" + (kept.push(html) - 1) + "\u0000";
+
+  let s = src.replace(/`([^`]+)`/g, (_, code) => keep("<code>" + escAll(code) + "</code>"));
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, url) => keep(`<a href="${escAttr(url)}">` + inline(text) + "</a>"));
   s = escText(s);
   s = s.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/==(.+?)==/g, '<b class="red">$1</b>');
-  return s.replace(/\u0000(\d+)\u0000/g, (_, n) => keep[n]);
+  return s.replace(/\u0000(\d+)\u0000/g, (_, n) => kept[n]);
 }
 
-// "키: 값" 줄 (제목 바로 아래에 붙는 정보)
-const META = /^(목차|부제|키워드|회고):\s*(.*)$/;
-const blockHTML = b => typeof b === "string" ? b
-  : `<${b.tag}${b.cls.length ? ` class="${b.cls.join(" ")}"` : ""}${b.attr || ""}>${b.inner}</${b.tag}>`;
+// "a / b" 의 빗금을 줄바꿈으로 (표지 제목, 회고의 큰 문장)
+const slashToBreak = s => inline(s || "").replace(/\s*\/\s*/g, "<br>");
+
+// "{.say .lead}" 안의 글자 → ["say", "lead"]
 const classesOf = s => s.split(/\s+/).filter(c => c.startsWith(".")).map(c => c.slice(1));
 
-function renderWorkbook(md) {
-  const L = md.replace(/\r\n?/g, "\n").split("\n");
-  let i = 0, title = "";
-  if (L[0] === "---") {                                   // 맨 위 --- 사이: 문서 정보
-    for (i = 1; i < L.length && L[i] !== "---"; i++) { const m = L[i].match(/^title:\s*(.*)$/); if (m) title = m[1]; }
-    i++;
-  }
-  const main = [], nav = [], retroRows = [];
-  let chapter = null, slot = null, retroAt = -1;
+// 덩어리 → HTML. 덩어리는 완성된 HTML 문자열이거나, 나중에 클래스를 더 붙일 수 있는 { tag, cls, inner } 꼴이다
+const blockHTML = b => typeof b === "string" ? b
+  : `<${b.tag}${b.cls.length ? ` class="${b.cls.join(" ")}"` : ""}${b.attr || ""}>${b.inner}</${b.tag}>`;
 
+
+/* ── [C] workbook.md 읽기 ──────────────────────────────────────────
+   글을 줄 단위로 위에서부터 읽는다. 줄의 첫머리를 보고 어떤 덩어리인지 정하고,
+   그 덩어리에 속한 줄을 모두 읽어 HTML 로 바꾼 다음, 지금 열려 있는 곳에 넣는다.
+
+   담기는 구조:   문서 ⊃ 장(##) ⊃ 칸(###) ⊃ 덩어리(문단·목록·표·그림…)
+   돌려주는 것:   { title, nav, main }   (nav·main 은 HTML 문자열)
+   ───────────────────────────────────────────────────────────────── */
+function parseWorkbook(md) {
+  const L = md.replace(/\r\n?/g, "\n").split("\n");   // 모든 줄
+  let i = 0;                                          // 지금 읽는 줄 번호
+
+  const main = [];          // 본문에 차례로 들어갈 HTML 조각
+  const nav = [];           // 왼쪽 인덱스에 들어갈 HTML 조각
+  const retroRows = [];     // 회고 표의 줄: [장, 동사, 날짜]
+  let title = "";           // 문서 제목 (맨 위 --- 사이의 title:)
+  let chapter = null;       // 지금 열려 있는 장
+  let slot = null;          // 지금 열려 있는 칸
+  let retroAt = -1;         // main 안에서 회고가 들어간 자리 (표는 다 읽은 뒤에 붙인다)
+
+  /* ·· 도구 ·· */
+
+  // 지금 덩어리를 넣을 곳: 칸이 열려 있으면 칸, 아니면 장, 그것도 아니면 본문
   const here = () => (slot || chapter || { blocks: main }).blocks;
+  const kind = () => slot ? slot.kind : "";           // 지금 칸의 이름 ("영상", "파일", …)
+
+  // 제목 아래의 "이름: 값" 줄들을 읽어 { 목차: "…", 키워드: "…" } 로
+  const readMeta = () => {
+    const meta = {};
+    let m;
+    while (i < L.length && (m = L[i].match(META))) { meta[m[1]] = m[2]; i++; }
+    return meta;
+  };
+
+  // "제목 {#id}" → [제목, id]
+  const heading = line => {
+    const m = line.match(/^(.*?)\s*\{#([\w-]+)\}\s*$/);
+    return m ? [m[1], m[2]] : [line.trim(), ""];
+  };
+
+  // ":::" 로 닫히는 블록의 안쪽 줄들 (빈 줄 제외)
+  const untilFence = () => {
+    const rows = [];
+    while (i < L.length && L[i].trim() !== ":::") rows.push(L[i++]);
+    i++;
+    return rows.filter(r => r.trim());
+  };
+
+  /* ·· 칸과 장 닫기: 모아 둔 덩어리를 HTML 로 묶어 한 단계 바깥에 넣는다 ·· */
+
   const closeSlot = () => {
     if (!slot) return;
     const s = slot; slot = null;
@@ -221,271 +665,382 @@ function renderWorkbook(md) {
     if (s.kind === "warn") here().push(`<div class="warn">${body}</div>`);
     else here().push(`<div class="slot${s.cls ? " " + s.cls : ""}"><h4>${s.h4}</h4>${body}</div>`);
   };
+
   const closeChapter = () => {
     closeSlot();
     if (!chapter) return;
     const c = chapter; chapter = null;
+
     const no = c.no ? `<span class="no">${c.no}</span>` : "";
-    const kw = c.kw ? `<div class="kw">${c.kw.split(/,\s*/).map(k => {
-      const m = k.match(/^\*\*(.+)\*\*$/);
+    const keywords = c.kw ? `<div class="kw">${c.kw.split(/,\s*/).map(k => {
+      const m = k.match(/^\*\*(.+)\*\*$/);            // **굵게** 쓴 것이 장 대표 키워드
       return `<span class="k${m ? " m" : ""}">${inline(m ? m[1] : k)}</span>`;
     }).join("")}</div>` : "";
-    main.push(`<section class="ch" id="${c.id}">\n<h3>${no}${inline(c.title)}</h3>\n${kw}\n${c.blocks.map(blockHTML).join("\n")}\n</section>`);
-    if (c.retro) retroRows.push([c, ...c.retro.split(/\s*\|\s*/)]);
-  };
-  const readMeta = () => { const m = {}; let x; while (i < L.length && (x = L[i].match(META))) { m[x[1]] = x[2]; i++; } return m; };
-  const heading = line => {                               // "제목 {#id}" → [제목, id]
-    const m = line.match(/^(.*?)\s*\{#([\w-]+)\}\s*$/);
-    return m ? [m[1], m[2]] : [line.trim(), ""];
-  };
-  const untilFence = () => { const a = []; while (i < L.length && L[i].trim() !== ":::") a.push(L[i++]); i++; return a.filter(x => x.trim()); };
 
-  while (i < L.length) {
-    const line = L[i];
-    if (!line.trim()) { i++; continue; }
+    main.push(`<section class="ch" id="${c.id}">\n<h3>${no}${inline(c.title)}</h3>\n${keywords}\n${c.blocks.map(blockHTML).join("\n")}\n</section>`);
+    if (c.retro) retroRows.push([c, ...c.retro.split(/\s*\|\s*/)]);   // "회고: 동사 | 날짜"
+  };
 
-    // ── 표지
-    if (line.startsWith("::: cover")) {
-      i++; const rows = untilFence(), f = {}, groups = [];
-      for (const r of rows) {
-        let m;
-        if ((m = r.match(/^(제목|기관|부제):\s*(.*)$/))) f[m[1]] = m[2];
-        else if ((m = r.match(/^\[(.+)\]$/))) groups.push({ big: m[1], items: [] });
-        else if ((m = r.match(/^- (.*?)\s*\|\s*(.*)$/))) groups.at(-1).items.push(m);
-      }
-      const br = s => inline(s || "").replace(/\s*\/\s*/g, "<br>");
-      main.push(`<header class="cover">
-<div class="c-top"><h1>${br(f["제목"])}</h1><div class="c-org">${br(f["기관"])}</div></div>
-<div class="c-sub">${inline(f["부제"] || "")}</div>
+  /* ·· 맨 위 --- 사이: 문서 정보 ·· */
+  const readFrontMatter = () => {
+    if (L[0] !== "---") return;
+    for (i = 1; i < L.length && L[i] !== "---"; i++) {
+      const m = L[i].match(/^title:\s*(.*)$/);
+      if (m) title = m[1];
+    }
+    i++;
+  };
+
+  /* ·· 덩어리 읽기 ··
+     각 함수는 지금 줄이 자기 것이면 끝까지 읽고 true, 아니면 아무것도 안 하고 false 를 돌려준다 */
+
+  // ::: cover — 표지
+  function readCover(line) {
+    if (!line.startsWith("::: cover")) return false;
+    i++;
+    const fields = {}, groups = [];
+    for (const row of untilFence()) {
+      let m;
+      if ((m = row.match(/^(제목|기관|부제):\s*(.*)$/))) fields[m[1]] = m[2];
+      else if ((m = row.match(/^\[(.+)\]$/))) groups.push({ big: m[1], items: [] });      // [큰 글자]
+      else if ((m = row.match(/^- (.*?)\s*\|\s*(.*)$/))) groups.at(-1).items.push(m);     // - 이름 | 내용
+    }
+    main.push(`<header class="cover">
+<div class="c-top"><h1>${slashToBreak(fields["제목"])}</h1><div class="c-org">${slashToBreak(fields["기관"])}</div></div>
+<div class="c-sub">${inline(fields["부제"] || "")}</div>
 ${groups.map((g, n) => `<div class="c-row"><div class="c-big">${inline(g.big).replace("–", '<span style="margin:0 .12em">–</span>')}</div>
 <div class="c-list">${g.items.map(m => `<div><span>${inline(m[1])}</span>${inline(m[2])}</div>`).join("")}${n === groups.length - 1 ? LEGEND : ""}</div></div>`).join("\n")}
 </header>`);
-      continue;
-    }
+    return true;
+  }
 
-    // ── # 부(部)   "# PART Ⅰ | 맥락"
-    if (/^# /.test(line)) {
-      closeChapter(); i++;
-      const [text, id] = heading(line.slice(2));
-      const [small, h2] = text.includes("|") ? text.split(/\s*\|\s*/) : ["", text];
-      const m = readMeta();
-      const head = `<small>${inline(small)}</small><h2>${inline(h2)}</h2>` + (m["부제"] ? `<div class="big">${inline(m["부제"])}</div>` : "");
-      if (id === "retro") {                               // 회고: 표는 각 장의 "회고:" 줄과 "주제의식"에서 자동으로 만든다
-        let thesis = "";
-        while (i < L.length && !L[i].trim()) i++;
-        if (L[i] && L[i].startsWith("::: thesis")) {
-          i++; const t = untilFence();
-          thesis = `<div class="thesis">${inline(t[0] || "").replace(/\s*\/\s*/g, "<br>")}</div>` + t.slice(1).map(p => `<p class="thesis-sub">${inline(p)}</p>`).join("");
-        }
-        retroAt = main.length;
-        main.push(`<div class="part">${head}${thesis}</div>`);
-        nav.push(`<a href="#retro">${inline(m["목차"] || h2)}</a>`);
-      } else {
-        main.push(`<div class="part">${head}</div>`);
-        nav.push(`<b>${inline(m["목차"] || h2)}</b>`);
+  // # 부(部)   "# PART Ⅰ | 맥락"      ( {#retro} 가 붙은 부는 회고 )
+  function readPart(line) {
+    if (!/^# /.test(line)) return false;
+    closeChapter(); i++;
+    const [text, id] = heading(line.slice(2));
+    const [small, h2] = text.includes("|") ? text.split(/\s*\|\s*/) : ["", text];
+    const meta = readMeta();
+    const head = `<small>${inline(small)}</small><h2>${inline(h2)}</h2>`
+      + (meta["부제"] ? `<div class="big">${inline(meta["부제"])}</div>` : "");
+
+    if (id === "retro") {
+      // 회고: 큰 문장(::: thesis)만 여기서 읽는다. 표는 각 장의 "회고:" 줄과 "주제의식"으로 맨 끝에 자동으로 만든다
+      let thesis = "";
+      while (i < L.length && !L[i].trim()) i++;
+      if (L[i] && L[i].startsWith("::: thesis")) {
+        i++;
+        const t = untilFence();
+        thesis = `<div class="thesis">${slashToBreak(t[0])}</div>`
+          + t.slice(1).map(p => `<p class="thesis-sub">${inline(p)}</p>`).join("");
       }
-      continue;
+      retroAt = main.length;
+      main.push(`<div class="part">${head}${thesis}</div>`);
+      nav.push(`<a href="#retro">${inline(meta["목차"] || h2)}</a>`);
+    } else {
+      main.push(`<div class="part">${head}</div>`);
+      nav.push(`<b>${inline(meta["목차"] || h2)}</b>`);
     }
+    return true;
+  }
 
-    // ── ## 장   "## 01 제목"  또는  "## 제목 {#id}"
-    if (/^## /.test(line)) {
-      closeChapter(); i++;
-      const [text, id] = heading(line.slice(3));
-      const n = text.match(/^(\d\d)\s+(.*)$/);
-      const m = readMeta();
-      chapter = { no: n ? n[1] : "", title: n ? n[2] : text, id: id || (n ? "c" + n[1] : ""), kw: m["키워드"], retro: m["회고"], blocks: [], theme: "" };
-      nav.push(`<a href="#${chapter.id}">${chapter.no ? chapter.no + " " : ""}${inline(m["목차"] || chapter.title)}</a>`);
-      continue;
+  // ## 장   "## 01 제목"  또는  "## 제목 {#id}"
+  function readChapter(line) {
+    if (!/^## /.test(line)) return false;
+    closeChapter(); i++;
+    const [text, id] = heading(line.slice(3));
+    const numbered = text.match(/^(\d\d)\s+(.*)$/);
+    const meta = readMeta();
+    chapter = {
+      no:    numbered ? numbered[1] : "",
+      title: numbered ? numbered[2] : text,
+      id:    id || (numbered ? "c" + numbered[1] : ""),
+      kw:    meta["키워드"],
+      retro: meta["회고"],
+      blocks: [],
+      theme: "",            // 주제의식의 첫 문단 (회고 표에 들어간다)
+    };
+    nav.push(`<a href="#${chapter.id}">${chapter.no ? chapter.no + " " : ""}${inline(meta["목차"] || chapter.title)}</a>`);
+    return true;
+  }
+
+  // ### 칸   "### 기본 정보"  /  "### 주제의식"  /  "### 주제의식 (꼬리표)"  /  "### 확인 필요"
+  function readSlot(line) {
+    if (!/^### /.test(line)) return false;
+    closeSlot(); i++;
+    const name = line.slice(4).trim();
+
+    if (name === "확인 필요") { slot = { kind: "warn", blocks: [] }; return true; }
+
+    const theme = name.match(/^주제의식(?:\s*\((.+)\))?$/);       // 괄호 안 꼬리표는 있어도 없어도 된다
+    if (theme) {
+      const tag = theme[1] ? ` <em>${inline(theme[1])}</em>` : "";
+      slot = { kind: "주제의식", blocks: [], h4: "주제의식" + tag, cls: "theme" };   // theme = 큰 글씨
+    } else {
+      slot = { kind: name, blocks: [], h4: inline(name), cls: SLOT_CLASS[name] || "" };
     }
+    return true;
+  }
 
-    // ── ### 칸
-    if (/^### /.test(line)) {
-      closeSlot(); i++;
-      const t = line.slice(4).trim();
-      if (t === "확인 필요") { slot = { kind: "warn", blocks: [] }; continue; }
-      const th = t.match(/^주제의식(?:\s*\((.+)\))?$/);
-      slot = { kind: th ? "주제의식" : t, blocks: [], h4: th ? "주제의식" + (th[1] ? ` <em>${inline(th[1])}</em>` : "") : inline(t),
-        cls: th ? "theme" : { "핵심 내용": "points", "영상": "vslot", "출처": "src" }[t] || "" };
-      continue;
+  // {.클래스} 만 있는 줄: 바로 앞 덩어리에 클래스를 붙인다
+  function readClassLine(line) {
+    if (!/^\{[^}]*\}$/.test(line.trim())) return false;
+    const prev = here().at(-1);
+    if (prev && typeof prev !== "string") prev.cls.push(...classesOf(line.trim().slice(1, -1)));
+    i++;
+    return true;
+  }
+
+  // ::: lens 제목 — 번호가 붙는 큰 낱말 목록   "1. **낱말** 설명"
+  function readLens(line) {
+    if (!line.startsWith("::: lens")) return false;
+    const title = line.slice(8).trim(); i++;
+    const items = untilFence().map(r => r.replace(/^\d+\.\s*/, "").match(/^\*\*(.+?)\*\*\s*(.*)$/));
+    main.push(`<div class="lens"><h4>${inline(title)}</h4><ol>${items.map(m => `<li><b>${inline(m[1])}</b><small>${inline(m[2])}</small></li>`).join("")}</ol></div>`);
+    return true;
+  }
+
+  // ::: chain — 화살표로 이어지는 단계   "- 작은 글자 | 큰 글자"
+  function readChain(line) {
+    if (!line.startsWith("::: chain")) return false;
+    i++;
+    const steps = untilFence().map(r => r.replace(/^- /, "").split(/\s*\|\s*/));
+    here().push(`<div class="chain">${steps.map(([small, big]) => `<div class="step"><small>${inline(small)}</small>${inline(big)}</div>`).join('<span class="arr">→</span>')}</div>`);
+    return true;
+  }
+
+  // ``` 수식 블록 — 글자 그대로 보이고, **굵게** 만 통한다
+  function readFormula(line) {
+    if (!line.startsWith("```")) return false;
+    i++;
+    const rows = [];
+    while (i < L.length && !L[i].startsWith("```")) rows.push(L[i++]);
+    i++;
+    here().push(`<div class="formula">${escAll(rows.join("\n")).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")}</div>`);
+    return true;
+  }
+
+  // > 인용 (마지막 줄이 "— 누구" 면 출처)   /   > [!확인] 확인이 필요한 곳
+  function readQuote(line) {
+    if (!line.startsWith(">")) return false;
+    const rows = [];
+    while (i < L.length && L[i].startsWith(">")) rows.push(L[i++].replace(/^>\s?/, ""));
+
+    const warn = rows[0].match(/^\[!확인\]\s*(.*)$/);
+    if (warn) {
+      here().push(`<div class="warn">${inline([warn[1], ...rows.slice(1)].join(" ").trim())}</div>`);
+      return true;
     }
+    let cite = "";
+    if (/^— /.test(rows.at(-1))) cite = `<cite>${inline(rows.pop().slice(2))}</cite>`;
+    here().push({ tag: "blockquote", cls: [], inner: inline(rows.join(" ")) + cite });
+    return true;
+  }
 
-    const out = here(), kind = slot ? slot.kind : "";
+  // | 표 |   첫 줄이 머리글. 칸에 ● 만 있으면 '해당', – 만 있으면 '해당 없음' 표시
+  function readTable(line) {
+    if (!line.startsWith("|")) return false;
+    const rows = [];
+    while (i < L.length && L[i].startsWith("|")) rows.push(L[i++]);
 
-    // ── {.클래스} 한 줄: 바로 앞 덩어리에 클래스 붙이기
-    if (/^\{[^}]*\}$/.test(line.trim())) {
-      const b = out.at(-1); if (b && typeof b !== "string") b.cls.push(...classesOf(line.trim().slice(1, -1)));
-      i++; continue;
+    const cells = r => r.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map(c => c.trim().replace(/\\\|/g, "|"));   // \| 는 글자 |
+    const isRuler = r => /^\|[\s:|-]+\|$/.test(r.trim());                                                            // |---|---| 줄
+    const cellHTML = (c, head) => head ? `<th>${inline(c)}</th>`
+      : `<td${c === "●" ? ' class="y"' : c === "–" ? ' class="n"' : ""}>${inline(c)}</td>`;
+
+    const body = rows.filter(r => !isRuler(r)).map((r, n) => "<tr>" + cells(r).map(c => cellHTML(c, n === 0)).join("") + "</tr>");
+    here().push({ tag: "table", cls: [], inner: body.join("\n") });
+    return true;
+  }
+
+  // ![설명](그림 "캡션") {.클래스}  — 이어진 줄들이 그림 묶음 하나가 된다
+  function readFigures(line) {
+    if (!line.startsWith("![")) return false;
+    const figs = [];
+    for (let m; i < L.length && (m = L[i].match(/^!\[(.*?)\]\((\S+)(?:\s+"(.*)")?\)\s*(\{[^}]*\})?\s*$/)); i++) {
+      const [, alt, src, caption, classNote] = m;
+      const cls = classNote ? classesOf(classNote.slice(1, -1)) : [];
+      figs.push(`<figure><img${cls.length ? ` class="${cls.join(" ")}"` : ""} src="${escAttr(src)}" alt="${escAttr(alt)}" loading="lazy"><figcaption>${inline(caption || "")}</figcaption></figure>`);
     }
+    if (!figs.length) return false;   // "![" 로 시작하지만 그림 표기가 아니면 문단으로 넘긴다
+    here().push({ tag: "div", cls: ["gal"], inner: figs.join("\n") });
+    return true;
+  }
 
-    // ── ::: lens / ::: chain
-    if (line.startsWith("::: lens")) {
-      const h = line.slice(8).trim(); i++;
-      const items = untilFence().map(r => r.replace(/^\d+\.\s*/, "").match(/^\*\*(.+?)\*\*\s*(.*)$/));
-      main.push(`<div class="lens"><h4>${inline(h)}</h4><ol>${items.map(m => `<li><b>${inline(m[1])}</b><small>${inline(m[2])}</small></li>`).join("")}</ol></div>`);
-      continue;
-    }
-    if (line.startsWith("::: chain")) {
-      i++;
-      const steps = untilFence().map(r => r.replace(/^- /, "").split(/\s*\|\s*/));
-      out.push(`<div class="chain">${steps.map(([s, t]) => `<div class="step"><small>${inline(s)}</small>${inline(t)}</div>`).join('<span class="arr">→</span>')}</div>`);
-      continue;
-    }
+  // 목록   "- "  /  "1. "      — 어느 칸 안이냐에 따라 모양이 달라진다
+  const LIST_ITEM = /^(-|\d+\.)\s+(.*)$/;
+  function readList(line) {
+    if (!LIST_ITEM.test(line)) return false;
+    const ordered = /^\d/.test(line), items = [];
+    while (i < L.length && LIST_ITEM.test(L[i])) items.push(L[i++].match(LIST_ITEM)[2]);
 
-    // ── ``` 수식 블록
-    if (line.startsWith("```")) {
-      i++; const a = [];
-      while (i < L.length && !L[i].startsWith("```")) a.push(L[i++]);
-      i++;
-      out.push(`<div class="formula">${escAll(a.join("\n")).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")}</div>`);
-      continue;
+    if (kind() === "영상") {
+      const cards = items.map(videoCard);
+      here().push({ tag: "div", cls: ["vids", ...(cards.length === 1 ? ["one"] : [])], inner: cards.join("") });
+    } else if (kind() === "파일") {
+      here().push({ tag: "div", cls: ["files"], inner: items.map(fileLine).join("\n") });
+    } else if (items.every(it => / :: /.test(it))) {
+      // - 이름 :: 설명   → 정보 표
+      const row = it => { const [k, ...v] = it.split(" :: "); return `<dt>${inline(k)}</dt><dd>${inline(v.join(" :: "))}</dd>`; };
+      here().push({ tag: "dl", cls: ["info"], inner: items.map(row).join("\n") });
+    } else {
+      here().push({ tag: ordered ? "ol" : "ul", cls: kind() === "핵심 내용" ? [] : ["flow"], inner: items.map(it => `<li>${inline(it)}</li>`).join("\n") });
     }
+    return true;
+  }
 
-    // ── > 인용  /  > [!확인] 확인 필요
-    if (line.startsWith(">")) {
-      const a = [];
-      while (i < L.length && L[i].startsWith(">")) a.push(L[i++].replace(/^>\s?/, ""));
-      const w = a[0].match(/^\[!확인\]\s*(.*)$/);
-      if (w) { out.push(`<div class="warn">${inline([w[1], ...a.slice(1)].join(" ").trim())}</div>`); continue; }
-      let cite = "";
-      if (/^— /.test(a.at(-1))) cite = `<cite>${inline(a.pop().slice(2))}</cite>`;
-      out.push({ tag: "blockquote", cls: [], inner: inline(a.join(" ")) + cite });
-      continue;
-    }
+  // 영상 칸의 한 줄:   [제목](영상 주소) — 메모 ![](썸네일)      (메모와 썸네일은 없어도 된다)
+  function videoCard(item) {
+    const m = item.match(/^\[(.+?)\]\((\S+?)\)(?:\s+—\s+(.*?))?(?:\s*!\[\]\((\S+)\))?$/);
+    if (!m) return "";
+    const [, name, url, memo, thumbnail] = m;
+    const yt = url.match(/(?:v=|youtu\.be\/)([\w-]+)/), vm = url.match(/vimeo\.com\/(\d+)/);
+    const thumb = thumbnail || (yt ? `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg` : "");   // 유튜브는 썸네일을 알아서 가져온다
+    return `<a class="vid" target="_blank" rel="noopener" href="${escAttr(url)}" data-p="${yt ? "yt" : "vm"}" data-id="${yt ? yt[1] : vm ? vm[1] : ""}">`
+      + `<div class="th" style="background-image:url('${escAttr(thumb)}')"><span class="tag">${yt ? "YOUTUBE" : "VIMEO"}</span></div>`
+      + `<div class="tx">${escAll(name)}<small>${escAll(memo || "")}</small></div></a>`;
+  }
 
-    // ── | 표 |
-    if (line.startsWith("|")) {
-      const rows = [];
-      while (i < L.length && L[i].startsWith("|")) rows.push(L[i++]);
-      const cells = r => r.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map(c => c.trim().replace(/\\\|/g, "|"));
-      const body = rows.filter(r => !/^\|[\s:|-]+\|$/.test(r.trim())).map((r, n) => "<tr>" + cells(r).map(c =>
-        n === 0 ? `<th>${inline(c)}</th>` : `<td${c === "●" ? ' class="y"' : c === "–" ? ' class="n"' : ""}>${inline(c)}</td>`).join("") + "</tr>");
-      out.push({ tag: "table", cls: [], inner: body.join("\n") });
-      continue;
-    }
+  // 파일 칸의 한 줄: 경로(./  ../  http)로 시작하면 링크, 아니면 메모
+  function fileLine(item) {
+    const m = item.match(/^((?:\.\.?\/|https?:)\S*)(.*)$/);
+    return m ? `<a href="${escAttr(m[1])}">${escAll(m[1])}</a>${escAll(m[2])}` : `<span>${escAll(item)}</span>`;
+  }
 
-    // ── ![설명](그림 "캡션") 이 이어지면 그림 묶음
-    if (line.startsWith("![")) {
-      const figs = [];
-      for (let m; i < L.length && (m = L[i].match(/^!\[(.*?)\]\((\S+)(?:\s+"(.*)")?\)\s*(\{[^}]*\})?\s*$/)); i++) {
-        const c = m[4] ? classesOf(m[4].slice(1, -1)) : [];
-        figs.push(`<figure><img${c.length ? ` class="${c.join(" ")}"` : ""} src="${escAttr(m[2])}" alt="${escAttr(m[1])}" loading="lazy"><figcaption>${inline(m[3] || "")}</figcaption></figure>`);
-      }
-      if (figs.length) { out.push({ tag: "div", cls: ["gal"], inner: figs.join("\n") }); continue; }
-    }
+  // 문단 — 위의 어느 것도 아닌 줄. 끝에 {.say} 처럼 클래스를 붙일 수 있다
+  const STARTS_OTHER_BLOCK = /^(#{1,3} |:::|```|>|\||!\[|(-|\d+\.)\s|\{[^}]*\}$)/;
+  function readParagraph() {
+    const rows = [];
+    while (i < L.length && L[i].trim() && !STARTS_OTHER_BLOCK.test(L[i])) rows.push(L[i++].trim());
+    if (!rows.length) rows.push(L[i++].trim());      // 어떤 규칙에도 안 맞는 줄은 한 줄짜리 문단으로
 
-    // ── 목록  "- "  /  "1. "
-    const li = /^(-|\d+\.)\s+(.*)$/;
-    if (li.test(line)) {
-      const ordered = /^\d/.test(line), items = [];
-      while (i < L.length && li.test(L[i])) items.push(L[i++].match(li)[2]);
-      if (kind === "영상") {                               // - [제목](영상 주소) — 메모 ![](썸네일)
-        const v = items.map(it => {
-          const m = it.match(/^\[(.+?)\]\((\S+?)\)(?:\s+—\s+(.*?))?(?:\s*!\[\]\((\S+)\))?$/);
-          if (!m) return "";
-          const yt = m[2].match(/(?:v=|youtu\.be\/)([\w-]+)/), vm = m[2].match(/vimeo\.com\/(\d+)/);
-          const thumb = m[4] || (yt ? `https://i.ytimg.com/vi/${yt[1]}/hqdefault.jpg` : "");
-          return `<a class="vid" target="_blank" rel="noopener" href="${escAttr(m[2])}" data-p="${yt ? "yt" : "vm"}" data-id="${yt ? yt[1] : vm ? vm[1] : ""}"><div class="th" style="background-image:url('${escAttr(thumb)}')"><span class="tag">${yt ? "YOUTUBE" : "VIMEO"}</span></div><div class="tx">${escAll(m[1])}<small>${escAll(m[3] || "")}</small></div></a>`;
-        });
-        out.push({ tag: "div", cls: ["vids", ...(v.length === 1 ? ["one"] : [])], inner: v.join("") });
-      } else if (kind === "파일") {                         // 경로로 시작하면 링크, 아니면 메모 줄
-        out.push({ tag: "div", cls: ["files"], inner: items.map(it => {
-          const m = it.match(/^((?:\.\.?\/|https?:)\S*)(.*)$/);
-          return m ? `<a href="${escAttr(m[1])}">${escAll(m[1])}</a>${escAll(m[2])}` : `<span>${escAll(it)}</span>`;
-        }).join("\n") });
-      } else if (items.every(it => / :: /.test(it))) {     // - 이름 :: 설명  → 정보 표
-        out.push({ tag: "dl", cls: ["info"], inner: items.map(it => { const [k, ...v] = it.split(" :: "); return `<dt>${inline(k)}</dt><dd>${inline(v.join(" :: "))}</dd>`; }).join("\n") });
-      } else {
-        out.push({ tag: ordered ? "ol" : "ul", cls: kind === "핵심 내용" ? [] : ["flow"], inner: items.map(it => `<li>${inline(it)}</li>`).join("\n") });
-      }
-      continue;
-    }
+    let text = rows.join(" "), cls = [];
+    const classNote = text.match(/\s*\{([^}]*)\}$/);
+    if (classNote) { cls = classesOf(classNote[1]); text = text.slice(0, classNote.index); }
 
-    // ── 문단 (끝에 {.say} 처럼 클래스를 붙일 수 있다)
-    const para = [];
-    while (i < L.length && L[i].trim() && !/^(#{1,3} |:::|```|>|\||!\[|(-|\d+\.)\s|\{[^}]*\}$)/.test(L[i])) para.push(L[i++].trim());
-    if (!para.length) { para.push(L[i++].trim()); }        // 어떤 규칙에도 안 맞는 줄은 문단으로
-    let text = para.join(" "), cls = [];
-    const am = text.match(/\s*\{([^}]*)\}$/);
-    if (am) { cls = classesOf(am[1]); text = text.slice(0, am.index); }
-    if (kind === "warn" || kind === "출처") out.push(inline(text));
-    else if (kind === "파일") out.push({ tag: "div", cls: ["files"], inner: escAll(text) });
+    if (kind() === "warn" || kind() === "출처") here().push(inline(text));
+    else if (kind() === "파일") here().push({ tag: "div", cls: ["files"], inner: escAll(text) });
     else {
-      if (kind === "주제의식" && chapter && !chapter.theme) chapter.theme = inline(text);
-      out.push({ tag: "p", cls, inner: inline(text) });
+      if (kind() === "주제의식" && chapter && !chapter.theme) chapter.theme = inline(text);   // 회고 표에 쓸 첫 문단
+      here().push({ tag: "p", cls, inner: inline(text) });
     }
+  }
+
+  // 회고 표: 장마다 한 줄 — 번호·날짜 / 동사 / 주제의식
+  const retroTable = () => `
+<table class="retro-t"><tr><th>장 · 날짜</th><th>동사</th><th>주제의식</th></tr>
+<tbody id="retro-rows">${retroRows.map(([c, verb, date]) => `<tr><td><a href="#${c.id}"><b>${c.no}</b></a><small>${inline(date || "")}</small></td><td><b>${inline(verb || "")}</b></td><td>${c.theme}</td></tr>`).join("")}</tbody>
+</table>`;
+
+  /* ·· 읽기 시작 ·· */
+  readFrontMatter();
+
+  // 위에서부터 차례로 물어본다. 순서가 중요하다(앞의 것이 먼저 가져간다)
+  const readers = [readCover, readPart, readChapter, readSlot, readClassLine, readLens, readChain,
+                   readFormula, readQuote, readTable, readFigures, readList];
+  while (i < L.length) {
+    const line = L[i];
+    if (!line.trim()) { i++; continue; }                         // 빈 줄은 건너뛴다
+    if (!readers.some(read => read(line))) readParagraph();
   }
   closeChapter();
 
-  if (retroAt >= 0) main[retroAt] = `<section id="retro" class="retro">${main[retroAt]}
-<table class="retro-t"><tr><th>장 · 날짜</th><th>동사</th><th>주제의식</th></tr>
-<tbody id="retro-rows">${retroRows.map(([c, verb, date]) => `<tr><td><a href="#${c.id}"><b>${c.no}</b></a><small>${inline(date || "")}</small></td><td><b>${inline(verb || "")}</b></td><td>${c.theme}</td></tr>`).join("")}</tbody>
-</table></section>`;
+  if (retroAt >= 0) main[retroAt] = `<section id="retro" class="retro">${main[retroAt]}${retroTable()}</section>`;
 
-  if (title) document.title = title;
-  document.querySelector("nav").innerHTML = `<a href="#top"><strong>${escAll(title)}</strong></a>\n` + nav.join("\n");
-  document.querySelector("main").innerHTML = main.join("\n\n");
+  return {
+    title,
+    nav: `<a href="#top"><strong>${escAll(title)}</strong></a>\n` + nav.join("\n"),
+    main: main.join("\n\n"),
+  };
 }
 
-// 표지 아래 범례 (내용이 아니라 화면 안내라서 여기에 둔다)
-const LEGEND = `<div class="legend"><span class="k m">장 대표 키워드</span><span class="k">보조 키워드</span><span class="warn" style="padding:4px 10px">출처끼리 어긋나는 곳</span></div>`;
 
-// ───────── 화면이 만들어진 뒤 붙는 동작 ─────────
+/* ── [D] 화면에 넣기 ───────────────────────────────────────────── */
+function showWorkbook({ title, nav, main }) {
+  if (title) document.title = title;
+  document.querySelector("nav").innerHTML = nav;
+  document.querySelector("main").innerHTML = main;
+}
+
+
+/* ── [E] 만들어진 뒤 붙는 동작 ─────────────────────────────────── */
 function enhance() {
-  // 영상: 썸네일 클릭 → 그 자리에서 재생 / 제목 클릭 → 새 탭
-  document.querySelectorAll("a.vid").forEach(a => {
-    const p = a.dataset.p, id = a.dataset.id;
-    a.addEventListener("click", ev => {
-      const th = ev.target.closest(".th");
+  playVideosInPlace();
+  foldRawMaterial();
+  moveWithSpaceKey();
+  coverSmoke();
+}
+
+// 영상: 썸네일 클릭 → 그 자리에서 재생 / 제목 클릭 → 새 탭
+function playVideosInPlace() {
+  document.querySelectorAll("a.vid").forEach(card => {
+    const provider = card.dataset.p, id = card.dataset.id;     // provider: "yt" 유튜브 / "vm" 비메오
+    card.addEventListener("click", ev => {
+      const thumb = ev.target.closest(".th");
       // YouTube는 file:// 에서 임베드 오류(153) → 로컬 서버(http)로 열 때만 제자리 재생, 아니면 새 탭
-      if (!th || !id || (p === "yt" && !location.protocol.startsWith("http"))) return;
+      if (!thumb || !id || (provider === "yt" && !location.protocol.startsWith("http"))) return;
       ev.preventDefault();
-      const f = document.createElement("iframe");
-      f.src = p === "yt" ? `https://www.youtube.com/embed/${id}?autoplay=1` : `https://player.vimeo.com/video/${id}?autoplay=1`;
-      f.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media"; f.allowFullscreen = true;
-      f.style.cssText = "display:block;width:100%;aspect-ratio:16/9;border:0";
-      th.replaceWith(f);
+      const frame = document.createElement("iframe");
+      frame.src = provider === "yt" ? `https://www.youtube.com/embed/${id}?autoplay=1` : `https://player.vimeo.com/video/${id}?autoplay=1`;
+      frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+      frame.allowFullscreen = true;
+      frame.style.cssText = "display:block;width:100%;aspect-ratio:16/9;border:0";
+      thumb.replaceWith(frame);
     });
   });
+}
 
-  // 핵심만 펼치고 나머지는 "원자료"로 접기 (지우지 않음)
-  const KEEP = ["기본 정보", "영상", "주제의식", "핵심 내용", "질문 초안"];
+// 핵심 칸(KEEP_OPEN)만 펼쳐 두고, 나머지 칸과 '확인 필요'는 "원자료"로 접는다 (지우지 않는다)
+function foldRawMaterial() {
   document.querySelectorAll("section.ch").forEach(sec => {
-    if (!sec.querySelector(".kw")) return; // 부록은 그대로
+    if (!sec.querySelector(".kw")) return;     // 키워드가 없는 장(부록)은 그대로 둔다
+    const isKept = el => KEEP_OPEN.some(k => el.querySelector("h4")?.textContent.includes(k));
     const moved = [...sec.children].filter(el =>
-      el.classList.contains("warn") ||
-      (el.classList.contains("slot") && !KEEP.some(k => el.querySelector("h4")?.textContent.includes(k))));
+      el.classList.contains("warn") || (el.classList.contains("slot") && !isKept(el)));
     if (!moved.length) return;
-    const d = document.createElement("details");
-    d.className = "raw";
-    d.innerHTML = `<summary>원자료 <span>${moved.length}</span></summary>`;
-    d.append(...moved);
-    sec.append(d);
+    const fold = document.createElement("details");
+    fold.className = "raw";
+    fold.innerHTML = `<summary>원자료 <span>${moved.length}</span></summary>`;
+    fold.append(...moved);
+    sec.append(fold);
   });
+}
 
-  // 스페이스바: 다음 섹션 / Shift+스페이스: 이전 섹션
+// 스페이스바: 다음 섹션 / Shift+스페이스: 이전 섹션
+function moveWithSpaceKey() {
   document.addEventListener("keydown", e => {
     if (e.key !== " " || e.target.closest?.("input,textarea,select,button,summary,[contenteditable]")) return;
     e.preventDefault();
-    const secs = [...document.querySelectorAll("header.cover, main > section")];
+    const sections = [...document.querySelectorAll("header.cover, main > section")];
     const top = el => el.getBoundingClientRect().top;
-    const t = e.shiftKey ? secs.filter(s => top(s) < -5).pop() : secs.find(s => top(s) > 5);
-    if (t) t.scrollIntoView({ behavior: "smooth" });
+    const target = e.shiftKey ? sections.filter(s => top(s) < -5).pop() : sections.find(s => top(s) > 5);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
   });
+}
 
-  // 표지 타이틀: 글자에서 피어오르는 연기 (WebGL 셰이더 — 노이즈가 위로 흐르며 글자 모양을 끌어올림, 군데군데 글자 앞을 지남)
-  (() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const h1 = document.querySelector(".cover h1"), host = h1.closest("header");
-    const cv = document.createElement("canvas"), gl = cv.getContext("webgl", { premultipliedAlpha: true });
-    if (!gl) return;
-    const UP = 240, SIDE = 140, SC = .5;            // SC: 해상도 배율 (연기는 부드러워서 절반이면 충분)
-    const ALPHA = .3, RISE = 150, SPEED = .35;     // 진하기(최대) · 오르는 높이(px) · 흐르는 속도
-    const CYCLE = 14, MIN = .12;                    // 연기 양 주기(초): 적게 → 점점 많이 → 다시 적게, MIN = 가장 적을 때 비율
-    host.style.position = "relative";
-    cv.style.cssText = "position:absolute;pointer-events:none;z-index:2";
-    host.append(cv);
+// 표지 타이틀: 글자에서 피어오르는 연기
+// (WebGL 셰이더 — 노이즈가 위로 흐르며 글자 모양을 끌어올린다. 군데군데 글자 앞을 지난다)
+function coverSmoke() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;    // '동작 줄이기'를 켠 사람에게는 보이지 않는다
+  const h1 = document.querySelector(".cover h1"), host = h1.closest("header");
+  const cv = document.createElement("canvas"), gl = cv.getContext("webgl", { premultipliedAlpha: true });
+  if (!gl) return;
 
-    const fs = `precision mediump float;
+  /* ·· 조절값 ·· */
+  const UP = 240, SIDE = 140;      // 연기가 그려질 여유 공간: 글자 위쪽 · 양옆 (px)
+  const SC = .5;                   // 해상도 배율 (연기는 부드러워서 절반이면 충분)
+  const ALPHA = .3;                // 진하기(최대)
+  const RISE = 150;                // 오르는 높이(px)
+  const SPEED = .35;               // 흐르는 속도
+  const CYCLE = 14;                // 연기 양 주기(초): 적게 → 점점 많이 → 다시 적게
+  const MIN = .12;                 // 가장 적을 때의 비율
+
+  host.style.position = "relative";
+  cv.style.cssText = "position:absolute;pointer-events:none;z-index:2";
+  host.append(cv);
+
+  /* ·· 셰이더: 화면의 점 하나하나의 색을 정하는 프로그램 ·· */
+  const fs = `precision mediump float;
     uniform sampler2D m; uniform vec2 res; uniform float t, A, R, S; uniform vec3 col;
     float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
     float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
@@ -508,69 +1063,95 @@ function enhance() {
       vec3 c=mix(col,vec3(.96,.96,.95),inside);
       gl_FragColor=vec4(c*a,a);
     }`;
-    const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}";
-    const prog = gl.createProgram();
-    for (const [type, src] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
-      const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
-      if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(sh)); cv.remove(); return; }
-      gl.attachShader(prog, sh);
-    }
-    gl.bindAttribLocation(prog, 0, "p"); gl.linkProgram(prog); gl.useProgram(prog);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-    const U = k => gl.getUniformLocation(prog, k);
-    const [r0, g0, b0] = getComputedStyle(h1).color.match(/\d+/g).map(v => v / 255);
-    gl.uniform3f(U("col"), r0, g0, b0); gl.uniform1f(U("A"), ALPHA); gl.uniform1f(U("R"), RISE); gl.uniform1f(U("S"), SC);
-    gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
-    for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]])
-      gl.texParameteri(gl.TEXTURE_2D, k, v);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}";
 
-    // 글자 모양(살짝 흐리게)을 텍스처로 — 연기의 출발점
-    function layout() {
-      const hb = host.getBoundingClientRect(), r = h1.getBoundingClientRect();
-      const W = r.width + SIDE * 2, H = r.height + UP;
-      Object.assign(cv.style, { left: r.left - hb.left - SIDE + "px", top: r.top - hb.top - UP + "px", width: W + "px", height: H + "px" });
-      cv.width = W * SC | 0; cv.height = H * SC | 0;
-      const mk = document.createElement("canvas"); mk.width = cv.width; mk.height = cv.height;
-      const c = mk.getContext("2d"), cs = getComputedStyle(h1);
-      c.scale(SC, SC); c.filter = "blur(3px)";
-      c.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; c.letterSpacing = cs.letterSpacing;
-      for (const n of h1.childNodes) {
-        const t = n.nodeType === 3 && n.textContent.trim(); if (!t) continue;
-        const rg = document.createRange(); rg.selectNodeContents(n);
-        const lr = rg.getClientRects()[0], txt = t.toUpperCase(), m = c.measureText(txt);
-        c.fillText(txt, lr.left - r.left + SIDE, lr.top - r.top + UP + (lr.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent);
-      }
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mk);
-      gl.viewport(0, 0, cv.width, cv.height); gl.uniform2f(U("res"), cv.width, cv.height);
+  /* ·· WebGL 준비: 셰이더를 올리고, 화면 전체를 덮는 사각형과 글자 텍스처 자리를 만든다 ·· */
+  const prog = gl.createProgram();
+  for (const [type, src] of [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]]) {
+    const sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { console.warn(gl.getShaderInfoLog(sh)); cv.remove(); return; }
+    gl.attachShader(prog, sh);
+  }
+  gl.bindAttribLocation(prog, 0, "p");
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  const U = name => gl.getUniformLocation(prog, name);     // 셰이더에 값을 넘기는 자리
+  const [r0, g0, b0] = getComputedStyle(h1).color.match(/\d+/g).map(v => v / 255);   // 연기 색 = 제목 글자 색
+  gl.uniform3f(U("col"), r0, g0, b0);
+  gl.uniform1f(U("A"), ALPHA);
+  gl.uniform1f(U("R"), RISE);
+  gl.uniform1f(U("S"), SC);
+
+  gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+  for (const [k, v] of [[gl.TEXTURE_MIN_FILTER, gl.LINEAR], [gl.TEXTURE_MAG_FILTER, gl.LINEAR], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]])
+    gl.texParameteri(gl.TEXTURE_2D, k, v);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+  /* ·· 자리 잡기: 캔버스를 제목 위에 겹쳐 놓고, 글자 모양(살짝 흐리게)을 텍스처로 넘긴다 — 연기의 출발점 ·· */
+  function layout() {
+    const hb = host.getBoundingClientRect(), r = h1.getBoundingClientRect();
+    const W = r.width + SIDE * 2, H = r.height + UP;
+    Object.assign(cv.style, { left: r.left - hb.left - SIDE + "px", top: r.top - hb.top - UP + "px", width: W + "px", height: H + "px" });
+    cv.width = W * SC | 0; cv.height = H * SC | 0;
+
+    // 보이지 않는 캔버스에 제목 글자를 같은 자리·같은 글꼴로 다시 쓴다
+    const mk = document.createElement("canvas"); mk.width = cv.width; mk.height = cv.height;
+    const c = mk.getContext("2d"), cs = getComputedStyle(h1);
+    c.scale(SC, SC); c.filter = "blur(3px)";
+    c.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`; c.letterSpacing = cs.letterSpacing;
+    for (const n of h1.childNodes) {                         // 제목의 각 줄(<br> 로 나뉜 글자 덩어리)
+      const t = n.nodeType === 3 && n.textContent.trim(); if (!t) continue;
+      const rg = document.createRange(); rg.selectNodeContents(n);
+      const lr = rg.getClientRects()[0], txt = t.toUpperCase(), m = c.measureText(txt);
+      c.fillText(txt, lr.left - r.left + SIDE, lr.top - r.top + UP + (lr.height - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 + m.fontBoundingBoxAscent);
     }
-    let raf = 0, ready = false;
-    function tick(now) {
-      if (ready) {
-        const ph = now / 1000 % CYCLE / CYCLE, ease = x => x * x * (3 - 2 * x);
-        const env = ph < .7 ? ease(ph / .7) : ph < .85 ? 1 : 1 - ease((ph - .85) / .15); // 70% 동안 차오르고, 잠시 유지, 15% 동안 줄어듦
-        gl.uniform1f(U("A"), ALPHA * (MIN + (1 - MIN) * env));
-        gl.uniform1f(U("t"), now / 1000 * SPEED); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      }
-      raf = requestAnimationFrame(tick);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mk);
+    gl.viewport(0, 0, cv.width, cv.height);
+    gl.uniform2f(U("res"), cv.width, cv.height);
+  }
+
+  /* ·· 매 프레임 그리기 ·· */
+  let raf = 0, ready = false;
+  function tick(now) {
+    if (ready) {
+      const ph = now / 1000 % CYCLE / CYCLE, ease = x => x * x * (3 - 2 * x);
+      const env = ph < .7 ? ease(ph / .7) : ph < .85 ? 1 : 1 - ease((ph - .85) / .15); // 70% 동안 차오르고, 잠시 유지, 15% 동안 줄어듦
+      gl.uniform1f(U("A"), ALPHA * (MIN + (1 - MIN) * env));
+      gl.uniform1f(U("t"), now / 1000 * SPEED);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
-      else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
-    }).observe(h1);
-    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layout, 200); });
-    document.fonts.ready.then(() => { layout(); ready = true; });
-  })();
+    raf = requestAnimationFrame(tick);
+  }
+
+  /* ·· 언제 돌릴지 ·· */
+  // 제목이 화면에 보일 때만 그린다
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
+    else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
+  }).observe(h1);
+  // 창 크기가 바뀌면 자리를 다시 잡는다 (끌어서 바꾸는 동안에는 기다렸다가 한 번만)
+  let resizeTimer;
+  addEventListener("resize", () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 200); });
+  // 글꼴을 다 읽은 뒤에 시작한다 (글꼴이 바뀌면 글자 자리가 달라진다)
+  document.fonts.ready.then(() => { layout(); ready = true; });
 }
 
+
+/* ── [F] 시작 ──────────────────────────────────────────────────── */
 (async () => {
   try {
     const res = await fetch(MD_FILE, { cache: "no-store" });
     if (!res.ok) throw new Error(res.status + " " + res.statusText);
-    renderWorkbook(await res.text());
+    showWorkbook(parseWorkbook(await res.text()));
     enhance();
+    // 주소에 #장 이 붙어 있으면 그 자리로 간다 (내용이 나중에 만들어지므로 직접 옮겨 줘야 한다)
     if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
   } catch (e) {
     document.querySelector("main").innerHTML = `<div class="warn" style="margin-top:40px"><b>${MD_FILE}</b> 을 읽지 못했습니다 (${escAll(String(e.message || e))}).<br>
