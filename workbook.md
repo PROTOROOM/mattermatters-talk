@@ -104,7 +104,7 @@ Tech × Kit × Critic.
 ### 출처
 [protoroom.kr About](https://protoroom.kr/works/about/) [Texts](https://protoroom.kr/works/texts/) [NTT ICC](https://www.ntticc.or.jp/en/archive/works/sensuous-transforming-of-0-1-signal-ver-1/)
 
-## 03 작품 〈0.000001GB Matter Matters〉 · SmallBig
+## 03 〈0.000001GB Matter Matters〉
 목차: 작품·SmallBig
 키워드: **계산하는 악기**, **1KB 수식**, 라디오 주파수 맞추기, Matter / Matters, 데모씬
 회고: 설치 | 2025.06–
