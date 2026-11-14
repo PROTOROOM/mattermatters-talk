@@ -303,8 +303,8 @@ ${groups.map((g, n) => `<div class="c-row"><div class="c-big">${inline(g.big).re
       closeSlot(); i++;
       const t = line.slice(4).trim();
       if (t === "확인 필요") { slot = { kind: "warn", blocks: [] }; continue; }
-      const th = t.match(/^주제의식\s*\((.+)\)$/);
-      slot = { kind: th ? "주제의식" : t, blocks: [], h4: th ? `주제의식 <em>${inline(th[1])}</em>` : inline(t),
+      const th = t.match(/^주제의식(?:\s*\((.+)\))?$/);
+      slot = { kind: th ? "주제의식" : t, blocks: [], h4: th ? "주제의식" + (th[1] ? ` <em>${inline(th[1])}</em>` : "") : inline(t),
         cls: th ? "theme" : { "핵심 내용": "points", "영상": "vslot", "출처": "src" }[t] || "" };
       continue;
     }
