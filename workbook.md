@@ -170,9 +170,10 @@ Tech × Kit × Critic.
 
 # PART Ⅱ | 여섯 번 풀어내기
 목차: Ⅱ 여섯 번 풀어내기
+키워드: 매터 매터스: 키워드
 부제: 한 작품, 여섯 개의 렌즈
 
-::: lens PROTOROOM 키워드
+::: lens
 1. **작은 데이터** Small Data
 2. **계산하는 악기** Calculating Instrument
 3. **과잉의 단위로 과소를** Expressing the Minimal with Units of Excess

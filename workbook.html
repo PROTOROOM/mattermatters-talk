@@ -102,6 +102,7 @@ header.cover { padding: 40px 0 56px; border-bottom: 2px solid var(--ink); }
 .part { margin: 96px 0 0; padding: 40px 32px; background: var(--dark); color: #fff; }
 .part small { font-family: var(--mono); color: var(--orange); letter-spacing: .1em; }
 .part h2 { margin: 6px 0 4px; font-size: 28px; }
+.part .part-keywords { margin: 18px 0 8px; font-size: 13px; font-weight: 700; letter-spacing: .06em; }
 .part .big {
   font-size: clamp(30px,5vw,56px);
   font-weight: 700;
@@ -721,8 +722,13 @@ ${groups.map((g, n) => `<div class="c-row"><div class="c-big">${inline(g.big).re
     const [text, id] = heading(line.slice(2));
     const [small, h2] = text.includes("|") ? text.split(/\s*\|\s*/) : ["", text];
     const meta = readMeta();
-    const head = `<small>${inline(small)}</small><h2>${inline(h2)}</h2>`
-      + (meta["부제"] ? `<div class="big">${inline(meta["부제"])}</div>` : "");
+    let head = `<small>${inline(small)}</small><h2>${inline(h2)}</h2>`
+      + (meta["키워드"] ? `<div class="part-keywords">${inline(meta["키워드"])}</div>` : "");
+    if (meta["키워드"]) {
+      while (i < L.length && !L[i].trim()) i++;
+      if (L[i] && readLens(L[i])) head += main.pop();
+    }
+    head += meta["부제"] ? `<div class="big">${inline(meta["부제"])}</div>` : "";
 
     if (id === "retro") {
       // 회고: 큰 문장(::: thesis)만 여기서 읽는다. 표는 각 장의 "회고:" 줄과 "주제의식"으로 맨 끝에 자동으로 만든다
@@ -796,7 +802,7 @@ ${groups.map((g, n) => `<div class="c-row"><div class="c-big">${inline(g.big).re
     if (!line.startsWith("::: lens")) return false;
     const title = line.slice(8).trim(); i++;
     const items = untilFence().map(r => r.replace(/^\d+\.\s*/, "").match(/^\*\*(.+?)\*\*\s*(.*)$/));
-    main.push(`<div class="lens"><h4>${inline(title)}</h4><ol>${items.map(m => `<li><b>${inline(m[1])}</b><small>${inline(m[2])}</small></li>`).join("")}</ol></div>`);
+    main.push(`<div class="lens">${title ? `<h4>${inline(title)}</h4>` : ""}<ol>${items.map(m => `<li><b>${inline(m[1])}</b><small>${inline(m[2])}</small></li>`).join("")}</ol></div>`);
     return true;
   }
 
