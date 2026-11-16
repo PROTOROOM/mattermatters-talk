@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PROTOROOM map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 
 <!--
   PROTOROOM map — 한 문장에서 가지가 뻗어 나오는 마인드맵
@@ -21,15 +24,7 @@
 -->
 
 <style>
-/* ───────── 1. 바탕과 본문 글씨 (workbook.html 과 같은 값) ───────── */
-@font-face {
-  font-family: "Plex KR"; font-weight: 400;
-  src: url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-400-normal.woff2) format("woff2");
-}
-@font-face {
-  font-family: "Plex KR"; font-weight: 700;
-  src: url(../SyncSlide-Matters-Perform/public/fonts/ibm-plex-sans-kr-korean-700-normal.woff2) format("woff2");
-}
+/* ───────── 1. 바탕과 본문 글씨 ───────── */
 :root {
   --bg:   #E8E8E6;   /* 바탕 */
   --ink:  #2346E8;   /* 글씨·선 */
@@ -41,7 +36,7 @@ body {
   overflow: hidden;              /* 팝업이 커질 때 스크롤바가 깜빡이지 않게 */
   background: var(--bg);
   color: var(--ink);
-  font: 18px/1.7 "Helvetica Neue", Helvetica, Arial, "Plex KR", "IBM Plex Sans KR", sans-serif;
+  font: 700 18px/1.7 "Nanum Gothic", sans-serif;
   word-break: keep-all;
 }
 
@@ -67,7 +62,11 @@ p {
   white-space: nowrap;
   line-height: 1.2;
   letter-spacing: -.035em;
+  transition: color .25s ease;
 }
+p.all-shown { color: #888; }
+.stage.rollover p, .stage.rollover .pop { color: #888; }
+.stage.rollover .t.hovered, .stage.rollover .pop.hovered { color: var(--ink); }
 .t:hover, .t.on { background: var(--mark); }   /* 커서를 올렸거나(.t:hover) 고정된(.on) 구절 */
 [data-pop], .pop { cursor: pointer; }
 
@@ -285,10 +284,15 @@ function fitToScreen(e) {
    상태가 바뀔 때마다(클릭, 커서 드나듦) 부른다. e 는 그때의 마우스 이벤트. */
 function render(e) {
   placeBranches();
+  const rollover = hovered;
+  stage.classList.toggle("rollover", !!rollover);
   for (const el of phrases) {
+    el.classList.toggle("hovered", !!rollover && el === hovered);
+    el.pop.classList.toggle("hovered", !!rollover && el === hovered);
     el.pop.classList.toggle("show", isShown(el));
     el.line.classList.toggle("show", isShown(el));
   }
+  stage.querySelector("p").classList.toggle("all-shown", phrases.length > 0 && phrases.every(isShown));
   fitToScreen(e);
 }
 
