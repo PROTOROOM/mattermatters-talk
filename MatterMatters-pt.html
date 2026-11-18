@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matter Matters — 발표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#E8E8E6;
+  --ink:#2346E8;
+  --pencil:#6375d4;
+  --rule:#aab5ea;
+  --mark:#FFE600;
+}
+* {
+  box-sizing:border-box;
+}
+html {
+  scroll-behavior:smooth;
+}
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:700 18px/1.6 "Nanum Gothic",sans-serif;
+  word-break:keep-all;
+}
+main {
+  padding:0 clamp(20px,5vw,72px) 30vh;
+  transition:margin-right .25s;
+}
+.map-scene {
+  margin:0 calc(-1 * clamp(20px,5vw,72px));
+  height:100vh;
+  position:relative;
+}
+.map-scene iframe {
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.map-scene.cur {
+  border:0;
+}
+.index-heading {
+  font-size:14px;
+  color:var(--pencil);
+  margin:48px 0 14px;
+}
+.bt {
+  margin:0;
+  font:700 clamp(2.2rem,6.6vw,5.6rem)/1.12 "Nanum Gothic",sans-serif;
+  letter-spacing:-.05em;
+}
+.bt-btn {
+  all:unset;
+  cursor:pointer;
+  color:var(--ink);
+}
+.bt-btn:hover .bt-t,.bt-btn[aria-expanded="true"] .bt-t {
+  text-decoration:underline;
+  text-decoration-thickness:.055em;
+  text-underline-offset:.13em;
+}
+.bt-btn:focus-visible,button:focus-visible {
+  outline:3px solid var(--mark);
+  outline-offset:4px;
+}
+.bt-part {
+  display:inline-block;
+  font:400 clamp(.8rem,1.35vw,1.15rem)/1.15 sans-serif;
+  letter-spacing:0;
+  vertical-align:1.6em;
+  margin-left:.5em;
+}
+.bt-body {
+  margin:12px 0 40px;
+}
+.bt-body[hidden] {
+  display:none;
+}
+.scene:not(.map-scene) {
+  min-height:calc(100vh - 40px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:56px 0 64px;
+  border-top:1px solid var(--ink);
+  scroll-margin-top:0;
+}
+.scene.cur:not(.map-scene) {
+  border-top-width:3px;
+}
+.kicker {
+  display:flex;
+  gap:14px;
+  align-items:baseline;
+  color:var(--pencil);
+  font-size:14px;
+  margin:0 0 28px;
+}
+.kicker .bt-part {
+  margin:0;
+  vertical-align:baseline;
+}
+.kicker b {
+  color:var(--ink);
+  font-size:15px;
+}
+.sc {
+  max-width:1180px;
+}
+.sc h1,.sc h2 {
+  margin:0 0 .3em;
+  font-size:clamp(2.2rem,4.8vw,4.4rem);
+  line-height:1.18;
+  letter-spacing:-.04em;
+}
+.sc p {
+  margin:0;
+}
+.sc .english {
+  color:var(--pencil);
+  font-size:clamp(1rem,1.5vw,1.3rem);
+}
+.sc .lede {
+  font-size:clamp(1.5rem,2.9vw,2.6rem);
+  line-height:1.4;
+  margin: .6em 0;
+  letter-spacing:-.03em;
+}
+.sc .support {
+  max-width:52em;
+  font-size:clamp(1.05rem,1.5vw,1.35rem);
+  line-height:1.7;
+  color:var(--pencil);
+  margin:1em 0 0;
+}
+.detail {
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+  margin-top:38px;
+}
+.detail span {
+  border-top:1px solid;
+  padding-top:10px;
+  flex:1 1 180px;
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+  main {
+    transition:none;
+  }
+}
+/* 워크북: 여섯 키워드와 여섯 회차 */
+.workbook {
+  --ink:#2346E8;
+  --mute:#2346E8b3;
+  --line:#2346E8;
+  --red:#2346E8;
+  --bg:#E8E8E6;
+  font-family:"Helvetica Neue",Helvetica,Arial,"Nanum Gothic",sans-serif;
+  font-weight:400;
+}
+.workbook .workbook-intro {
+  border-top:6px solid var(--ink);
+  min-height:0;
+  justify-content:flex-start;
+  padding:16px 0 48px;
+}
+.workbook .lens {
+  border-top:2px solid;
+  border-bottom:1px solid;
+  padding:20px 0;
+  margin:18px 0;
+}
+.workbook .lens ol {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px 28px;
+  counter-reset:l;
+}
+.workbook .lens li {
+  counter-increment:l;
+  display:grid;
+  grid-template-columns:2em 1fr;
+  row-gap:2px;
+}
+.workbook .lens li::before {
+  content:counter(l,decimal-leading-zero);
+  grid-row:span 2;
+  font-size:13px;
+  padding-top:6px;
+}
+.workbook .lens li b {
+  font-size:22px;
+  line-height:1.3;
+}
+.workbook .lens li small {
+  font-size:12px;
+  opacity:.7;
+}
+.workbook .scene.ch {
+  display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  column-gap:40px;
+  align-content:start;
+  min-height:100vh;
+  padding:16px 0 48px;
+  border-top:2px solid;
+}
+.workbook .ch > * {
+  grid-column:2;
+}
+.workbook .ch > .chapter-heading {
+  grid-column:1;
+  grid-row:1 / span 40;
+  align-self:start;
+  position:sticky;
+  top:24px;
+}
+.workbook .chapter-heading h3 {
+  margin:0;
+  font-size:26px;
+  line-height:1.25;
+  letter-spacing:-.02em;
+}
+.workbook .ch h3 .no {
+  display:block;
+  font-size:clamp(72px,9vw,128px);
+  font-weight:500;
+  line-height:.88;
+  letter-spacing:-.05em;
+  margin:0 0 14px;
+}
+.workbook .kw {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:20px 0 22px;
+}
+.workbook .k {
+  border:1.5px solid;
+  border-radius:999px;
+  padding:5px 16px;
+  font-size:17px;
+  white-space:nowrap;
+}
+.workbook .k.m {
+  background:var(--ink);
+  color:var(--bg);
+  font-weight:700;
+}
+.workbook .slot {
+  margin:20px 0;
+  min-width:0;
+}
+.workbook .slot>h4 {
+  font:700 12px/1.2 monospace;
+  letter-spacing:.14em;
+  color:var(--mute);
+  margin:0 0 8px;
+}
+.workbook .theme p {
+  margin:0;
+  font-size:clamp(31.2px,3.12vw,40.56px);
+  font-weight:700;
+  line-height:1.4;
+}
+.workbook .points ul {
+  margin:0;
+  padding-left:20px;
+}
+.workbook li {
+  margin:4px 0;
+}
+.workbook .performance-points {
+  font-size:clamp(18px,1.45vw,23px);
+  line-height:1.65;
+}
+.workbook .performance-points p {
+  margin:0;
+}
+.workbook .performance-intro {
+  font-weight:700;
+}
+.workbook .performance-label {
+  margin:24px 0 0 !important;
+}
+.workbook .performance-parts {
+  margin:10px 0 24px;
+  border-top:1px solid var(--ink);
+}
+.workbook .performance-parts > div {
+  display:grid;
+  grid-template-columns:minmax(120px, 0.35fr) 1fr;
+  gap:12px 20px;
+  padding:16px 0;
+  border-bottom:1px solid var(--ink);
+}
+.workbook .performance-parts b {
+  font-weight:700;
+}
+.workbook .performance-sequence > p {
+  padding:16px 0;
+  border-bottom:1px solid var(--ink);
+}
+@media(max-width:600px) {
+  .workbook .performance-parts > div {
+    grid-template-columns:1fr;
+    gap:4px;
+  }
+}
+.workbook .vslot > summary {
+  display:block;
+  width:100%;
+  height:18px;
+  background:var(--ink);
+  cursor:pointer;
+}
+.workbook .vslot > summary::-webkit-details-marker {
+  display:none;
+}
+.workbook .vslot[open] > summary {
+  margin-bottom:8px;
+}
+.workbook .vids {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:14px;
+}
+.workbook .vids.one {
+  grid-template-columns:1fr;
+}
+.workbook .vid {
+  display:block;
+  border:1px solid;
+  color:inherit;
+  text-decoration:none;
+}
+.workbook .th {
+  position:relative;
+  aspect-ratio:16/9;
+  background:center/cover no-repeat var(--ink);
+}
+.workbook .th::after {
+  content:"▶";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:var(--ink);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+.workbook .tag {
+  position:absolute;
+  left:8px;
+  top:8px;
+  z-index:1;
+  color:white;
+  background:var(--ink);
+  padding:2px 6px;
+  font:700 10px monospace;
+}
+.workbook .tx {
+  padding:8px 10px;
+  font-size:15px;
+  line-height:1.45;
+}
+.workbook .tx small {
+  display:block;
+  color:var(--mute);
+  font-size:12px;
+}
+/* 본문 문장: 가리킨 문장만 확대 */
+.workbook .theme p,
+.workbook .points li,
+.workbook .performance-points p {
+  transform-origin:left center;
+  transition:transform .25s ease;
+}
+.workbook .theme p:hover,
+.workbook .points li:hover,
+.workbook .performance-points p:hover {
+  transform:scale(1.14);
+}
+@media (prefers-reduced-motion:reduce) {
+  .workbook .theme p,
+  .workbook .points li,
+  .workbook .performance-points p {
+    transition:none;
+  }
+}
+@media(max-width:860px) {
+  .workbook .scene.ch {
+    display:block;
+  }
+  .workbook .ch > .chapter-heading {
+    position:static;
+    margin-bottom:24px;
+  }
+}
+
+/* 퍼포먼스 문장 롤오버: 문장을 화면 폭으로 크게 펼친다. */
+.workbook .ch.sentence-focus,
+.workbook .ch.sentence-focus * { color:#999 !important; }
+.workbook .ch.sentence-focus .performance-points p:hover { transform:none; }
+.sentence-preview {
+  position:fixed;
+  z-index:50;
+  left:clamp(20px, 5vw, 72px);
+  right:clamp(20px, 5vw, 72px);
+  padding:.15em .2em;
+  background:#E8E8E6;
+  color:#2346E8;
+  font:700 clamp(30px, 4.5vw, 68px)/1.3 "Nanum Gothic", sans-serif;
+  letter-spacing:-.035em;
+  word-break:keep-all;
+  pointer-events:none;
+}
+.sentence-preview[hidden] { display:none; }
+</style>
+</head>
+<body>
+<main id="main">
+
+  <!-- 첫 장면: 별도 파일의 마인드맵과 조절 메뉴 -->
+<article class="scene map-scene" data-head="PROTOROOM 마인드맵"><iframe id="map-frame" src="protoroom-map.html" title="PROTOROOM 마인드맵"></iframe></article>
+
+  <!-- G 키가 돌아오는 목차 위치 -->
+<div class="index-heading" aria-hidden="true"></div>
+
+  <!-- 소개: PROTOROOM -->
+<section class="bt-item" id="part-0" data-title="PROTOROOM">
+<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-0"><span class="bt-t">PROTOROOM</span><span class="bt-p">,</span></button></h2>
+<div class="bt-body" id="body-0" hidden><article class="scene" data-head="PROTOROOM"><p class="kicker"><b>PROTOROOM</b></p><div class="sc"><h1>PROTOROOM</h1>
+  <p class="lede">Tech × Kit × Critic</p>
+  <p class="support">후니다 킴과 김승범이 2014년 결성한 메타미디어 콜렉티브. 기술을 직접 다루는 키트를 만들고, 그 경험을 통해 기술과 매체를 함께 생각합니다.</p>
+  <div class="detail"><span>0과 1의 전환</span><span>MetaPixels</span><span>SmallBig</span></div></div></article></div></section>
+
+  <!-- 소개: 작품과 계산하는 악기 -->
+<section class="bt-item" id="part-1" data-title="〈0.000001GB Matter Matters〉">
+<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-1"><span class="bt-t">〈0.000001GB Matter Matters〉</span><span class="bt-p">,</span></button></h2>
+<div class="bt-body" id="body-1" hidden><article class="scene" data-head="〈0.000001GB Matter Matters〉"><p class="kicker"><b>〈0.000001GB Matter Matters〉</b></p><div class="sc"><h2>〈0.000001GB<br>Matter Matters〉</h2>
+  <p class="lede">1KB 이하의 수식으로 소리를 탐색하는<br>계산하는 악기, SmallBig_S1.</p>
+  <p class="support">수식이 만들어내는 노이즈와 글리치에서 리듬을 찾아 쌓고, 전시장에서는 관객도 직접 악기를 연주합니다.</p></div></article></div></section>
+
+  <!-- 여섯 키워드 -->
+<section class="bt-item" id="part-2" data-title="매터 매터스: 키워드">
+<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-2"><span class="bt-t">매터 매터스: 키워드</span><span class="bt-p">.</span></button></h2>
+<div class="bt-body workbook" id="body-2" hidden>
+<article class="scene workbook-intro" data-head="매터 매터스: 키워드"><div class="lens"><ol><li><b>작은 데이터</b><small>Small Data</small></li><li><b>계산하는 악기</b><small>Calculating Instrument</small></li><li><b>과잉의 단위로 과소를</b><small>Expressing the Minimal with Units of Excess</small></li><li><b>탐색적 작곡</b><small>Exploratory Composition</small></li><li><b>물질로서의 데이터</b><small>Data as Matter</small></li><li><b>은유가 아니라 실제</b><small>Not Metaphor, but Real</small></li></ol></div></article>
+</div></section>
+
+  <!-- 한 작품, 여섯 회차: 제목을 누르면 아래의 01~06이 열린다 -->
+<section class="bt-item" id="part-3" data-title="한 작품, 여섯 개의 렌즈">
+<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-3"><span class="bt-t">한 작품, 여섯 개의 렌즈</span><span class="bt-p">.</span></button></h2>
+<div class="bt-body workbook" id="body-3" hidden>
+
+<!-- 01 회차 -->
+<section class="ch scene" id="c04" data-head="〈매터 매터스: 탐색을 기다리며〉">
+<div class="chapter-heading"><h3><span class="no">01</span>〈매터 매터스: 탐색을 기다리며〉</h3>
+<div class="kw"><span class="k m">탐색을 기다리며</span><span class="k">글리치 굿</span><span class="k">수식의 변화</span><span class="k">인스타 라이브</span></div></div>
+<div class="slot theme"><p>작은 수식 안에 이미 들어 있는 소리를 하나씩 찾아 나서는 시간.</p></div>
+
+<!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
+<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=_prGf_HPPmI" data-p="yt" data-id="_prGf_HPPmI" data-embed="https://www.youtube.com/embed/_prGf_HPPmI?si=qzwyDffU0h499xXl"><div class="th" style="background-image:url('https://i.ytimg.com/vi/_prGf_HPPmI/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">《메가트론 랩소디》 연계 퍼포먼스 프로토룸 〈Matter Matters: 탐색을 기다리며〉 후기<small>서울시립미술관 · SeMA 행사 페이지 임베드</small></div></a></div></details>
+
+<!-- 회차 본문: 도입 → 퍼포먼스 구성 → 마무리 -->
+<div class="slot points">
+<div class="performance-points">
+  <p class="performance-intro">공간에 설치된 계산하는 악기를 설정하는 오프닝 퍼포먼스로, 크게 두 부분으로 구성되었다.</p>
+  <p class="performance-label"><b>Sound Performance</b></p>
+  <div class="performance-parts">
+    <div><b>Table Top</b><p>두 사람은 탐색의 규칙을 만들고 수식에서 유의미한 사운드를 만드는 변수를 찾는다.</p></div>
+    <div><b>On the Wall</b><p>탐색한 변수값을 벽 위의 계산하는 악기로 옮기고 퍼포먼스를 이어갔다.</p></div>
+  </div>
+  <p class="performance-outro">오프닝 퍼포먼스의 사운드는 언제든 실행되고 관객의 탐색과 협연을 기다린다.</p>
+</div>
+</div>
+</section>
+
+<!-- 02 회차 -->
+<section class="ch scene" id="c05" data-head="〈매터 매터스: 탐색적 작곡〉">
+<div class="chapter-heading"><h3><span class="no">02</span>〈매터 매터스: 탐색적 작곡〉</h3>
+<div class="kw"><span class="k m">탐색적 작곡</span><span class="k">16대</span><span class="k">한옥 전체가 작곡의 공간</span><span class="k">소리의 시작점</span></div></div>
+<div class="slot theme"><p>작은 데이터 하나로 한옥 전체를 채울 수 있을까.</p></div>
+
+<!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
+<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=jATfjGHGXAE" data-p="yt" data-id="jATfjGHGXAE"><div class="th" style="background-image:url('https://i.ytimg.com/vi/jATfjGHGXAE/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">《메가트론 랩소디》 동기신호 프로그램<small>서울시립미술관 · 10.25 SeMA 페이지 임베드 후기 영상</small></div></a></div></details>
+
+<div class="slot points"><div class="performance-points">
+  <p class="performance-intro">동기 신호 슬라이드를 통해 작업의 흐름을 함께 읽으며 사운드를 공간에 쌓은 렉처퍼포먼스이다.</p>
+  <div class="performance-parts performance-sequence">
+    <p>모든 관객의 스마트폰은 신호로 동기화되는 슬라이드가 실행되었고, 작업의 개념, 배경, 탐색의 과정을 읽어가며 사운드 퍼포먼스를 진행했다.</p>
+    <p>공간의 한 곳에 모은 장치는 노이즈를 시작으로 천천히 탐색되며 유의미한 사운드의 조합을 만들고, 관객의 손을 빌어 전시 공간 전체로 재배치되었다.</p>
+    <p>전시 공간을 가득 채운 탐색적 작곡의 사운드 속으로 모든 관객이 거닐며 음미했다.</p>
+  </div>
+</div></div>
+</section>
+
+<!-- 03 회차 -->
+<section class="ch scene" id="c06" data-head="〈워크숍+사운드잼: 읽고 쓰고 듣는 0.000001GB〉">
+<div class="chapter-heading"><h3><span class="no">03</span>〈워크숍+사운드잼: 읽고 쓰고 듣는 0.000001GB〉</h3>
+<div class="kw"><span class="k m">과잉의 단위로 과소를</span><span class="k m">실행되는 데이터</span><span class="k">누수된 데이터</span><span class="k">사운드잼</span><span class="k">데이터의 부족?</span></div></div>
+<div class="slot theme"><p>결정적인 데이터가 비결정적인 경험을 만든다.</p></div>
+
+<!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
+<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GtQdIYUtAHg" data-p="yt" data-id="GtQdIYUtAHg"><div class="th" style="background-image:url('https://i.ytimg.com/vi/GtQdIYUtAHg/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">Bytebeat: Experimental music from very short C programs (2011)<small>viznut · bytebeat의 출발점 (참고)</small></div></a></div></details>
+
+<div class="slot points"><ul><li>1KB 감각 잡기: 앨리스 1KB, 픽셀, 마리오 롬 40KB vs 화면 캡처 수 MB → '과잉의 단위로 과소를 측정하기'</li>
+<li>참여자 폰으로 t*n, t>>n을 보고 → 듣고 → 섞기 (데이터는 저장이 아니라 실행)</li>
+<li>버튼 에디터로 수식을 쓰고 계산하는 악기에 업로드 → 사운드잼</li>
+<li>'누수된 데이터 — 소리로 왜 들을까?' (전화기 해킹, 다이얼 소리, 모스부호)</li></ul></div>
+</section>
+
+<!-- 04 회차 -->
+<section class="ch scene" id="c07" data-head="〈렉처퍼포먼스+렉처퍼포먼스: 효율 너머의 코드와 데이터〉">
+<div class="chapter-heading"><h3><span class="no">04</span>〈렉처퍼포먼스+렉처퍼포먼스: 효율 너머의 코드와 데이터〉</h3>
+<div class="kw"><span class="k m">효율 너머</span><span class="k m">은유가 아니라 실제</span><span class="k">도구 만들기</span><span class="k">번역</span><span class="k">P-Code</span><span class="k">1KB 쓰기 장치</span></div></div>
+<div class="slot theme"><p>은유가 아니라 실제.</p></div>
+
+<div class="slot points"><ul><li>P-Code(종이 위 문자를 소리로, 에러 없는 언어)와 SmallBig을 겹쳐 봄 — 둘 다 최소한의 코드·데이터로 무한한 변주</li>
+<li>체험 장치: 1KB 쓰기 장치, 단위 줌인, 1KB = 0.000001 GB → Matter Matters</li>
+<li>t 카운터와 8비트 게이지: 비유가 아니라 계산 그 자체</li>
+<li>공통 키워드 Small Data · 탐색적 작곡 ↔ 알고리즘 작곡</li></ul></div>
+</section>
+
+<!-- 05 회차 -->
+<section class="ch scene" id="c08" data-head="〈언이븐퓨처+렉처퍼포먼스: 데이터, 모델, 지능〉">
+<div class="chapter-heading"><h3><span class="no">05</span>〈언이븐퓨처+렉처퍼포먼스: 데이터, 모델, 지능〉</h3>
+<div class="kw"><span class="k m">고르지 않은 미래</span><span class="k m">작은 지능</span><span class="k">로컬 모델</span><span class="k">기호적 해석</span><span class="k">스프라이트 재사용</span></div></div>
+<div class="slot theme"><p>데이터·모델·지능이 고르지 않게 얽힌 미래에서, 작은 데이터는 어떤 자리를 가질까.</p></div>
+
+<!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
+<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://vimeo.com/71278954" data-p="vm" data-id="71278954"><div class="th" style="background-image:url('https://i.vimeocdn.com/video/444808992-afc8a762ae418b7d1c37e796f50c8623d728700c3f468b448bd35637df53f5fd-d_295x166')"><span class="tag">VIMEO</span></div><div class="tx">Bret Victor – The Future of Programming (2013)<small>Bret Victor · 프미 결성의 계기가 된 강연</small></div></a></div></details>
+
+<div class="slot points"><ul><li>작품 자체를 데이터로: 작은 AI와 연주(신승백) · 코드 다르게 읽기(최승준) · 개입·협연(프로토룸)</li>
+<li>슈퍼마리오의 구름과 수풀은 같은 스프라이트 — 1985년의 작은 데이터 재사용</li>
+<li>키워드에 로컬 모델 · 작은 지능 · 기호적 해석 추가</li></ul></div>
+</section>
+
+<!-- 06 회차 -->
+<section class="ch scene" id="c09" data-head="〈테크×키트×크리틱: 먼지 같은 사소한 데이터에서부터〉">
+<div class="chapter-heading"><h3><span class="no">06</span>〈테크×키트×크리틱: 먼지 같은 사소한 데이터에서부터〉</h3>
+<div class="kw"><span class="k m">먼지 같은 사소한 데이터</span><span class="k">비평</span><span class="k">회고</span></div></div>
+<div class="slot theme"><p>먼지처럼 사소하지만 곳곳에 쌓이는 작은 데이터(matter)가 왜 중요한지(matters)에서 출발해, 기술매체와 비평을 돌아본다.</p></div>
+
+<div class="slot points"><ul><li>여섯 회차를 돌아보는 아티스트 토크</li>
+<li>곽영빈 · 유은순과 함께 Tech × Kit × Critic의 Critic</li>
+<li>남은 질문: 먼지처럼 쌓인 데이터는 어떻게 될까</li></ul></div>
+</section>
+</div></section>
+
+</main>
+<div class="sentence-preview" aria-hidden="true" hidden></div>
+<!-- 발표 화면의 영상 재생, 장면 이동과 마인드맵 연결 -->
+<script>
+(() => {
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const items = $$('.bt-item');
+  const scenes = $$('.scene');
+  const frame = $('#map-frame');
+  let current = 0;
+
+  // 마우스를 올린 퍼포먼스 문장을 전체 화면 폭으로 보여준다.
+  const preview = $('.sentence-preview');
+  $$('.performance-points p:not(.performance-label)').forEach(sentence => {
+    const section = sentence.closest('.ch');
+    sentence.addEventListener('mouseenter', () => {
+      section.classList.add('sentence-focus');
+      preview.textContent = sentence.textContent.trim();
+      preview.hidden = false;
+      const top = sentence.getBoundingClientRect().top;
+      const maxTop = Math.max(16, window.innerHeight - preview.offsetHeight - 16);
+      preview.style.top = `${Math.max(16, Math.min(top, maxTop))}px`;
+    });
+    sentence.addEventListener('mouseleave', () => {
+      section.classList.remove('sentence-focus');
+      preview.hidden = true;
+    });
+  });
+
+  // 영상 썸네일은 페이지 안에서 재생하고, 제목은 원본 페이지로 연다.
+  $$('.workbook a.vid').forEach(card => {
+    card.addEventListener('click', event => {
+      const thumbnail = event.target.closest('.th');
+      const { id, p: provider } = card.dataset;
+      if (!thumbnail || !id) return;
+
+      event.preventDefault();
+      const video = document.createElement('iframe');
+      const originalThumbnail = thumbnail.cloneNode(true);
+      card.closest('details').addEventListener('toggle', function restoreOnClose() {
+        if (!this.open && video.isConnected) {
+          video.replaceWith(originalThumbnail);
+          this.removeEventListener('toggle', restoreOnClose);
+        }
+      });
+      const embedUrl = card.dataset.embed || (provider === 'yt'
+        ? `https://www.youtube.com/embed/${id}`
+        : `https://player.vimeo.com/video/${id}`);
+      const url = new URL(embedUrl);
+      url.searchParams.set('autoplay', '1');
+      video.src = url.href;
+      video.title = provider === 'yt' ? 'YouTube video player' : 'Vimeo video player';
+      // HTTP로 연 발표 페이지의 출처를 YouTube에 전달한다.
+      video.referrerPolicy = 'strict-origin-when-cross-origin';
+      video.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+      video.allowFullscreen = true;
+      video.style.cssText = 'display:block;width:100%;aspect-ratio:16/9;border:0';
+      thumbnail.replaceWith(video);
+    });
+  });
+
+  function setCurrent(index) {
+    if (index < 0 || index >= scenes.length) return;
+    scenes[current]?.classList.remove('cur');
+    current = index;
+    scenes[current].classList.add('cur');
+  }
+
+  // 큰 제목은 하나씩 펼치고, 장면 이동 시 필요한 제목을 자동으로 연다.
+  function openPart(item, open = true) {
+    items.forEach(part => {
+      const active = open && part === item;
+      $('.bt-body', part).hidden = !active;
+      $('.bt-btn', part).setAttribute('aria-expanded', String(active));
+    });
+  }
+
+  $$('.bt-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.bt-item');
+      const open = button.getAttribute('aria-expanded') !== 'true';
+      openPart(item, open);
+      if (open) {
+        item.scrollIntoView({ block: 'start' });
+        setCurrent(scenes.indexOf($('.scene', item)));
+      }
+    });
+  });
+
+  function go(index) {
+    if (index < 0 || index >= scenes.length) return;
+    const scene = scenes[index];
+    const item = scene.closest('.bt-item');
+    if (item && $('.bt-body', item).hidden) openPart(item);
+    scene.scrollIntoView({ block: 'start' });
+    setCurrent(index);
+  }
+
+  function showIndex() {
+    openPart(null, false);
+    $('.index-heading').scrollIntoView({ block: 'start' });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (visible.length) setCurrent(scenes.indexOf(visible[0].target));
+  }, { rootMargin: '-35% 0px -55% 0px' });
+  scenes.forEach(scene => observer.observe(scene));
+
+  document.addEventListener('keydown', event => {
+    if (event.target.closest('input,textarea,select,[contenteditable]') || event.metaKey || event.ctrlKey || event.altKey) return;
+    const key = event.key;
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(key)) {
+      event.preventDefault();
+      go(current + (key === ' ' && event.shiftKey ? -1 : 1));
+    } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(key)) {
+      event.preventDefault();
+      go(current - 1);
+    } else if (key.toLowerCase() === 'f') {
+      document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+    } else if (key === 'Escape' || key.toLowerCase() === 'g') {
+      showIndex();
+    }
+  });
+
+  // 마인드맵 프레임 안에서 누른 이동키와 목차 키를 받는다.
+  addEventListener('message', event => {
+    if (event.source !== frame.contentWindow || current !== 0) return;
+    if (event.data?.type === 'matter-map-navigation') {
+      go(current + event.data.direction);
+    } else if (event.data?.type === 'matter-map-command' && event.data.key === 'g') {
+      showIndex();
+    }
+  });
+
+  setCurrent(0);
+})();
+</script>
+</body>
+</html>
