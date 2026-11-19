@@ -140,6 +140,21 @@ main {
   color:var(--pencil);
   margin:1em 0 0;
 }
+/* 작품 소개: 문장 크기가 커지면 실제 레이아웃도 함께 늘어난다. */
+#part-1 .lede,
+#part-1 .rollover-sentence {
+  transition:font-size .25s ease;
+}
+#part-1 .lede:hover {
+  font-size:clamp(1.95rem, 3.77vw, 3.38rem);
+}
+#part-1 .rollover-sentence:hover {
+  font-size:1.3em;
+}
+@media (prefers-reduced-motion:reduce) {
+  #part-1 .lede,
+  #part-1 .rollover-sentence { transition:none; }
+}
 .detail {
   display:flex;
   gap:30px;
@@ -159,6 +174,17 @@ main {
     transition:none;
   }
 }
+.sc .matter-title {
+  white-space:nowrap;
+  font-size:clamp(1.25rem, 4.8vw, 4.4rem);
+}
+.matter-image {
+  display:block;
+  width:100%;
+  height:auto;
+  margin-top:32px;
+}
+
 /* 워크북: 여섯 키워드와 여섯 회차 */
 .workbook {
   --ink:#2346E8;
@@ -171,7 +197,7 @@ main {
 }
 .workbook .workbook-intro {
   border-top:6px solid var(--ink);
-  min-height:0;
+  min-height:calc(100vh - clamp(2.2rem, 6.6vw, 5.6rem) * 1.12 - 12px);
   justify-content:flex-start;
   padding:16px 0 48px;
 }
@@ -186,8 +212,8 @@ main {
   margin:0;
   padding:0;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px 28px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:clamp(24px, 4vh, 48px) 28px;
   counter-reset:l;
 }
 .workbook .lens li {
@@ -203,7 +229,7 @@ main {
   padding-top:6px;
 }
 .workbook .lens li b {
-  font-size:22px;
+  font-size:clamp(22px, 2.2vw, 34px);
   line-height:1.3;
 }
 .workbook .lens li small {
@@ -271,6 +297,13 @@ main {
   color:var(--mute);
   margin:0 0 8px;
 }
+/* 번호 아래 회차 제목의 시작 높이에 주제 문장을 맞춘다. */
+.workbook .ch > .theme {
+  margin-top:calc(clamp(72px, 9vw, 128px) * .88 + 14px);
+}
+@media(max-width:860px) {
+  .workbook .ch > .theme { margin-top:0; }
+}
 .workbook .theme p {
   margin:0;
   font-size:clamp(31.2px,3.12vw,40.56px);
@@ -292,10 +325,24 @@ main {
   margin:0;
 }
 .workbook .performance-intro {
+  font-size:1.2em;
   font-weight:700;
 }
+/* 도입 아래의 설명은 한 단계 들여쓴다. */
+.workbook .performance-label,
+.workbook .performance-parts,
+.workbook .performance-outro {
+  margin-left:clamp(16px, 2vw, 32px) !important;
+}
+.workbook .points > ul > li:first-child {
+  font-size:1.2em;
+}
+.workbook .points > ul > li:not(:first-child) {
+  margin-left:clamp(16px, 2vw, 32px);
+}
 .workbook .performance-label {
-  margin:24px 0 0 !important;
+  margin-top:24px !important;
+  margin-bottom:0 !important;
 }
 .workbook .performance-parts {
   margin:10px 0 24px;
@@ -321,6 +368,12 @@ main {
     gap:4px;
   }
 }
+.workbook .local-video {
+  display:block;
+  width:100%;
+  height:auto;
+  background:#000;
+}
 .workbook .vslot > summary {
   display:block;
   width:100%;
@@ -342,6 +395,10 @@ main {
 .workbook .vids.one {
   grid-template-columns:1fr;
 }
+.protoroom-intro .vids {
+  grid-template-columns:1fr;
+}
+
 .workbook .vid {
   display:block;
   border:1px solid;
@@ -388,25 +445,42 @@ main {
   color:var(--mute);
   font-size:12px;
 }
-/* 본문 문장: 가리킨 문장만 확대 */
-.workbook .theme p,
-.workbook .points li,
-.workbook .performance-points p {
-  transform-origin:left center;
-  transition:transform .25s ease;
+/* 회차 문장은 흰색 띠 위에 확대해 보여준다. */
+.workbook .ch.sentence-focus { filter:grayscale(1); }
+.workbook .ch.sentence-focus,
+.workbook .ch.sentence-focus * { color:#bcbcbc !important; }
+.sentence-preview {
+  position:fixed;
+  z-index:50;
+  left:clamp(20px, 5vw, 72px);
+  right:clamp(20px, 5vw, 72px);
+  padding:.15em .2em;
+  color:#2346E8;
+  font:700 clamp(30px, 4.5vw, 68px)/1.3 "Nanum Gothic", sans-serif;
+  letter-spacing:-.035em;
+  word-break:keep-all;
+  pointer-events:none;
 }
-.workbook .theme p:hover,
-.workbook .points li:hover,
-.workbook .performance-points p:hover {
-  transform:scale(1.14);
+/* 각 줄의 배경을 줄 높이와 똑같이 만들어 빈틈이나 중첩을 없앤다. */
+.sentence-lines { position:absolute; inset:0; }
+.sentence-lines i { position:absolute; display:block; background:rgba(255, 255, 255, .8); }
+.sentence-preview span { position:relative; }
+.sentence-preview:not([hidden]) {
+  transform-origin:left center;
+  animation:sentence-bloom .25s ease-out both;
+}
+@keyframes sentence-bloom {
+  0% { opacity:0; transform:scale(.955, .975); }
+  38% { opacity:1; transform:scale(1.01625, .9925); }
+  56% { transform:scale(.995, 1.00625); }
+  74% { transform:scale(1.0045, .9975); }
+  88% { transform:scale(.99875, 1.001); }
+  100% { opacity:1; transform:scale(1); }
 }
 @media (prefers-reduced-motion:reduce) {
-  .workbook .theme p,
-  .workbook .points li,
-  .workbook .performance-points p {
-    transition:none;
-  }
+  .sentence-preview:not([hidden]) { animation:none; }
 }
+.sentence-preview[hidden] { display:none; }
 @media(max-width:860px) {
   .workbook .scene.ch {
     display:block;
@@ -417,24 +491,6 @@ main {
   }
 }
 
-/* 퍼포먼스 문장 롤오버: 문장을 화면 폭으로 크게 펼친다. */
-.workbook .ch.sentence-focus,
-.workbook .ch.sentence-focus * { color:#999 !important; }
-.workbook .ch.sentence-focus .performance-points p:hover { transform:none; }
-.sentence-preview {
-  position:fixed;
-  z-index:50;
-  left:clamp(20px, 5vw, 72px);
-  right:clamp(20px, 5vw, 72px);
-  padding:.15em .2em;
-  background:#E8E8E6;
-  color:#2346E8;
-  font:700 clamp(30px, 4.5vw, 68px)/1.3 "Nanum Gothic", sans-serif;
-  letter-spacing:-.035em;
-  word-break:keep-all;
-  pointer-events:none;
-}
-.sentence-preview[hidden] { display:none; }
 </style>
 </head>
 <body>
@@ -449,17 +505,21 @@ main {
   <!-- 소개: PROTOROOM -->
 <section class="bt-item" id="part-0" data-title="PROTOROOM">
 <h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-0"><span class="bt-t">PROTOROOM</span><span class="bt-p">,</span></button></h2>
-<div class="bt-body" id="body-0" hidden><article class="scene" data-head="PROTOROOM"><p class="kicker"><b>PROTOROOM</b></p><div class="sc"><h1>PROTOROOM</h1>
+<div class="bt-body workbook protoroom-intro" id="body-0" hidden><article class="scene" data-head="PROTOROOM"><p class="kicker"><b>PROTOROOM</b></p><div class="sc"><h1>PROTOROOM</h1>
   <p class="lede">Tech × Kit × Critic</p>
   <p class="support">후니다 킴과 김승범이 2014년 결성한 메타미디어 콜렉티브. 기술을 직접 다루는 키트를 만들고, 그 경험을 통해 기술과 매체를 함께 생각합니다.</p>
-  <div class="detail"><span>0과 1의 전환</span><span>MetaPixels</span><span>SmallBig</span></div></div></article></div></section>
+  <div class="detail"><span>0과 1의 전환</span><span>MetaPixels</span><span>SmallBig</span></div>
+<!-- PROTOROOM 작업 영상: 썸네일을 누르면 제자리에서 재생 -->
+<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids"><a class="vid" target="_blank" rel="noopener" href="https://vimeo.com/149377425" data-p="vm" data-id="149377425"><div class="th" style="background-image:url('https://i.vimeocdn.com/video/548574294-80ffff6d2889cf7456ea61eb253e2d0ac186b478655c1f6d8e485f6f8e745440-d_295x166')"><span class="tag">VIMEO</span></div><div class="tx">1nput 0utput : sensuous transforming of 0 | 1 signal / PROTOROOM<small>Vimeo hoonidaworkshop · 2015</small></div></a><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=co9ziGXSjrY" data-p="yt" data-id="co9ziGXSjrY"><div class="th" style="background-image:url('https://i.ytimg.com/vi/co9ziGXSjrY/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">sensuous transforming of 0 | 1 signal Ver.1 (2016)<small>PROTOROOM · NTT ICC</small></div></a><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=vmuGFK7RI-c" data-p="yt" data-id="vmuGFK7RI-c"><div class="th" style="background-image:url('https://i.ytimg.com/vi/vmuGFK7RI-c/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">Feedback of Metapixels<small>PROTOROOM</small></div></a><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8DPH9F5KNQg" data-p="yt" data-id="8DPH9F5KNQg"><div class="th" style="background-image:url('https://i.ytimg.com/vi/8DPH9F5KNQg/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">Metapixels 2020 en<small>PROTOROOM</small></div></a></div></details></div></article></div></section>
 
   <!-- 소개: 작품과 계산하는 악기 -->
 <section class="bt-item" id="part-1" data-title="〈0.000001GB Matter Matters〉">
 <h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-1"><span class="bt-t">〈0.000001GB Matter Matters〉</span><span class="bt-p">,</span></button></h2>
-<div class="bt-body" id="body-1" hidden><article class="scene" data-head="〈0.000001GB Matter Matters〉"><p class="kicker"><b>〈0.000001GB Matter Matters〉</b></p><div class="sc"><h2>〈0.000001GB<br>Matter Matters〉</h2>
+<div class="bt-body" id="body-1" hidden><article class="scene" data-head="〈0.000001GB Matter Matters〉"><div class="sc"><h2 class="matter-title">〈0.000001GB Matter Matters〉</h2>
   <p class="lede">1KB 이하의 수식으로 소리를 탐색하는<br>계산하는 악기, SmallBig_S1.</p>
-  <p class="support">수식이 만들어내는 노이즈와 글리치에서 리듬을 찾아 쌓고, 전시장에서는 관객도 직접 악기를 연주합니다.</p></div></article></div></section>
+  <p class="support"><span class="rollover-sentence">한 줄 수식이 만들어내는 노이즈와 글리치 속에서 리듬을 탐색하고 쌓아 연주한다.</span><br><span class="rollover-sentence">전시장에서는 관객도 계산하는 악기를 직접 연주하며 각자의 소리를 더한다.</span></p>
+  <img class="matter-image" src="https://protoroom.kr/works/mattermatters/MatterMatters.jpg" alt="0.000001GB Matter Matters 작품 이미지" loading="lazy">
+</div></article></div></section>
 
   <!-- 여섯 키워드 -->
 <section class="bt-item" id="part-2" data-title="매터 매터스: 키워드">
@@ -469,8 +529,8 @@ main {
 </div></section>
 
   <!-- 한 작품, 여섯 회차: 제목을 누르면 아래의 01~06이 열린다 -->
-<section class="bt-item" id="part-3" data-title="한 작품, 여섯 개의 렌즈">
-<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-3"><span class="bt-t">한 작품, 여섯 개의 렌즈</span><span class="bt-p">.</span></button></h2>
+<section class="bt-item" id="part-3" data-title="하나의 작업, 여섯 개의 렌즈">
+<h2 class="bt"><button class="bt-btn" aria-expanded="false" aria-controls="body-3"><span class="bt-t">하나의 작업, 여섯 개의 렌즈</span><span class="bt-p">.</span></button></h2>
 <div class="bt-body workbook" id="body-3" hidden>
 
 <!-- 01 회차 -->
@@ -485,13 +545,13 @@ main {
 <!-- 회차 본문: 도입 → 퍼포먼스 구성 → 마무리 -->
 <div class="slot points">
 <div class="performance-points">
-  <p class="performance-intro">공간에 설치된 계산하는 악기를 설정하는 오프닝 퍼포먼스로, 크게 두 부분으로 구성되었다.</p>
+  <p class="performance-intro">탐색적 작곡을 시작으로 공간에 설치된 계산하는 악기를 설정하는 오프닝 퍼포먼스</p>
   <p class="performance-label"><b>Sound Performance</b></p>
   <div class="performance-parts">
-    <div><b>Table Top</b><p>두 사람은 탐색의 규칙을 만들고 수식에서 유의미한 사운드를 만드는 변수를 찾는다.</p></div>
+    <div><b>Table Top</b><p>두 사람은 탐색의 규칙을 만들고 수식에서 유의미한 사운드를 만드는 변수를 찾았다.</p></div>
     <div><b>On the Wall</b><p>탐색한 변수값을 벽 위의 계산하는 악기로 옮기고 퍼포먼스를 이어갔다.</p></div>
   </div>
-  <p class="performance-outro">오프닝 퍼포먼스의 사운드는 언제든 실행되고 관객의 탐색과 협연을 기다린다.</p>
+  <p class="performance-outro">오프닝 퍼포먼스의 사운드는 계산하는 악기에 기록되어 관객의 탐색과 비동기적인 협연을 기다린다.</p>
 </div>
 </div>
 </section>
@@ -506,9 +566,9 @@ main {
 <details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=jATfjGHGXAE" data-p="yt" data-id="jATfjGHGXAE"><div class="th" style="background-image:url('https://i.ytimg.com/vi/jATfjGHGXAE/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">《메가트론 랩소디》 동기신호 프로그램<small>서울시립미술관 · 10.25 SeMA 페이지 임베드 후기 영상</small></div></a></div></details>
 
 <div class="slot points"><div class="performance-points">
-  <p class="performance-intro">동기 신호 슬라이드를 통해 작업의 흐름을 함께 읽으며 사운드를 공간에 쌓은 렉처퍼포먼스이다.</p>
+  <p class="performance-intro">동기 신호 슬라이드를 통해 작업의 흐름을 함께 읽으며 사운드를 공간에 쌓은 렉처퍼포먼스</p>
   <div class="performance-parts performance-sequence">
-    <p>모든 관객의 스마트폰은 신호로 동기화되는 슬라이드가 실행되었고, 작업의 개념, 배경, 탐색의 과정을 읽어가며 사운드 퍼포먼스를 진행했다.</p>
+    <p>모든 관객의 스마트폰은 신호로 동기화되는 슬라이드가 실행되고, 작업의 개념, 배경, 탐색의 과정을 읽어가며 사운드 퍼포먼스를 진행했다.</p>
     <p>공간의 한 곳에 모은 장치는 노이즈를 시작으로 천천히 탐색되며 유의미한 사운드의 조합을 만들고, 관객의 손을 빌어 전시 공간 전체로 재배치되었다.</p>
     <p>전시 공간을 가득 채운 탐색적 작곡의 사운드 속으로 모든 관객이 거닐며 음미했다.</p>
   </div>
@@ -522,12 +582,19 @@ main {
 <div class="slot theme"><p>결정적인 데이터가 비결정적인 경험을 만든다.</p></div>
 
 <!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
-<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=GtQdIYUtAHg" data-p="yt" data-id="GtQdIYUtAHg"><div class="th" style="background-image:url('https://i.ytimg.com/vi/GtQdIYUtAHg/hqdefault.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">Bytebeat: Experimental music from very short C programs (2011)<small>viznut · bytebeat의 출발점 (참고)</small></div></a></div></details>
+<details class="slot vslot" open>
+  <summary aria-label="영상 접기 또는 펼치기"></summary>
+  <video class="local-video" controls playsinline preload="metadata" src="soundjam.mov" aria-label="사운드잼 영상"></video>
+</details>
 
-<div class="slot points"><ul><li>1KB 감각 잡기: 앨리스 1KB, 픽셀, 마리오 롬 40KB vs 화면 캡처 수 MB → '과잉의 단위로 과소를 측정하기'</li>
-<li>참여자 폰으로 t*n, t>>n을 보고 → 듣고 → 섞기 (데이터는 저장이 아니라 실행)</li>
-<li>버튼 에디터로 수식을 쓰고 계산하는 악기에 업로드 → 사운드잼</li>
-<li>'누수된 데이터 — 소리로 왜 들을까?' (전화기 해킹, 다이얼 소리, 모스부호)</li></ul></div>
+<div class="slot points"><div class="performance-points">
+  <p class="performance-intro">작업에 사용된 기술매체(작은 크기의 수식 데이터)를 직접 읽고, 쓰고, 듣는 워크숍과 사운드잼 퍼포먼스</p>
+  <div class="performance-parts performance-sequence">
+    <p>동기 신호 슬라이드를 통해 수식 데이터의 최소 단위구조를 단계적으로 읽고 그 의미와 사운드에 대해 직접 감각했다.</p>
+    <p>기술매체의 배경이 되는 디지털 문화와 데이터에 대한 관점과 사고방식을 나눴다.</p>
+    <p>참여자가 직접 설계한 수식을 계산하는 장치에 담아 탐색적 작곡을 경험하고 각자에게 유의미한 사운드를 찾아 함께 연주했다.</p>
+  </div>
+</div></div>
 </section>
 
 <!-- 04 회차 -->
@@ -536,10 +603,14 @@ main {
 <div class="kw"><span class="k m">효율 너머</span><span class="k m">은유가 아니라 실제</span><span class="k">도구 만들기</span><span class="k">번역</span><span class="k">P-Code</span><span class="k">1KB 쓰기 장치</span></div></div>
 <div class="slot theme"><p>은유가 아니라 실제.</p></div>
 
-<div class="slot points"><ul><li>P-Code(종이 위 문자를 소리로, 에러 없는 언어)와 SmallBig을 겹쳐 봄 — 둘 다 최소한의 코드·데이터로 무한한 변주</li>
-<li>체험 장치: 1KB 쓰기 장치, 단위 줌인, 1KB = 0.000001 GB → Matter Matters</li>
-<li>t 카운터와 8비트 게이지: 비유가 아니라 계산 그 자체</li>
-<li>공통 키워드 Small Data · 탐색적 작곡 ↔ 알고리즘 작곡</li></ul></div>
+<div class="slot points"><div class="performance-points">
+  <p class="performance-intro">PROTOROOM과 P-Code의 요스케 하야시가 함께 코드와 데이터의 다른 관점을 풀어낸 &lt;렉처+렉처&gt; 퍼포먼스</p>
+  <div class="performance-parts performance-sequence">
+    <p>하야시는 적은 기호 조합의 코드로 사운드를 생성하는 P-Code의 사용자 인터페이스(UI)를 변형하면서 코드에 대한 접근방식이 바뀌는 지점에 대해 실험하였다.</p>
+    <p>PROTOROOM은 적은 수식 데이터의 의미에 대한 렉처를 시작으로 수식에 대한 사운드를 함께 실행하며 느껴보고, 공간에 노이즈를 배치하여 사운드 퍼포먼스로 이어갔다.</p>
+    <p>코드와 데이터에 대한 서로의 키워드를 병렬로 배치하고 그에 대한 생각을 나눴다.</p>
+  </div>
+</div></div>
 </section>
 
 <!-- 05 회차 -->
@@ -551,9 +622,13 @@ main {
 <!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
 <details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://vimeo.com/71278954" data-p="vm" data-id="71278954"><div class="th" style="background-image:url('https://i.vimeocdn.com/video/444808992-afc8a762ae418b7d1c37e796f50c8623d728700c3f468b448bd35637df53f5fd-d_295x166')"><span class="tag">VIMEO</span></div><div class="tx">Bret Victor – The Future of Programming (2013)<small>Bret Victor · 프미 결성의 계기가 된 강연</small></div></a></div></details>
 
-<div class="slot points"><ul><li>작품 자체를 데이터로: 작은 AI와 연주(신승백) · 코드 다르게 읽기(최승준) · 개입·협연(프로토룸)</li>
-<li>슈퍼마리오의 구름과 수풀은 같은 스프라이트 — 1985년의 작은 데이터 재사용</li>
-<li>키워드에 로컬 모델 · 작은 지능 · 기호적 해석 추가</li></ul></div>
+<div class="slot points"><div class="performance-points">
+  <p class="performance-intro">컴퓨팅의 대안적 미래, 그곳에서 갈라져 나온 문화를 탐구해 온 네 사람은 '고르지 않은 미래(Uneven Future)'를 주제로 진행한 렉처퍼포먼스</p>
+  <div class="performance-parts performance-sequence">
+    <p>PROTOROOM의 수식에 대한 렉처 이후 최승준은 그 수식을 다르게 읽고 해석하기를 점진적으로 확장하며 코드의 번역에 대한 잠재적 영역을 탐색하는 렉처퍼포먼스를 진행했다.</p>
+    <p>PROTOROOM의 탐색적 작곡 퍼포먼스 이후 신승백은 그 소리가 작은 인공지능에 도달하는 과정을 하나씩 분해하여 단계적으로 펼쳐내고 참가자들과 함께 읽어내는 렉처퍼포먼스를 진행했다.</p>
+  </div>
+</div></div>
 </section>
 
 <!-- 06 회차 -->
@@ -569,7 +644,7 @@ main {
 </div></section>
 
 </main>
-<div class="sentence-preview" aria-hidden="true" hidden></div>
+<div class="sentence-preview" aria-hidden="true" hidden><div class="sentence-lines"></div><span></span></div>
 <!-- 발표 화면의 영상 재생, 장면 이동과 마인드맵 연결 -->
 <script>
 (() => {
@@ -580,21 +655,59 @@ main {
   const frame = $('#map-frame');
   let current = 0;
 
-  // 마우스를 올린 퍼포먼스 문장을 전체 화면 폭으로 보여준다.
+  // 회차 문장을 가리키면 흰색 띠에 확대하고 같은 회차의 나머지는 흐리게 한다.
   const preview = $('.sentence-preview');
-  $$('.performance-points p:not(.performance-label)').forEach(sentence => {
-    const section = sentence.closest('.ch');
+  const previewText = $('span', preview);
+  const previewLines = $('.sentence-lines', preview);
+  // 실제 줄의 너비를 측정하고 높이는 line-height로 맞춰 배경을 정확히 연결한다.
+  function drawSentenceLines() {
+    previewLines.replaceChildren();
+    const outer = preview.getBoundingClientRect();
+    const lines = [...previewText.getClientRects()];
+    const style = getComputedStyle(preview);
+    const lineHeight = parseFloat(style.lineHeight);
+    const pad = parseFloat(style.fontSize) * .06;
+    if (!lines.length) return;
+    const firstTop = lines[0].top - outer.top + (lines[0].height - lineHeight) / 2;
+    lines.forEach((line, index) => {
+      const block = document.createElement('i');
+      block.style.left = `${line.left - outer.left - pad}px`;
+      block.style.top = `${firstTop + index * lineHeight}px`;
+      block.style.width = `${line.width + pad * 2}px`;
+      block.style.height = `${lineHeight}px`;
+      previewLines.append(block);
+    });
+  }
+  let focusedSection = null;
+  function clearSentenceFocus() {
+    focusedSection?.classList.remove('sentence-focus');
+    focusedSection = null;
+    preview.hidden = true;
+  }
+  $$('.workbook .ch .theme p, .workbook .ch .points > ul > li, .workbook .ch .performance-points p:not(.performance-label)').forEach(sentence => {
     sentence.addEventListener('mouseenter', () => {
-      section.classList.add('sentence-focus');
-      preview.textContent = sentence.textContent.trim();
+      clearSentenceFocus();
+      focusedSection = sentence.closest('.ch');
+      focusedSection.classList.add('sentence-focus');
+      previewText.textContent = sentence.innerText.replace(/\s+/g, ' ').trim();
+      // 애니메이션의 배율을 제외한 실제 크기로 측정한 뒤 움직임을 시작한다.
+      preview.style.animation = 'none';
       preview.hidden = false;
       const top = sentence.getBoundingClientRect().top;
       const maxTop = Math.max(16, window.innerHeight - preview.offsetHeight - 16);
       preview.style.top = `${Math.max(16, Math.min(top, maxTop))}px`;
+      drawSentenceLines();
+      preview.style.removeProperty('animation');
     });
-    sentence.addEventListener('mouseleave', () => {
-      section.classList.remove('sentence-focus');
-      preview.hidden = true;
+    sentence.addEventListener('mouseleave', clearSentenceFocus);
+  });
+  window.addEventListener('blur', clearSentenceFocus);
+  window.addEventListener('scroll', clearSentenceFocus, { passive:true });
+
+  // 로컬 영상을 접으면 재생도 멈춘다.
+  $$('.vslot .local-video').forEach(video => {
+    video.closest('details').addEventListener('toggle', event => {
+      if (!event.currentTarget.open) video.pause();
     });
   });
 
@@ -663,7 +776,8 @@ main {
     const scene = scenes[index];
     const item = scene.closest('.bt-item');
     if (item && $('.bt-body', item).hidden) openPart(item);
-    scene.scrollIntoView({ block: 'start' });
+    // 키워드 장면은 큰 제목까지 한 화면에 보이도록 섹션 시작에 맞춘다.
+    (scene.classList.contains('workbook-intro') ? item : scene).scrollIntoView({ block: 'start' });
     setCurrent(index);
   }
 
