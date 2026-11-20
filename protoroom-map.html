@@ -68,6 +68,8 @@ p.all-shown { color: #888; }
 .stage.rollover p, .stage.rollover .pop { color: #888; }
 .stage.rollover .t.hovered, .stage.rollover .pop.hovered { color: var(--ink); }
 .t:hover, .t.on { background: var(--mark); }   /* 커서를 올렸거나(.t:hover) 고정된(.on) 구절 */
+.exhibition-link { color: inherit; text-decoration: none; }
+.exhibition-link:focus-visible { outline: 2px solid currentColor; }
 [data-pop], .pop { cursor: pointer; }
 
 /* ───────── 4. 가지: 선 + 팝업 문장 (위치는 스크립트 [C] 가 잡는다) ───────── */
@@ -89,7 +91,7 @@ line.show { visibility: visible; animation: draw .3s ease-out; }
   transform-origin: top center;  /* 아래쪽 가지: 위에서 아래로 커진다 */
 }
 .pop.up { translate: 0 -100%; transform-origin: bottom center; }   /* 위쪽 가지: 아래에서 위로 */
-.pop.show { visibility: visible; animation: pop .45s cubic-bezier(.34, 1.56, .64, 1); }
+.pop.show { visibility: visible; animation: pop .45s ease-out; }
 @keyframes pop { from { scale: calc(1 / var(--scale)); } }
 
 /* ───────── 5. 조절 메뉴: 평소엔 숨김, 왼쪽 가장자리(16px 띠)에 커서를 대면 펼침 ───────── */
@@ -125,7 +127,7 @@ nav input[type=range] { display: block; width: 100%; }
      구절에 data-pop="..." 을 적기만 하면 가지가 하나 더 생긴다. 문장은 한 줄로 이어 써야 띄어쓰기가 그대로 나온다. -->
 <main>
   <div class="stage">
-    <p><span class="t" data-pop="데이터 크기를 체감하는 용도로 더 이상 유효하지 않은 단위">1KB라는 작은 크기의 데이터</span>로 <span class="t" data-pop="한줄에 계산 수식에서 노이즈에 가까운 소리로 번역한다.">사운드를 생성하는 장치</span>를 만들어 <span class="t" data-pop="그 안에서 유의미한 리듬을 찾아 선택하고 연주한다.">공연</span>하고 <span class="t">전시</span>했다.</p>
+    <p><span class="t" data-pop="데이터 크기를 체감하는 용도로 더 이상 유효하지 않은 단위">1KB라는 작은 크기의 데이터</span>로 <span class="t" data-pop="한줄에 계산 수식에서 노이즈에 가까운 소리로 번역한다.">사운드를 생성하는 장치</span>를 만들어 <span class="t" data-pop="그 안에서 유의미한 리듬을 찾아 선택하고 연주한다.">공연</span>하고 <a class="t exhibition-link" href="MatterMatters-pt.html#part-1" target="_parent">전시</a>했다.</p>
     <svg></svg>   <!-- 가지의 선이 그려지는 곳 -->
   </div>
 </main>
@@ -178,7 +180,7 @@ const clamp  = (v, min, max) => Math.max(min, Math.min(max, v));         // v �
 
 function setCamera(x, y, k) {
   camera = { x, y, k };
-  main.style.transform = k === 1 ? "" : `translate(${x}px,${y}px) scale(${k})`;
+  main.style.transform = x === 0 && y === 0 && k === 1 ? "" : `translate(${x}px,${y}px) scale(${k})`;
 }
 
 // 이 구절의 팝업을 지금 보여야 하는가: 고정됐거나, 롤오버가 켜진 채 커서가 올라가 있거나
@@ -261,7 +263,7 @@ function fitToScreen(e) {
   const fits = L >= EDGE && R <= right && T >= EDGE && B <= bottom;
   if (!shown.length || fits) return setCamera(0, 0, 1);
 
-  if (!(hovered && isHoverOnly(hovered))) {
+  if (!(e && hovered && isHoverOnly(hovered))) {
     // 가운데 맞춤
     const k = Math.min(1, (right - EDGE) / (R - L), (bottom - EDGE) / (B - T));
     return setCamera(innerWidth / 2 - k * (L + R) / 2, innerHeight / 2 - k * (T + B) / 2, k);
@@ -323,8 +325,17 @@ for (const el of phrases) {
   // 팝업 문장 클릭: 해제
   el.pop.onclick = e => { el.classList.remove("on"); render(e); };
 }
+window.addEventListener("resize", () => render());
+document.querySelector("nav").addEventListener("input", () => render());
+document.fonts.ready.then(() => render());
+
 // 발표 안의 프레임에서만 이동 키를 부모 화면에 전달한다.
 if (window.parent !== window) {
+  document.querySelector(".exhibition-link").addEventListener("click", e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    window.parent.postMessage({ type: "matter-map-exhibition" }, "*");
+  });
   document.addEventListener("keydown", e => {
     if (e.target.closest?.("input, textarea, select, button, [contenteditable]")) return;
     let direction = 0;
