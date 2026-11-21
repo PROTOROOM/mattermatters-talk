@@ -804,11 +804,14 @@ main {
       previewPhotos.hidden = true;
       await document.fonts.ready;
       if (generation !== previewGeneration) return;
+      preview.style.removeProperty('font-size');
       const textHeight = preview.offsetHeight;
+      let photoOffset = 0;
       if (sentence.dataset.photo) {
         const srcs = sentence.dataset.photo.trim().split(/\s+/);
-        // 정사각 사진 한 장의 크기: 원래 제한(800px, 70vh, 남은 화면 높이). 가로가 모자라면 CSS 가 같은 비율로 줄인다.
-        const size = Math.max(0, Math.min(800, innerHeight * .7, innerHeight - textHeight - 42));
+        const sharedSquares = focusedSection.id === 'c08';
+        const size = Math.max(0, Math.min(800, innerHeight * .7,
+          sharedSquares ? Infinity : innerHeight - textHeight - 42));
         previewPhotos.replaceChildren(...srcs.map((src, i) => {
           // 경로 뒤 "@0.5" 는 다른 사진 대비 배율
           const [path, scale = 1] = src.split('@');
@@ -828,14 +831,25 @@ main {
         const tallest = Math.max(0, ...images.map(img =>
           img.naturalWidth ? parseFloat(img.style.width) * img.naturalHeight / img.naturalWidth : 0
         ));
-        if (tallest > maxPhotoHeight) {
+        if (!sharedSquares && tallest > maxPhotoHeight) {
           images.forEach(img => {
             img.style.width = `${parseFloat(img.style.width) * maxPhotoHeight / tallest}px`;
           });
         }
         previewPhotos.hidden = false;
+        photoOffset = preview.offsetHeight - textHeight;
+        if (sharedSquares) {
+          // 05회차는 사진 너비를 먼저 고정하고 긴 문장만 남은 높이에 맞춘다.
+          const photoWidth = images[0].offsetWidth;
+          images.forEach(img => { img.style.width = `${photoWidth}px`; });
+          let fontSize = parseFloat(getComputedStyle(preview).fontSize);
+          while (preview.offsetHeight > innerHeight - 32 && fontSize > 12) {
+            fontSize = Math.max(12, fontSize - 1);
+            preview.style.fontSize = `${fontSize}px`;
+          }
+        }
       }
-      const top = sentence.getBoundingClientRect().top - (preview.offsetHeight - textHeight);
+      const top = sentence.getBoundingClientRect().top - photoOffset;
       const maxTop = Math.max(16, window.innerHeight - preview.offsetHeight - 16);
       preview.style.top = `${Math.max(16, Math.min(top, maxTop))}px`;
       drawSentenceLines();
