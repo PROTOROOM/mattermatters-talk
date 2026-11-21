@@ -314,6 +314,12 @@ main {
 @media(max-width:860px) {
   .workbook .ch > .theme { margin-top:0; }
 }
+.pumi-slideshow { position:relative; width:100%; aspect-ratio:16/9; background:#e8e8e6; }
+.pumi-slideshow img { display:block; width:100%; height:100%; object-fit:cover; }
+.pumi-slideshow img[hidden] { display:none; }
+.pumi-controls { display:none; }
+.pumi-controls button { border:0; background:transparent; color:inherit; font:inherit; cursor:pointer; padding:4px 10px; }
+.pumi-controls span { font-size:14px; }
 .workbook .section-image {
   display:block;
   width:100%;
@@ -517,7 +523,7 @@ main {
   .sentence-preview:not([hidden]), .sentence-photos img { animation:none; }
 }
 .sentence-preview[hidden] { display:none; }
-/* 스페이스바로 나타나는 사진: 섹션 아래, 왼쪽 끝부터 오른쪽 끝까지 */
+/* 숫자 키로 선택하는 사진 */
 .workbook .ch:has(> .stage-photo) { grid-template-rows:auto 1fr; }
 .workbook .ch > .stage-photo {
   grid-column:1 / -1;
@@ -529,8 +535,8 @@ main {
   height:auto; /* 가로를 꽉 채우고 자르지 않는다. 나타날 때 화면이 사진 아래 끝까지 내려간다 */
   margin-top:24px;
 }
-.step { visibility:hidden; }
-.step.on { visibility:visible; } /* 애니메이션 없이 바로 바뀐다 */
+.workbook .ch > .step { display:none; }
+.workbook .ch > .step.on { display:block; }
 @media(max-width:860px) {
   .workbook .scene.ch {
     display:block;
@@ -651,7 +657,10 @@ main {
 <div class="chapter-heading"><h3><span class="no">04</span>〈렉처퍼포먼스+렉처퍼포먼스: 효율 너머의 코드와 데이터〉</h3>
 <div class="kw"><span class="k m">#인터페이스의_변환</span><span class="k m">#코드이자_데이터</span><span class="k">#도구_만들기</span><span class="k">#1KB_감각하기</span></div></div>
 <div class="slot theme"><p>코드이자 데이터, 데이터이자 코드 : 형태를 바꾸거나, 형식을 바꾸거나.</p></div>
-<div class="slot"><img class="section-image" src="img/p-code.png" alt="P-Code 라이브 코딩 화면" loading="lazy"></div>
+<details class="slot vslot" open>
+  <summary aria-label="영상 접기 또는 펼치기"></summary>
+  <video class="local-video" controls playsinline preload="metadata" poster="img/04/section04_thumbnail.jpg" src="img/04/section04_merged_2x.mp4" aria-label="04 회차 코드와 데이터 영상"></video>
+</details>
 
 <div class="slot points"><div class="performance-points">
   <p class="performance-intro">PROTOROOM과 P-Code의 요스케 하야시가 함께 코드와 데이터의 다른 관점을 풀어낸 &lt;렉처+렉처&gt; 퍼포먼스</p>
@@ -669,8 +678,35 @@ main {
 <div class="kw"><span class="k m">#고르지_않은_미래</span><span class="k m">#프미</span><span class="k">#코드번역</span><span class="k">#로컬모델</span><span class="k">#매체변환</span></div></div>
 <div class="slot theme"><p>번역 한, 번역 하는, 번역 가능한 데이터의 연쇄</p></div>
 
-<!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
-<details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://vimeo.com/71278954" data-p="vm" data-id="71278954"><div class="th" style="background-image:url('img/video/71278954.jpg')"><span class="tag">VIMEO</span></div><div class="tx">Bret Victor – The Future of Programming (2013)<small>Bret Victor · 프미 결성의 계기가 된 강연</small></div></a></div></details>
+<!-- 05 회차 사진 슬라이드쇼 -->
+<details class="slot vslot" open>
+  <summary aria-label="사진 접기 또는 펼치기"></summary>
+  <div class="pumi-slideshow" aria-label="05 회차 사진 슬라이드쇼">
+    <img src="img/05/main-pumi/37eca65361582e1dff2981795b916b6d.JPEG" alt="05 회차 기록 사진 1">
+    <img src="img/05/main-pumi/474d61e1b7a086ff4f09e7072b3e64f6.JPEG" alt="05 회차 기록 사진 2" hidden loading="lazy">
+    <img src="img/05/main-pumi/6b1ae58ea6e18210ae5464316f91c6bb.JPEG" alt="05 회차 기록 사진 3" hidden loading="lazy">
+    <img src="img/05/main-pumi/8285923856b41ef664ffba209424435e.JPEG" alt="05 회차 기록 사진 4" hidden loading="lazy">
+    <img src="img/05/main-pumi/98ababc066449849e5b928173e7a68bb.JPEG" alt="05 회차 기록 사진 5" hidden loading="lazy">
+    <img src="img/05/main-pumi/990e58f567718b2b0cfc09d2af5b5ac2.JPEG" alt="05 회차 기록 사진 6" hidden loading="lazy">
+    <img src="img/05/main-pumi/a5d708d9be3cdae933b20b0b60074516.JPEG" alt="05 회차 기록 사진 7" hidden loading="lazy">
+    <img src="img/05/main-pumi/b3fcf494970ca3acf4c6948e0d598f19.JPEG" alt="05 회차 기록 사진 8" hidden loading="lazy">
+    <img src="img/05/main-pumi/b6cec777124f541bc12fb3c0be526968.JPEG" alt="05 회차 기록 사진 9" hidden loading="lazy">
+    <img src="img/05/main-pumi/c8083116a66f7a303fb3e1d50bb705ed.JPEG" alt="05 회차 기록 사진 10" hidden loading="lazy">
+    <img src="img/05/main-pumi/cc76d2f4fe0ae57dadf8ad085ef18fa8.JPEG" alt="05 회차 기록 사진 11" hidden loading="lazy">
+    <img src="img/05/main-pumi/cce0bdfa2142aae0e23bc2262610afed.JPEG" alt="05 회차 기록 사진 12" hidden loading="lazy">
+    <img src="img/05/main-pumi/d1c74504138cefc23bfd0016e96bbd98.JPEG" alt="05 회차 기록 사진 13" hidden loading="lazy">
+    <img src="img/05/main-pumi/f080ff388ac7a53bb3ddcf50e76c9599.JPEG" alt="05 회차 기록 사진 14" hidden loading="lazy">
+    <img src="img/05/main-pumi/f818f6afa1a4b93711f728db7c766e5f.JPEG" alt="05 회차 기록 사진 15" hidden loading="lazy">
+    <img src="img/05/main-pumi/proto02.jpg" alt="05 회차 기록 사진 16" hidden loading="lazy">
+    <img src="img/05/main-pumi/shin02.jpg" alt="05 회차 기록 사진 17" hidden loading="lazy">
+    <div class="pumi-controls">
+      <button type="button" data-slide="previous" aria-label="이전 사진">‹</button>
+      <span aria-live="polite">1 / 17</span>
+      <button type="button" data-slide="next" aria-label="다음 사진">›</button>
+      <button type="button" data-slide="pause" aria-label="자동 재생 일시 정지">Ⅱ</button>
+    </div>
+  </div>
+</details>
 
 <div class="slot points"><div class="performance-points">
   <p class="performance-intro" data-photo="img/05/proto00-square.jpg@0.85 img/05/proto01-square.jpg@0.85">컴퓨팅의 대안적 미래, 그곳에서 갈라져 나온 문화를 탐구해 온 네 사람은 '고르지 않은 미래(Uneven Future)'를 주제로 진행한 렉처퍼포먼스</p>
@@ -696,7 +732,7 @@ main {
 <section class="ch scene" id="c10" data-head="〈보이지 않는 콘솔의 전자음악〉">
 <div class="chapter-heading"><h3><span class="no">07</span>〈보이지 않는 콘솔의 전자음악〉</h3></div>
 <div class="slot theme"><p>즉흥 연주 순서</p></div>
-<!-- step: 스페이스바를 누를 때마다 하나씩 같은 자리에 덮여 나타나고, 다 나오면 다음 장면으로 -->
+<!-- 숫자 키 1~6으로 사진 선택 -->
 <img class="step stage-photo" src="img/other-4/1.팔을 내린 네 사람의 앙상블.png" alt="팔을 내린 네 사람의 앙상블">
 <img class="step stage-photo" src="img/other-4/2.둥근 얼굴로 돌아온 비니 공연자.png" alt="둥근 얼굴로 돌아온 비니 공연자">
 <img class="step stage-photo" src="img/other-4/3.두 번째만 미소 지으며 연주하는 네 사람.png" alt="두 번째만 미소 지으며 연주하는 네 사람">
@@ -832,6 +868,48 @@ main {
     });
   });
 
+  const slideshow = $('.pumi-slideshow');
+  const slides = $$('img', slideshow);
+  const slideCount = $('.pumi-controls span', slideshow);
+  const pauseButton = $('[data-slide="pause"]', slideshow);
+  let slideIndex = 0;
+  let slideTimer;
+
+  function showSlide(index) {
+    slides[slideIndex].hidden = true;
+    slideIndex = (index + slides.length) % slides.length;
+    slides[slideIndex].hidden = false;
+    slideCount.textContent = `${slideIndex + 1} / ${slides.length}`;
+  }
+
+  function startSlideshow() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(() => {
+      if (!document.hidden && slideshow.closest('details').open && !slideshow.closest('.bt-body').hidden) {
+        showSlide(slideIndex + 1);
+      }
+    }, 2000);
+    pauseButton.textContent = 'Ⅱ';
+    pauseButton.setAttribute('aria-label', '자동 재생 일시 정지');
+  }
+
+  slideshow.addEventListener('click', event => {
+    const action = event.target.closest('button')?.dataset.slide;
+    if (action === 'previous') showSlide(slideIndex - 1);
+    if (action === 'next') showSlide(slideIndex + 1);
+    if (action === 'pause') {
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+        pauseButton.textContent = '▶';
+        pauseButton.setAttribute('aria-label', '자동 재생 시작');
+      } else {
+        startSlideshow();
+      }
+    }
+  });
+  startSlideshow();
+
   function setCurrent(index) {
     if (index < 0 || index >= scenes.length) return;
     scenes[current]?.classList.remove('cur');
@@ -899,17 +977,16 @@ main {
     });
   }
 
-  // 장면 안의 .step 은 다음 장면으로 넘어가기 전에 하나씩 나타나고, 뒤로 가면 하나씩 사라진다.
-  function step(direction) {
+  function selectStagePhoto(index) {
     const scene = scenes[current];
-    const target = direction > 0 ? $('.step:not(.on)', scene) : $$('.step.on', scene).pop();
-    if (!target) return false;
-    target.classList.toggle('on', direction > 0);
-    if (direction > 0) powerUp();
-    // 나타난 것이 화면 아래로 넘치면 아래 끝이 보이도록 내리고, 사라지면 장면 처음으로 돌아간다.
-    if (direction > 0 && target.getBoundingClientRect().bottom > innerHeight) target.scrollIntoView({ block: 'end', behavior: 'smooth' });
-    else if (direction < 0) scene.scrollIntoView({ block: 'start', behavior: 'smooth' });
-    return true;
+    const photos = $$('.step', scene);
+    const target = photos[index];
+    if (!target) return;
+    photos.forEach(photo => photo.classList.toggle('on', photo === target));
+    powerUp();
+    if (target.getBoundingClientRect().bottom > innerHeight) {
+      target.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    }
   }
 
   function showIndex() {
@@ -927,13 +1004,16 @@ main {
   document.addEventListener('keydown', event => {
     if (event.target.closest('input,textarea,select,[contenteditable]') || event.metaKey || event.ctrlKey || event.altKey) return;
     const key = event.key;
-    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(key)) {
+    if (scenes[current]?.id === 'c10' && /^[1-6]$/.test(key)) {
+      event.preventDefault();
+      selectStagePhoto(Number(key) - 1);
+    } else if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].includes(key)) {
       event.preventDefault();
       const direction = key === ' ' && event.shiftKey ? -1 : 1;
-      if (!step(direction)) go(current + direction);
+      go(current + direction);
     } else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(key)) {
       event.preventDefault();
-      if (!step(-1)) go(current - 1);
+      go(current - 1);
     } else if (key.toLowerCase() === 'f') {
       document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
     } else if (key === 'Escape' || key.toLowerCase() === 'g') {
