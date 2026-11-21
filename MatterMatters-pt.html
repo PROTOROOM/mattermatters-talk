@@ -524,16 +524,24 @@ main {
 }
 .sentence-preview[hidden] { display:none; }
 /* 숫자 키로 선택하는 사진 */
-.workbook .ch:has(> .stage-photo) { grid-template-rows:auto 1fr; }
+.workbook #c10 {
+  display:grid;
+  grid-template: auto auto / minmax(0, 1fr);
+  align-content:start;
+  row-gap:24px;
+  height:auto;
+}
+.workbook #c10 > .chapter-heading {
+  grid-area:1 / 1;
+  position:static;
+  margin:0;
+}
 .workbook .ch > .stage-photo {
-  grid-column:1 / -1;
-  grid-row:2; /* 여러 장이 같은 칸에 겹쳐서 뒤의 것이 앞의 것을 덮는다 */
-  position:relative; z-index:1; /* 화면에 붙어 따라오는 07 제목보다 위에 그린다 */
-  align-self:end;
-  display:block;
+  grid-area:1 / 1 / -1 / 2;
+  position:relative;
+  z-index:1;
   width:100%;
-  height:auto; /* 가로를 꽉 채우고 자르지 않는다. 나타날 때 화면이 사진 아래 끝까지 내려간다 */
-  margin-top:24px;
+  height:auto;
 }
 .workbook .ch > .step { display:none; }
 .workbook .ch > .step.on { display:block; }
@@ -1017,8 +1025,8 @@ main {
     if (!target) return;
     photos.forEach(photo => photo.classList.toggle('on', photo === target));
     powerUp();
-    if (target.getBoundingClientRect().bottom > innerHeight) {
-      target.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    if (scene.getBoundingClientRect().top < 0 || target.getBoundingClientRect().bottom > innerHeight) {
+      scene.scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
   }
 
