@@ -592,7 +592,7 @@ main {
 <section class="ch scene" id="c04" data-head="〈매터 매터스: 탐색을 기다리며〉">
 <div class="chapter-heading"><h3><span class="no">01</span>〈매터 매터스: 탐색을 기다리며〉</h3>
 <div class="kw"><span class="k m">#글리치_굿</span><span class="k">#탐색의_기보</span><span class="k">#수식_태깅</span></div></div>
-<div class="slot theme"><p>탐색하고, 이식하고, 비동기적인 또 다른 탐색을 기다린다.</p></div>
+<div class="slot theme"><p>예측하기 힘든 소음, 반복되는 기계음, 누군가에게는 의미를 가진 리듬</p></div>
 
 <!-- 영상: 파란 막대를 눌러 접거나 펼친다 -->
 <details class="slot vslot" open><summary aria-label="영상 접기 또는 펼치기"></summary><div class="vids one"><a class="vid" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=_prGf_HPPmI" data-p="yt" data-id="_prGf_HPPmI" data-embed="https://www.youtube.com/embed/_prGf_HPPmI?si=qzwyDffU0h499xXl"><div class="th" style="background-image:url('img/video/_prGf_HPPmI.jpg')"><span class="tag">YOUTUBE</span></div><div class="tx">《메가트론 랩소디》 연계 퍼포먼스 프로토룸 〈Matter Matters: 탐색을 기다리며〉 후기<small>서울시립미술관 · SeMA 행사 페이지 임베드</small></div></a></div></details>
@@ -729,9 +729,8 @@ main {
 </section>
 
 <!-- 07 -->
-<section class="ch scene" id="c10" data-head="〈보이지 않는 콘솔의 전자음악〉">
-<div class="chapter-heading"><h3><span class="no">07</span>〈보이지 않는 콘솔의 전자음악〉</h3></div>
-<div class="slot theme"><p>즉흥 연주 순서</p></div>
+<section class="ch scene" id="c10" data-head="즉흥 탐색">
+<div class="chapter-heading"><h3><span class="no">07</span>즉흥 탐색</h3></div>
 <!-- 숫자 키 1~6으로 사진 선택 -->
 <img class="step stage-photo" src="img/other-4/1.팔을 내린 네 사람의 앙상블.png" alt="팔을 내린 네 사람의 앙상블">
 <img class="step stage-photo" src="img/other-4/2.둥근 얼굴로 돌아온 비니 공연자.png" alt="둥근 얼굴로 돌아온 비니 공연자">
@@ -774,32 +773,37 @@ main {
     const lineHeight = parseFloat(style.lineHeight);
     const pad = parseFloat(style.fontSize) * .06;
     if (!lines.length) return;
-    const firstTop = lines[0].top - outer.top + (lines[0].height - lineHeight) / 2;
-    lines.forEach((line, index) => {
+    lines.forEach(line => {
       const block = document.createElement('i');
       block.style.left = `${line.left - outer.left - pad}px`;
-      block.style.top = `${firstTop + index * lineHeight}px`;
+      block.style.top = `${line.top - outer.top + (line.height - lineHeight) / 2}px`;
       block.style.width = `${line.width + pad * 2}px`;
       block.style.height = `${lineHeight}px`;
       previewLines.append(block);
     });
   }
   let focusedSection = null;
+  let previewGeneration = 0;
   function clearSentenceFocus() {
+    previewGeneration++;
     focusedSection?.classList.remove('sentence-focus');
     focusedSection = null;
     preview.hidden = true;
   }
   $$('.workbook .ch .theme p, .workbook .ch .points > ul > li, .workbook .ch .performance-points p:not(.performance-label)').forEach(sentence => {
-    sentence.addEventListener('mouseenter', () => {
+    sentence.addEventListener('mouseenter', async () => {
       clearSentenceFocus();
+      const generation = previewGeneration;
       focusedSection = sentence.closest('.ch');
       focusedSection.classList.add('sentence-focus');
       previewText.textContent = sentence.innerText.replace(/\s+/g, ' ').trim();
       // 애니메이션의 배율을 제외한 실제 크기로 측정한 뒤 움직임을 시작한다.
       preview.style.animation = 'none';
+      preview.style.visibility = 'hidden';
       preview.hidden = false;
       previewPhotos.hidden = true;
+      await document.fonts.ready;
+      if (generation !== previewGeneration) return;
       const textHeight = preview.offsetHeight;
       if (sentence.dataset.photo) {
         const srcs = sentence.dataset.photo.trim().split(/\s+/);
@@ -815,12 +819,27 @@ main {
           img.style.setProperty('--i', i);
           return img;
         }));
+        await Promise.all([...previewPhotos.querySelectorAll('img')].map(img =>
+          img.decode().catch(() => {})
+        ));
+        if (generation !== previewGeneration) return;
+        const images = [...previewPhotos.querySelectorAll('img')];
+        const maxPhotoHeight = Math.max(0, innerHeight - textHeight - 42);
+        const tallest = Math.max(0, ...images.map(img =>
+          img.naturalWidth ? parseFloat(img.style.width) * img.naturalHeight / img.naturalWidth : 0
+        ));
+        if (tallest > maxPhotoHeight) {
+          images.forEach(img => {
+            img.style.width = `${parseFloat(img.style.width) * maxPhotoHeight / tallest}px`;
+          });
+        }
         previewPhotos.hidden = false;
       }
       const top = sentence.getBoundingClientRect().top - (preview.offsetHeight - textHeight);
       const maxTop = Math.max(16, window.innerHeight - preview.offsetHeight - 16);
       preview.style.top = `${Math.max(16, Math.min(top, maxTop))}px`;
       drawSentenceLines();
+      preview.style.removeProperty('visibility');
       preview.style.removeProperty('animation');
     });
     sentence.addEventListener('mouseleave', clearSentenceFocus);
